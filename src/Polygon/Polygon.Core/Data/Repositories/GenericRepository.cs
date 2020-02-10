@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace Polygon.Core.Data.Repositories
 {
-    public class GenericRepository<T> where T : BaseEntity, IRepository<T>
+    public class GenericRepository<T> : IRepository<T> where T :  BaseEntity
     {
         private readonly IUnitOfWork _unitOfWork;
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Polygon.Core.Data.Entities.ReferenceData;
 using Polygon.Core.Data.Interfaces;
 
 namespace Polygon.Core.Data.Context
@@ -22,5 +23,10 @@ namespace Polygon.Core.Data.Context
                 throw new DbUpdateException(ex.Message, ex);
             }
         }
+
+        public DbSet<ReferenceType> ReferenceTypes { get; set; }
+        public DbSet<ReferenceObject> ReferenceObjects { get; set; }
+
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Polygon.Core.Data.Entities;
+using Polygon.Core.Data.Interfaces.Repositories;
+using System;
 
 namespace Polygon.Core.Data.Interfaces
 {
@@ -6,6 +8,8 @@ namespace Polygon.Core.Data.Interfaces
     {
         IPolygonContext Context { get; }
 
-        void Commit();
+        IRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity;
+
+        int Commit();
     }
 }
