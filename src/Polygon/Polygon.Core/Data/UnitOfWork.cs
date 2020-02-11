@@ -9,7 +9,7 @@ namespace Polygon.Core.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private Dictionary<Type, object> _repositories;
+        private readonly Dictionary<Type, object> _repositories;
 
         public IPolygonContext Context { get; }
 

@@ -45,7 +45,7 @@ namespace Polygon.Core.Data.Interfaces.Repositories
         /// Creates a new entity
         /// </summary>
         /// <param name="entity">Populated entity</param>
-        void Add(T entity);
+        T Add(T entity);
 
         /// <summary>
         /// Batch creates a list of entities

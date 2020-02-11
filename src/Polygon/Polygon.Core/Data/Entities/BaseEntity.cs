@@ -11,7 +11,7 @@ namespace Polygon.Core.Data.Entities
             IsDeleted = false;
         }
 
-        [Required]
+        [Required, Key]
         public int Id { get; set; }
 
         [Required]

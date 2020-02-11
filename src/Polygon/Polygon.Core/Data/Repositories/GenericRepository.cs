@@ -43,17 +43,19 @@ namespace Polygon.Core.Data.Repositories
             return _unitOfWork.Context.Set<T>().Any(whereClause);
         }
 
-        public virtual void Add(T entity)
+        public virtual T Add(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
             _unitOfWork.Context.Set<T>().Add(entity);
+
+            return entity;
         }
 
         public virtual void Add(IEnumerable<T> entities)
         {
-            foreach (T entity in entities)
+            foreach (var entity in entities)
             {
                 Add(entity);
             }
@@ -70,10 +72,7 @@ namespace Polygon.Core.Data.Repositories
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            T existing = _unitOfWork.Context.Set<T>().Find(entity);
-
-            if (existing != null)
-                _unitOfWork.Context.Set<T>().Remove(existing);
+            _unitOfWork.Context.Set<T>().Remove(entity);
         }
 
         public virtual void Delete(int id)
