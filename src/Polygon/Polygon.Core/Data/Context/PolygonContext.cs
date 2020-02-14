@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Polygon.Core.Data.Entities.ReferenceData;
+using Polygon.Core.Data.Entities.Taxonomy;
 using Polygon.Core.Data.Interfaces;
 
 namespace Polygon.Core.Data.Context
@@ -26,6 +27,8 @@ namespace Polygon.Core.Data.Context
 
         public DbSet<ReferenceType> ReferenceTypes { get; set; }
         public DbSet<ReferenceObject> ReferenceObjects { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
 
     }
