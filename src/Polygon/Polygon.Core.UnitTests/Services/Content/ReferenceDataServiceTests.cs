@@ -37,7 +37,7 @@ namespace Polygon.Core.UnitTests.Services.Content
             _referenceTypeRepository.Add(mockReferenceTypes);
             _unitOfWork.Commit();
 
-            Assert.AreEqual(_referenceDataService.GetAllReferenceTypes().Count(), mockReferenceTypes.Length);
+            Assert.AreEqual(mockReferenceTypes.Length, _referenceDataService.GetAllReferenceTypes().Count());
         }
 
         [TestMethod]
@@ -71,11 +71,12 @@ namespace Polygon.Core.UnitTests.Services.Content
             var referenceTypeId = random.Next(1, mockReferenceTypes.Length);
 
             var referenceType = _referenceTypeRepository.GetById(referenceTypeId);
-            referenceType.Name = "Updated Reference Type Name";
+            const string referenceTypeName = "Updated Reference Type Name";
+            referenceType.Name = referenceTypeName;
 
             var updatedReferenceType = _referenceDataService.UpdateReferenceType(referenceType);
 
-            Assert.AreEqual(updatedReferenceType.Name, "Updated Reference Type Name");
+            Assert.AreEqual(referenceTypeName, updatedReferenceType.Name);
         }
 
         [TestMethod]
@@ -112,7 +113,7 @@ namespace Polygon.Core.UnitTests.Services.Content
 
             var updatedReferenceObject = _referenceDataService.UpdateReferenceObject(referenceObject);
 
-            Assert.AreEqual(updatedReferenceObject.Name, referenceObjectName);
+            Assert.AreEqual(referenceObjectName, updatedReferenceObject.Name);
         }
 
         [TestMethod]
@@ -121,7 +122,7 @@ namespace Polygon.Core.UnitTests.Services.Content
             var referenceType = _referenceTypeRepository.Add(MockReferenceData.SeedSingleReferenceType());
             var referenceObject = _referenceObjectRepository.Add(MockReferenceData.SeedSingleReferenceObject(referenceType));
 
-            Assert.AreEqual(_referenceDataService.DeleteReferenceObject(referenceObject), 1);
+            Assert.AreEqual(1, _referenceDataService.DeleteReferenceObject(referenceObject));
         }
     }
 }

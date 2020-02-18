@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Polygon.Core.Data.Entities.Blocks;
+﻿using Polygon.Core.Data.Entities.Blocks;
 
-namespace Polygon.Core.Services.Content
+namespace Polygon.Core.Services.Interfaces.Content
 {
     public interface IBlockService<T> where T : BaseBlock
     {

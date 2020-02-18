@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Polygon.Core.Data.Entities.Pages;
 using Polygon.Core.Data.Entities.ReferenceData;
 using Polygon.Core.Data.Entities.Taxonomy;
 using Polygon.Core.Data.Interfaces;
@@ -7,7 +8,7 @@ namespace Polygon.Core.Data.Context
 {
     public class PolygonContext : DbContext, IPolygonContext
     {
-        public PolygonContext(DbContextOptions<PolygonContext> options):
+        public PolygonContext(DbContextOptions options):
             base(options)
         {
 
@@ -29,6 +30,7 @@ namespace Polygon.Core.Data.Context
         public DbSet<ReferenceObject> ReferenceObjects { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<StandardPage> StandardPages { get; set; }
 
 
     }

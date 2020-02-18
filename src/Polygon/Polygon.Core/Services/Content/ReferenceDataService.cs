@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Polygon.Core.Data.Entities.ReferenceData;
+﻿using Polygon.Core.Data.Entities.ReferenceData;
 using Polygon.Core.Data.Interfaces;
 using Polygon.Core.Data.Interfaces.Repositories;
 using Polygon.Core.Services.Interfaces.Content;
@@ -75,13 +74,13 @@ namespace Polygon.Core.Services.Content
 
         public int DeleteReferenceObject(ReferenceObject referenceObject)
         {
-            _referenceObjectRepository.Delete(referenceObject);
+            _referenceObjectRepository.SoftDelete(referenceObject);
             return UnitOfWork.Commit();
         }
 
         public int DeleteReferenceObject(int id)
         {
-            _referenceObjectRepository.Delete(id);
+            _referenceObjectRepository.SoftDelete(id);
             return UnitOfWork.Commit();
         }
     }
