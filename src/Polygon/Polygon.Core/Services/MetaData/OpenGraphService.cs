@@ -1,26 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using Polygon.Core.Enums.OpenGraph;
+using Polygon.Core.Extensions;
+using Polygon.Core.Models.Selection;
 using Polygon.Core.Services.Interfaces.MetaData;
+using System;
+using System.Linq;
 
 namespace Polygon.Core.Services.MetaData
 {
     public class OpenGraphService : IOpenGraphService
     {
-        public OpenGraphService()
-        { }
 
-        public IEnumerable<KeyValuePair<int, string>> GetOpenGraphTypes()
+        public SelectBuilder GetOpenGraphTypes()
         {
-            throw new System.NotImplementedException();
+            var selectBuilder = new SelectBuilder();
+
+            foreach (var openGraphType in (OpenGraphTypes[]) Enum.GetValues(typeof(OpenGraphTypes)))
+            {
+                selectBuilder.AddItemToSelectList(openGraphType.GetValue(), openGraphType.GetDisplayName());
+            }
+
+            selectBuilder.OrderByAscending();
+            return selectBuilder;
         }
 
-        public string GetOpenGraphNamespace(int id)
+        public string GetOpenGraphNamespaceSchema(OpenGraphTypes openGraphType)
         {
-            throw new System.NotImplementedException();
+            var openGraphSchema= openGraphType.GetDescription().GetUntilCharacterOrEmpty();
+            var openGraphNamespaces = Enum.GetNames(typeof(OpenGraphNamespaces));
+            var matchingNamespace = openGraphNamespaces.SingleOrDefault(x => x.StartsWith(openGraphSchema, StringComparison.OrdinalIgnoreCase));
+            var matchingNamespaceEnum = (OpenGraphNamespaces)Enum.Parse(typeof(OpenGraphNamespaces), matchingNamespace);
+
+            return matchingNamespaceEnum.GetDescription();
         }
 
-        public string GetOpenGraphType(int id)
+        public string GetOpenGraphTypeSchema(OpenGraphTypes openGraphType)
         {
-            throw new System.NotImplementedException();
+            return openGraphType.GetDescription();
         }
         
     }

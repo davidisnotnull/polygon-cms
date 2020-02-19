@@ -1,6 +1,7 @@
 ﻿using Polygon.Core.Resources;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 
@@ -38,6 +39,22 @@ namespace Polygon.Core.Extensions
                     ?.GetCustomAttribute<DescriptionAttribute>()
                     ?.Description
                 ?? value.ToString();
+        }
+
+        public static string GetDisplayName(this Enum value)
+        {
+            if (value == null)
+                throw new ArgumentNullException(ErrorMessages.EnumNullReference);
+
+            var fieldInfo = value.GetType().GetField(value.ToString());
+
+            var descriptionAttributes = fieldInfo.GetCustomAttributes(
+                typeof(DisplayAttribute), false) as DisplayAttribute[];
+
+            if (descriptionAttributes == null) 
+                return string.Empty;
+            
+            return (descriptionAttributes.Length > 0) ? descriptionAttributes[0].Name : value.ToString();
         }
     }
 }

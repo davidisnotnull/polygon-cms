@@ -27,5 +27,12 @@ namespace Polygon.Core.UnitTests.Extensions
             var enumDescription = OpenGraphTypes.Article.GetDescription();
             Assert.AreEqual("article", enumDescription);
         }
+
+        [TestMethod]
+        public void Can_Get_Enum_DisplayName()
+        {
+            var enumDisplayName = OpenGraphTypes.Article.GetDisplayName();
+            Assert.AreEqual("Article", enumDisplayName);
+        }
     }
 }
