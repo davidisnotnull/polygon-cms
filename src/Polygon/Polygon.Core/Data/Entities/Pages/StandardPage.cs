@@ -1,5 +1,6 @@
 ﻿using Polygon.Core.Data.Entities.Shared;
 using Polygon.Core.Data.Entities.Taxonomy;
+using Polygon.Core.Enums.OpenGraph;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,6 +14,8 @@ namespace Polygon.Core.Data.Entities.Pages
         public string MetaTitle { get; set; }
 
         public string MetaDescription { get; set; }
+
+        public OpenGraphTypes OpenGraphType { get; set; }
 
         public IEnumerable<Tag> Tags { get; set; }
         
