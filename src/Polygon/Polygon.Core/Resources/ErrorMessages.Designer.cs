@@ -61,6 +61,15 @@ namespace Polygon.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Provided Enum is null.
+        /// </summary>
+        internal static string EnumNullReference {
+            get {
+                return ResourceManager.GetString("EnumNullReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unit of Work was not found.
         /// </summary>
         internal static string UnitOfWorkNullReference {

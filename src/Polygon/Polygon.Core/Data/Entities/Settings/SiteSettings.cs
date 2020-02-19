@@ -7,5 +7,9 @@
         public string OpenGraphSiteName { get; set; }
 
         public string OpenGraphDescription { get; set; }
+
+        public bool EnableGoogleTagManager { get; set; }
+
+        public string GoogleTagManagerId { get; set; }
     }
 }
