@@ -10,9 +10,16 @@ namespace Polygon.Core.Data.Interfaces.Repositories
         /// <summary>
         /// Gets an entity by it's Id
         /// </summary>
-        /// <param name="Id">Int Id of entity</param>
+        /// <param name="id">Int Id of entity</param>
         /// <returns>Entity</returns>
-        T GetById(int Id);
+        T GetById(int id);
+
+        /// <summary>
+        /// Gets an entity by it's Id, including a soft delete check.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        T GetAvailableById(int id);
 
         /// <summary>
         /// Gets a list of all entities of a specific type, regardless of whether they have been
@@ -55,16 +62,16 @@ namespace Polygon.Core.Data.Interfaces.Repositories
         /// This, with it's <c>Insert(T entity)</c> counterpart, is an example of parametric polymorphism, i.e.
         /// two methods with the same name in the same class that have differing method signatures
         /// </remarks>
-        void Add(IEnumerable<T> entities);
+        IEnumerable<T> Add(IEnumerable<T> entities);
 
         /// <summary>
         /// Updates a specific entity
         /// </summary>
         /// <param name="entityToUpdate">Entity to update</param>
-        void Update(T entityToUpdate);
+        T Update(T entityToUpdate);
 
         /// <summary>
-        /// Deletes a specifc entity
+        /// Deletes a specific entity
         /// </summary>
         /// <param name="entityToDelete">Entity to delete</param>
         void Delete(T entityToDelete);
@@ -72,8 +79,8 @@ namespace Polygon.Core.Data.Interfaces.Repositories
         /// <summary>
         /// Deletes a specific entity based on it's Id
         /// </summary>
-        /// <param name="Id">Int Id of entity</param>
-        void Delete(int Id);
+        /// <param name="id">Int Id of entity</param>
+        void Delete(int id);
 
         /// <summary>
         /// Soft deletes a specific entity
@@ -84,7 +91,7 @@ namespace Polygon.Core.Data.Interfaces.Repositories
         /// <summary>
         /// Soft deletes an entity by it's Id
         /// </summary>
-        /// <param name="Id">Guid of entity</param>
-        void SoftDelete(int Id);
+        /// <param name="id">Guid of entity</param>
+        void SoftDelete(int id);
     }
 }

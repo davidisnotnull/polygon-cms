@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using Polygon.Core.Data.Entities.Pages;
+﻿using Polygon.Core.Data.Entities.Pages;
 
 namespace Polygon.Core.UnitTests.MockData
 {
     internal static class MockPages
     {
-        public static StandardPage SeedSinglePage()
+        internal static StandardPage SeedSinglePage()
         {
             return new StandardPage
             {
@@ -14,7 +13,7 @@ namespace Polygon.Core.UnitTests.MockData
             };
         }
 
-        public static StandardPage[] SeedMultpleStandardPages()
+        internal static StandardPage[] SeedMultipleStandardPages()
         {
             return new[]
             {

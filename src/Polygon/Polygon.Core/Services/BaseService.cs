@@ -26,7 +26,7 @@ namespace Polygon.Core.Services
             GC.SuppressFinalize(this);
         }
 
-        public virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposing)
                 UnitOfWork?.Dispose();

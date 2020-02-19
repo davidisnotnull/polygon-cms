@@ -5,7 +5,7 @@ namespace Polygon.Core.Data.Entities
 {
     public abstract class BaseEntity
     {
-        public BaseEntity()
+        protected BaseEntity()
         {
             Created = DateTime.Now;
             IsDeleted = false;

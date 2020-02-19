@@ -12,14 +12,12 @@ namespace Polygon.Core.Data.Initializers
     {
         public static async Task InitializeDatabaseContextAsync(IServiceProvider serviceProvider)
         {
-            using (var serviceScope = serviceProvider.CreateScope())
+            using var serviceScope = serviceProvider.CreateScope();
+            var scopeServiceProvider = serviceScope.ServiceProvider;
+            var db = scopeServiceProvider.GetService<PolygonContext>();
+            if (await db.Database.EnsureCreatedAsync())
             {
-                var scopeServiceProvider = serviceScope.ServiceProvider;
-                var db = scopeServiceProvider.GetService<PolygonContext>();
-                if (await db.Database.EnsureCreatedAsync())
-                {
-                    // INSERT SEED TASKS HERE
-                }
+                // INSERT SEED TASKS HERE
             }
         }
 

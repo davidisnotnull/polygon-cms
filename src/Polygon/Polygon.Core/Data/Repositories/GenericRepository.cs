@@ -23,6 +23,11 @@ namespace Polygon.Core.Data.Repositories
             return _unitOfWork.Context.Set<T>().Find(id);
         }
 
+        public virtual T GetAvailableById(int id)
+        {
+            return _unitOfWork.Context.Set<T>().SingleOrDefault(x => x.IsDeleted == false && x.Id == id);
+        }
+
         public IEnumerable<T> GetAll()
         {
             return _unitOfWork.Context.Set<T>().AsEnumerable();
@@ -46,31 +51,35 @@ namespace Polygon.Core.Data.Repositories
         public virtual T Add(T entity)
         {
             if (entity == null)
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
 
             _unitOfWork.Context.Set<T>().Add(entity);
 
             return entity;
         }
 
-        public virtual void Add(IEnumerable<T> entities)
+        public virtual IEnumerable<T> Add(IEnumerable<T> entities)
         {
-            foreach (var entity in entities)
+            var baseEntities = entities as T[] ?? entities.ToArray();
+            foreach (var entity in baseEntities)
             {
                 Add(entity);
             }
+
+            return baseEntities;
         }
 
-        public virtual void Update(T entity)
+        public virtual T Update(T entity)
         {
             _unitOfWork.Context.Entry(entity).State = EntityState.Modified;
             _unitOfWork.Context.Set<T>().Attach(entity);
+            return entity;
         }
 
         public virtual void Delete(T entity)
         {
             if (entity == null)
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
 
             _unitOfWork.Context.Set<T>().Remove(entity);
         }
@@ -83,7 +92,7 @@ namespace Polygon.Core.Data.Repositories
         public virtual void SoftDelete(T entity)
         {
             if (entity == null)
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
 
             entity.IsDeleted = true;
             _unitOfWork.Context.Entry(entity).State = EntityState.Modified;

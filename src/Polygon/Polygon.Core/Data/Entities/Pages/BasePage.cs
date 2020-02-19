@@ -6,11 +6,19 @@ namespace Polygon.Core.Data.Entities.Pages
 {
     public abstract class BasePage : BaseEntity
     {
+        protected BasePage()
+        {
+            IsPublished = false;
+        }
+        
         [Required]
         public string Name { get; set; }
 
         [Required]
-        public string Heading { get; set; }
+        public string MetaTitle { get; set; }
+
+        [Required]
+        public string MetaDescription { get; set; }
 
         public bool IsPublished { get; set; }
 

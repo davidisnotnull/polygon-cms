@@ -2,6 +2,7 @@
 using Polygon.Core.Data.Entities.Taxonomy;
 using Polygon.Core.Data.Interfaces;
 using Polygon.Core.Data.Interfaces.Repositories;
+using Polygon.Core.Resources;
 using Polygon.Core.Services.Interfaces.Content;
 using System;
 
@@ -16,6 +17,9 @@ namespace Polygon.Core.Services.Content
         public TaxonomyService(IUnitOfWork unitOfWork)
             :base(unitOfWork)
         {
+            if (UnitOfWork == null)
+                throw new NullReferenceException(ErrorMessages.UnitOfWorkNullReference);
+
             _categoryRepository = UnitOfWork.GetRepository<Category>();
             _tagRepository = UnitOfWork.GetRepository<Tag>();
             _pageRepository = UnitOfWork.GetRepository<BasePage>();

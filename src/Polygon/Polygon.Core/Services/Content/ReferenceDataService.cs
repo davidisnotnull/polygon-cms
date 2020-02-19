@@ -1,7 +1,9 @@
 ﻿using Polygon.Core.Data.Entities.ReferenceData;
 using Polygon.Core.Data.Interfaces;
 using Polygon.Core.Data.Interfaces.Repositories;
+using Polygon.Core.Resources;
 using Polygon.Core.Services.Interfaces.Content;
+using System;
 using System.Collections.Generic;
 
 namespace Polygon.Core.Services.Content
@@ -14,6 +16,9 @@ namespace Polygon.Core.Services.Content
         public ReferenceDataService(IUnitOfWork unitOfWork) :
             base(unitOfWork)
         {
+            if (UnitOfWork == null)
+                throw new NullReferenceException(ErrorMessages.UnitOfWorkNullReference);
+
             _referenceTypeRepository = UnitOfWork.GetRepository<ReferenceType>();
             _referenceObjectRepository = UnitOfWork.GetRepository<ReferenceObject>();
         }

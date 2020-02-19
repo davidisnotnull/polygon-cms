@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Polygon.Core.Data.Entities.Blocks;
 using Polygon.Core.Data.Entities.Pages;
 using Polygon.Core.Data.Entities.ReferenceData;
 using Polygon.Core.Data.Entities.Taxonomy;
@@ -31,7 +32,7 @@ namespace Polygon.Core.Data.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<StandardPage> StandardPages { get; set; }
-
+        public DbSet<TeaserBlock> TeaserBlocks { get; set; }
 
     }
 }

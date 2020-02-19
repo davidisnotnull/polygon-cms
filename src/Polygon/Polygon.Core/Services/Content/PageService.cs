@@ -1,7 +1,9 @@
 ﻿using Polygon.Core.Data.Entities.Pages;
 using Polygon.Core.Data.Interfaces;
 using Polygon.Core.Data.Interfaces.Repositories;
+using Polygon.Core.Resources;
 using Polygon.Core.Services.Interfaces.Content;
+using System;
 using System.Collections.Generic;
 
 namespace Polygon.Core.Services.Content
@@ -13,6 +15,9 @@ namespace Polygon.Core.Services.Content
         public PageService(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
+            if (UnitOfWork == null)
+                throw new NullReferenceException(ErrorMessages.UnitOfWorkNullReference);
+
             _pageRepository = UnitOfWork.GetRepository<T>();
         }
 
@@ -49,7 +54,48 @@ namespace Polygon.Core.Services.Content
 
         public IEnumerable<T> GetAllPages()
         {
-            return _pageRepository.GetAll();
+            return _pageRepository.GetAvailable();
+        }
+
+        public IEnumerable<T> GetAllPublishedPages()
+        {
+            return _pageRepository.Get(x => x.IsPublished);
+        }
+
+        public int PublishPage(int id)
+        {
+            var pageToPublish = _pageRepository.GetById(id);
+            pageToPublish.IsPublished = true;
+            _pageRepository.Update(pageToPublish);
+            return UnitOfWork.Commit();
+        }
+
+        public int PublishPage(T pageToPublish)
+        {
+            if (pageToPublish == null)
+                return 0;
+
+            pageToPublish.IsPublished = true;
+            _pageRepository.Update(pageToPublish);
+            return UnitOfWork.Commit();
+        }
+
+        public int UnpublishPage(int id)
+        {
+            var pageToUnpublish = _pageRepository.GetById(id);
+            pageToUnpublish.IsPublished = false;
+            _pageRepository.Update(pageToUnpublish);
+            return UnitOfWork.Commit();
+        }
+
+        public int UnpublishPage(T pageToUnpublish)
+        {
+            if (pageToUnpublish == null)
+                return 0;
+
+            pageToUnpublish.IsPublished = false;
+            _pageRepository.Update(pageToUnpublish);
+            return UnitOfWork.Commit();
         }
     }
 }

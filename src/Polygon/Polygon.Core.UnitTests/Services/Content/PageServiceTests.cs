@@ -38,7 +38,7 @@ namespace Polygon.Core.UnitTests.Services.Content
         [TestMethod]
         public void Can_Update_Page()
         {
-            var mockStandardPages = MockPages.SeedMultpleStandardPages();
+            var mockStandardPages = MockPages.SeedMultipleStandardPages();
             _pageRepository.Add(mockStandardPages);
             var random = new Random();
             var pageId = random.Next(1, mockStandardPages.Length);
@@ -56,8 +56,11 @@ namespace Polygon.Core.UnitTests.Services.Content
         public void Can_Delete_Page()
         {
             var page = _pageRepository.Add(MockPages.SeedSinglePage());
+            _pageService.DeletePage(page);
 
-            Assert.AreEqual(1, _pageService.DeletePage(page));
+            var deletedPage = _pageService.GetPageById(page.Id);
+
+            Assert.AreEqual(true, deletedPage.IsDeleted);
         }
 
         [TestMethod]
@@ -70,12 +73,71 @@ namespace Polygon.Core.UnitTests.Services.Content
         [TestMethod]
         public void Can_Get_All_Pages()
         {
-            var pages = MockPages.SeedMultpleStandardPages();
+            var pages = MockPages.SeedMultipleStandardPages();
             _pageRepository.Add(pages);
             _unitOfWork.Commit();
 
             var returnedPages = _pageService.GetAllPages();
             Assert.AreEqual(pages.Length, returnedPages.Count());
+        }
+
+        [TestMethod]
+        public void Can_Publish_Page_By_Entity()
+        {
+            var page = MockPages.SeedSinglePage();
+
+            _pageRepository.Add(page);
+            _unitOfWork.Commit();
+
+            _pageService.PublishPage(page);
+
+            var publishedPage = _pageService.GetPageById(page.Id);
+
+            Assert.AreEqual(true, publishedPage.IsPublished);
+        }
+
+        [TestMethod]
+        public void Can_Publish_Page_By_Id()
+        {
+            var page = MockPages.SeedSinglePage();
+            _pageRepository.Add(page);
+            _unitOfWork.Commit();
+
+            _pageService.PublishPage(page.Id);
+
+            var publishedPage = _pageService.GetPageById(page.Id);
+
+            Assert.AreEqual(true, publishedPage.IsPublished);
+        }
+
+        [TestMethod]
+        public void Can_Unpublish_Page_By_Entity()
+        {
+            var page = MockPages.SeedSinglePage();
+            page.IsPublished = true;
+            _pageRepository.Add(page);
+            _unitOfWork.Commit();
+
+            _pageService.UnpublishPage(page);
+
+            var unpublishedPage = _pageService.GetPageById(page.Id);
+
+            Assert.AreEqual(false, unpublishedPage.IsPublished);
+        }
+
+        [TestMethod]
+        public void Can_Unpublish_Page_By_Id()
+        {
+            var page = MockPages.SeedSinglePage();
+            page.IsPublished = true;
+            _pageRepository.Add(page);
+            _unitOfWork.Commit();
+
+            _pageService.UnpublishPage(page.Id);
+
+            var unpublishedPage = _pageService.GetPageById(page.Id);
+
+            Assert.AreEqual(false, unpublishedPage.IsPublished);
         }
 
     }

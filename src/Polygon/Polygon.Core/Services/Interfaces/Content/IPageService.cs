@@ -16,5 +16,15 @@ namespace Polygon.Core.Services.Interfaces.Content
         public T GetPageById(int id);
 
         public IEnumerable<T> GetAllPages();
+
+        public IEnumerable<T> GetAllPublishedPages();
+
+        public int PublishPage(int id);
+
+        public int PublishPage(T pageToPublish);
+
+        public int UnpublishPage(int id);
+
+        public int UnpublishPage(T pageToUnpublish);
     }
 }
