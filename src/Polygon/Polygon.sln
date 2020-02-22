@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polygon.Core", "Polygon.Cor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1EE226D4-A25A-44DC-B946-7699005474B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polygon.Core.UnitTests", "Polygon.Core.UnitTests\Polygon.Core.UnitTests.csproj", "{5AC77676-F095-4153-976D-9582BCB6CAC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polygon.Core.UnitTests", "Polygon.Core.UnitTests\Polygon.Core.UnitTests.csproj", "{5AC77676-F095-4153-976D-9582BCB6CAC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{3FA782FB-ECEC-4F58-8037-49C716E11455}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polygon.CMS", "Polygon.CMS\Polygon.CMS.csproj", "{481350A2-974E-4EE6-80D9-7109D2077859}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,11 +27,16 @@ Global
 		{5AC77676-F095-4153-976D-9582BCB6CAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AC77676-F095-4153-976D-9582BCB6CAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AC77676-F095-4153-976D-9582BCB6CAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{481350A2-974E-4EE6-80D9-7109D2077859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481350A2-974E-4EE6-80D9-7109D2077859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{481350A2-974E-4EE6-80D9-7109D2077859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481350A2-974E-4EE6-80D9-7109D2077859}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{31B53498-D92B-4CC5-9CC6-D1F012F70C23} = {3FA782FB-ECEC-4F58-8037-49C716E11455}
 		{5AC77676-F095-4153-976D-9582BCB6CAC8} = {1EE226D4-A25A-44DC-B946-7699005474B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
