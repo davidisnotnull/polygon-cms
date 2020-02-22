@@ -1,0 +1,14 @@
+﻿@model Polygon.Core.Models.Navigation.Breadcrumb
+
+@{ 
+    var crumbs = Model.Crumbs();
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        @foreach (var crumb in Model.Trail)
+        {
+            <li class="breadcrumb-item" aria-current="page">@crumb.Name</li>
+        }
+    </ol>
+</nav>

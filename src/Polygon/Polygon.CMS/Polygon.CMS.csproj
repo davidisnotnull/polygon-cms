@@ -5,8 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Content\scripts\" />
-    <Folder Include="Content\sass\" />
+    <Folder Include="Content\js\" />
+    <Folder Include="Content\scss\" />
+    <Folder Include="Infrastructure\Initialisation\" />
+    <Folder Include="Infrastructure\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Polygon.Core\Polygon.Core.csproj" />
   </ItemGroup>
 
 

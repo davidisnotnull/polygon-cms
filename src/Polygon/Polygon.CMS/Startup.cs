@@ -1,13 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Polygon.Core.Data;
+using Polygon.Core.Data.Context;
+using Polygon.Core.Data.Interfaces;
+using Polygon.Core.Services.Admin;
+using Polygon.Core.Services.Content;
+using Polygon.Core.Services.Interfaces.Admin;
+using Polygon.Core.Services.Interfaces.Content;
+using Polygon.Core.Services.Interfaces.MetaData;
+using Polygon.Core.Services.MetaData;
+using System;
 
 namespace Polygon.CMS
 {
@@ -24,6 +31,29 @@ namespace Polygon.CMS
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.Configure<RouteOptions>(options =>
+            {
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
+                options.AppendTrailingSlash = true;
+            });
+
+            services.AddRouting();
+
+            services.AddDbContext<PolygonContext>(options =>
+            {
+                options.UseInMemoryDatabase(Guid.NewGuid().ToString());
+                options.EnableSensitiveDataLogging();
+            });
+
+            services.AddScoped<IPolygonContext, PolygonContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<INavigationService, NavigationService>();
+            services.AddScoped<IReferenceDataService, ReferenceDataService>();
+            services.AddScoped<ITaxonomyService, TaxonomyService>();
+            services.AddScoped<IOpenGraphService, OpenGraphService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

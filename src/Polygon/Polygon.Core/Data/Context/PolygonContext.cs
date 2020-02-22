@@ -31,6 +31,7 @@ namespace Polygon.Core.Data.Context
         public DbSet<ReferenceObject> ReferenceObjects { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<HomePage> HomePage { get; set; }
         public DbSet<StandardPage> StandardPages { get; set; }
         public DbSet<TeaserBlock> TeaserBlocks { get; set; }
 

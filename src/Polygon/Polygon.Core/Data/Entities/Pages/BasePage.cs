@@ -13,5 +13,7 @@ namespace Polygon.Core.Data.Entities.Pages
         public string Name { get; set; }
 
         public bool IsPublished { get; set; }
+
+        public int ParentPageId { get; set; }
     }
 }
