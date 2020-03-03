@@ -1,0 +1,15 @@
+﻿@mixin base-transition() {
+    transition: all 250ms ease-in-out;
+}
+
+@mixin base-transition-quick() {
+    transition: all 150ms ease-in-out;
+}
+
+@mixin no-transition() {
+    transition: all 0ms ease-in-out;
+}
+
+@mixin transition($properties) {
+    transition: unquote($properties) 250ms ease-in-out;
+}
