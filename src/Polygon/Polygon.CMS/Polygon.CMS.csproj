@@ -5,18 +5,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Content\js\" />
-    <Folder Include="Content\scss\" />
+    <None Remove="Content\js\global-modal.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Infrastructure\Initialisation\" />
     <Folder Include="Infrastructure\Models\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Polygon.Core\Polygon.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\js\global-modal.js" />
   </ItemGroup>
 
 

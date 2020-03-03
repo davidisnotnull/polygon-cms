@@ -10,10 +10,13 @@ namespace Polygon.CMS.Pages.Polygon
 
         public MenuBuilder MainMenu;
 
+        public Breadcrumb Breadcrumb;
+
         public DashboardModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             MainMenu = _navigationService.GetAdminMainNavigation();
+            Breadcrumb = new Breadcrumb(MainMenu.MenuItems);
         }
 
         public void OnGet()
