@@ -1,0 +1,41 @@
+/* -------------------- Colours -------------------- */
+/* -------------------- Typography -------------------- */
+/* -------------------- Paths -------------------- */
+/* -------------------- Z-Index -------------------- */
+/* -------------------- Breakpoints -------------------- */
+/*@import "base/fonts";*/
+/* -------------------- Font stacks -------------------- */
+body {
+  font-family: "Proxima Nova Regular", sans-serif;
+  color: #272727;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: em(48px);
+  line-height: rem(54px);
+  letter-spacing: rem(0.83px);
+  font-weight: 700;
+  margin-bottom: rem(30px);
+}
+@media only screen and (max-width : 767px) {
+  h1 {
+    font-size: em(34px);
+    line-height: rem(44px);
+    letter-spacing: rem(0.59px);
+    margin-bottom: rem(8px);
+  }
+}
+
+a {
+  color: #272727;
+  text-decoration: none;
+  transition: all 250ms ease-in-out;
+}
+a:hover, a:focus {
+  color: #6b1c1b;
+  text-decoration: none;
+}

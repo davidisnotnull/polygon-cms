@@ -9,11 +9,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Content\fonts\ProximaNova-Light.eot" />
+    <Content Include="Content\fonts\ProximaNova-Light.svg" />
+    <Content Include="Content\fonts\ProximaNova-Light.ttf" />
+    <Content Include="Content\fonts\ProximaNova-Light.woff" />
+    <Content Include="Content\fonts\ProximaNova-Light.woff2" />
+    <Content Include="Content\fonts\ProximaNova-Regular.eot" />
+    <Content Include="Content\fonts\ProximaNova-Regular.svg" />
+    <Content Include="Content\fonts\ProximaNova-Regular.ttf" />
+    <Content Include="Content\fonts\ProximaNova-Regular.woff" />
+    <Content Include="Content\fonts\ProximaNova-Regular.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Business\Helpers\" />
     <Folder Include="Infrastructure\Initialisation\" />
     <Folder Include="Infrastructure\Models\" />
     <Folder Include="Features\" />
-    <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="Content\js\global-modal.js" />
+    <TypeScriptCompile Include="Content\js\components\global-modal.js" />
   </ItemGroup>
 
 
