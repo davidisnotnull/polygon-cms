@@ -1,0 +1,37 @@
+﻿/* -------------------- Font stacks -------------------- */
+
+body {
+    font-family: $primary-font;
+    color: $black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+h1 {
+    font-size: em(48px);
+    line-height: rem(54px);
+    letter-spacing: rem(0.83px);
+    font-weight: 700;
+    margin-bottom: rem(30px);
+
+    @include media($sm) {
+        font-size: em(34px);
+        line-height: rem(44px);
+        letter-spacing: rem(0.59px);
+        margin-bottom: rem(8px);
+    }
+}
+
+a {
+    color: $black;
+    text-decoration: none;
+    @include base-transition;
+
+    &:hover, &:focus {
+        color: $red-dark;
+        text-decoration: none;
+    }
+}
+

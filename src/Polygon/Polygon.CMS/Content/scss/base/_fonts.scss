@@ -1,0 +1,23 @@
+﻿@font-face {
+    font-family: 'Proxima Nova Regular';
+    src: url($fontsPath + 'ProximaNova-Regular.eot');
+    src: url($fontsPath + 'ProximaNova-Regular?#iefix') format('embedded-opentype'), 
+        url($fontsPath + 'ProximaNova-Regular.woff2') format('woff2'), 
+        url($fontsPath + 'ProximaNova-Regular.woff') format('woff'), 
+        url($fontsPath + 'ProximaNova-Regular.ttf') format('truetype'), 
+        url($fontsPath + 'ProximaNova-Regular.svg#ProximaNova-Regular') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proxima Nova Light';
+    src: url($fontsPath + 'ProximaNova-Light.eot');
+    src: url($fontsPath + 'ProximaNova-Light.eot?#iefix') format('embedded-opentype'), 
+        url($fontsPath + 'ProximaNova-Light.woff2') format('woff2'), 
+        url($fontsPath + 'ProximaNova-Light.woff') format('woff'), 
+        url($fontsPath + 'ProximaNova-Light.ttf') format('truetype'), 
+        url($fontsPath + 'ProximaNova-Light.svg#ProximaNova-Light') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}

@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+@RenderSection("Styles", required: false);
+
+<header class="modal-header">
+    <button type="button" class="close" accesskey="c" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    @RenderSection("Header", required: true)
+</header>
+
+<div id="global-modal-content" class="modal-body">
+    @RenderBody();
+</div>
+
+<footer class="modal-footer">
+    @RenderSection("Footer", required: false)
+</footer>
+
+@RenderSection("Scripts", required: false)

@@ -9,8 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Business\Helpers\" />
     <Folder Include="Infrastructure\Initialisation\" />
     <Folder Include="Infrastructure\Models\" />
+    <Folder Include="Features\" />
+    <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
   <ItemGroup>

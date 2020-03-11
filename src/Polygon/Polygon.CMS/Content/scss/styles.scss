@@ -1,3 +1,11 @@
 ﻿@charset "UTF-8";
 
+@import "mixins/transitions";
+@import "mixins/media";
+@import "mixins/background-element";
+
+@import "base/variables";
+@import "base/fonts";
+@import "base/typography";
+
 @import "components/global-modal";
