@@ -1,0 +1,36 @@
+﻿@page
+@model Polygon.CMS.Pages.Settings.ReferenceTypesModel
+@{
+    ViewData["Title"] = "ReferenceTypes";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@section Navigation
+{
+    <partial name="Shared/_MainNavigation" model="Model.MainMenu" />
+    <partial name="Shared/_Breadcrumbs" model="Model.Breadcrumb" />
+}
+
+<h1>ReferenceTypes</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <button id="CreateReferenceType" data-toggle="modal" data-target="#tesseractModal" type="button" class="btn btn-primary">Create</button>
+    </div>    
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+    </div>
+</div>
+
+@section Scripts 
+{
+    <script>
+        $(function () {
+            $("#CreateReferenceType").click(function () {
+               showModalWithData("Modal Title", "Test", "medium");
+            });
+        });
+    </script>    
+}

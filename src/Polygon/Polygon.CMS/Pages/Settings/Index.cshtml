@@ -2,8 +2,17 @@
 @model Polygon.CMS.Pages.Settings.IndexModel
 @{
     ViewData["Title"] = "Settings";
-    Layout = "~/Pages/Shared/_MainLayout.cshtml";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@section Navigation
+{
+    <partial name="Shared/_MainNavigation" model="Model.MainMenu" />
+    <partial name="Shared/_Breadcrumbs" model="Model.Breadcrumb" />
 }
 
 <h1>Settings</h1>
 
+<ul>
+    <li><a href="/Settings/ReferenceTypes">Reference Types</a></li>
+</ul>

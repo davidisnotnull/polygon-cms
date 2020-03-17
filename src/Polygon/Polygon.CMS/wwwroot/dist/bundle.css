@@ -9916,3 +9916,25 @@ a:hover, a:focus {
   color: #6b1c1b;
   text-decoration: none;
 }
+
+.modal-header {
+  background: #653880;
+  color: #ffffff;
+}
+.modal-header h4 {
+  font-size: 1.2em;
+}
+
+.modal-footer button.btn-primary {
+  background: #653880;
+  color: #ffffff;
+  border-color: #653880;
+}
+.modal-footer button.btn-primary:hover {
+  background: #432554;
+}
+.modal-footer button.btn-close {
+  background: #ddd8e6;
+  border-color: #ddd8e6;
+  color: #333333;
+}

@@ -16,9 +16,9 @@ namespace Polygon.Core.Services.Content
         public MenuBuilder GetAdminMainNavigation() => new MenuBuilder
         {
             MenuItems = new List<MenuItem> {
-                new MenuItem { Name = "Content", Area = "Polygon", Link = "Content" },
-                new MenuItem { Name = "User", Area = "Polygon", Link = "Users" },
-                new MenuItem { Name = "Settings", Area = "Polygon", Link = "Settings" }
+                new MenuItem { Name = "Content", Link = "Content" },
+                new MenuItem { Name = "User", Link = "Users" },
+                new MenuItem { Name = "Settings", Link = "Settings" }
             }
         };
 

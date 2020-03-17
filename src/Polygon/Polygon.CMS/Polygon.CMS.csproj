@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Content\js\global-modal.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Content\fonts\ProximaNova-Light.eot" />
     <Content Include="Content\fonts\ProximaNova-Light.svg" />
     <Content Include="Content\fonts\ProximaNova-Light.ttf" />
@@ -41,9 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="Content\js\components\global-modal.js" />
+    <TypeScriptCompile Include="Content\js\tesseract.modal.js" />
   </ItemGroup>
 
-
+  <PropertyGroup>
+    <!-- Makes the TypeScript compilation task a no-op -->
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+  </PropertyGroup>
 
 </Project>
