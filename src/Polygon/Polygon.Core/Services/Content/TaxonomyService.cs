@@ -50,7 +50,7 @@ namespace Polygon.Core.Services.Content
             return UnitOfWork.Commit();
         }
 
-        public int DeleteCategory(int id)
+        public int DeleteCategory(Guid id)
         {
             _categoryRepository.Delete(id);
             return UnitOfWork.Commit();
@@ -62,7 +62,7 @@ namespace Polygon.Core.Services.Content
             return UnitOfWork.Commit();
         }
 
-        public int DeleteTag(int id)
+        public int DeleteTag(Guid id)
         {
             _tagRepository.Delete(id);
             return UnitOfWork.Commit();
@@ -73,7 +73,7 @@ namespace Polygon.Core.Services.Content
             throw new NotImplementedException();
         }
 
-        public BasePage GetAllPagesOfCategory(int id)
+        public BasePage GetAllPagesOfCategory(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -83,7 +83,7 @@ namespace Polygon.Core.Services.Content
             throw new NotImplementedException();
         }
 
-        public BasePage GetAllPagesWithTag(int id)
+        public BasePage GetAllPagesWithTag(Guid id)
         {
             throw new NotImplementedException();
         }

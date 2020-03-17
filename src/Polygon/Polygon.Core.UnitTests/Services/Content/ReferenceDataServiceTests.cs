@@ -9,6 +9,7 @@ using Polygon.Core.UnitTests.Fixtures;
 using Polygon.Core.UnitTests.MockData;
 using System;
 using System.Linq;
+using Polygon.Core.UnitTests.Helpers;
 
 namespace Polygon.Core.UnitTests.Services.Content
 {
@@ -47,7 +48,8 @@ namespace Polygon.Core.UnitTests.Services.Content
             _referenceTypeRepository.Add(mockReferenceTypes);
 
             var random = new Random();
-            var referenceTypeId = random.Next(1, mockReferenceTypes.Length);
+            var referenceTypeGuidSelector = random.Next(1, mockReferenceTypes.Length);
+            var referenceTypeId = GuidSequenceHelper.GetGuid(referenceTypeGuidSelector);
 
             var referenceType = _referenceDataService.GetReferenceType(referenceTypeId);
 
@@ -68,7 +70,8 @@ namespace Polygon.Core.UnitTests.Services.Content
             _referenceTypeRepository.Add(mockReferenceTypes);
 
             var random = new Random();
-            var referenceTypeId = random.Next(1, mockReferenceTypes.Length);
+            var referenceTypeGuidSelector = random.Next(1, mockReferenceTypes.Length);
+            var referenceTypeId = GuidSequenceHelper.GetGuid(referenceTypeGuidSelector);
 
             var referenceType = _referenceTypeRepository.GetById(referenceTypeId);
             const string referenceTypeName = "Updated Reference Type Name";

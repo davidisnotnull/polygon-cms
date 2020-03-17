@@ -1,4 +1,5 @@
 ﻿using Polygon.Core.Data.Entities.Blocks;
+using System;
 using System.Collections.Generic;
 
 namespace Polygon.Core.Services.Interfaces.Content
@@ -11,17 +12,17 @@ namespace Polygon.Core.Services.Interfaces.Content
 
         public int DeleteBlock(T blockToDelete);
 
-        public int DeleteBlock(int blockId);
+        public int DeleteBlock(Guid blockId);
 
-        public T GetBlockById(int blockId);
+        public T GetBlockById(Guid blockId);
 
         public IEnumerable<T> GetAllBlocks();
 
-        public int PublishBlock(int id);
+        public int PublishBlock(Guid id);
 
         public int PublishBlock(T blockToPublish);
 
-        public int UnpublishBlock(int id);
+        public int UnpublishBlock(Guid id);
 
         public int UnpublishBlock(T blockToUnpublish);
     }

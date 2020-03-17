@@ -1,10 +1,8 @@
-﻿import $ from "jquery";
-import _ from "lodash";
+import $ from "jquery";
 import "popper.js";
 import "bootstrap";
 import "./components/global-modal.js";
 import "../scss/app.scss";
-
-$(function() {
+$(function () {
     console.log("Testing jquery import");
-})
+});

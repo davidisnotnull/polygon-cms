@@ -6,6 +6,7 @@ using Polygon.Core.Data.Interfaces.Repositories;
 using Polygon.Core.Services.Content;
 using Polygon.Core.Services.Interfaces.Content;
 using Polygon.Core.UnitTests.Fixtures;
+using Polygon.Core.UnitTests.Helpers;
 using Polygon.Core.UnitTests.MockData;
 using System;
 using System.Linq;
@@ -41,7 +42,8 @@ namespace Polygon.Core.UnitTests.Services.Content
             var mockStandardPages = MockPages.SeedMultipleStandardPages();
             _pageRepository.Add(mockStandardPages);
             var random = new Random();
-            var pageId = random.Next(1, mockStandardPages.Length);
+            var pageGuidSelector = random.Next(1, mockStandardPages.Length);
+            var pageId = GuidSequenceHelper.GetGuid(pageGuidSelector);
 
             var page = _pageRepository.GetById(pageId);
             const string updatedHeading = "Updating the page name";

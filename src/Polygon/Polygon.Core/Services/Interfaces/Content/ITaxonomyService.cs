@@ -1,5 +1,6 @@
 ﻿using Polygon.Core.Data.Entities.Pages;
 using Polygon.Core.Data.Entities.Taxonomy;
+using System;
 
 namespace Polygon.Core.Services.Interfaces.Content
 {
@@ -11,7 +12,7 @@ namespace Polygon.Core.Services.Interfaces.Content
 
         public int DeleteCategory(Category category);
 
-        public int DeleteCategory(int id);
+        public int DeleteCategory(Guid id);
 
         public Tag CreateTag(string name);
 
@@ -19,14 +20,14 @@ namespace Polygon.Core.Services.Interfaces.Content
 
         public int DeleteTag(Tag tag);
 
-        public int DeleteTag(int id);
+        public int DeleteTag(Guid id);
 
         public BasePage GetAllPagesOfCategory(Category category);
 
-        public BasePage GetAllPagesOfCategory(int id);
+        public BasePage GetAllPagesOfCategory(Guid id);
 
         public BasePage GetAllPagesWithTag(Tag tag);
 
-        public BasePage GetAllPagesWithTag(int id);
+        public BasePage GetAllPagesWithTag(Guid id);
     }
 }

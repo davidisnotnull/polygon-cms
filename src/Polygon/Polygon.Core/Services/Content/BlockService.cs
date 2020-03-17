@@ -34,7 +34,7 @@ namespace Polygon.Core.Services.Content
             return UnitOfWork.Commit();
         }
 
-        public int DeleteBlock(int blockId)
+        public int DeleteBlock(Guid blockId)
         {
             _blockRepository.SoftDelete(blockId);
             return UnitOfWork.Commit();
@@ -45,7 +45,7 @@ namespace Polygon.Core.Services.Content
             return _blockRepository.GetAvailable();
         }
 
-        public int PublishBlock(int id)
+        public int PublishBlock(Guid id)
         {
             var blockToPublish = _blockRepository.GetById(id);
             blockToPublish.IsPublished = true;
@@ -63,7 +63,7 @@ namespace Polygon.Core.Services.Content
             return UnitOfWork.Commit();
         }
 
-        public int UnpublishBlock(int id)
+        public int UnpublishBlock(Guid id)
         {
             var blockToUnpublish = _blockRepository.GetById(id);
             blockToUnpublish.IsPublished = false;
@@ -81,7 +81,7 @@ namespace Polygon.Core.Services.Content
             return UnitOfWork.Commit();
         }
 
-        public T GetBlockById(int blockId)
+        public T GetBlockById(Guid blockId)
         {
             return _blockRepository.GetById(blockId);
         }

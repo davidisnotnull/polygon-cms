@@ -12,14 +12,14 @@ namespace Polygon.Core.Data.Interfaces.Repositories
         /// </summary>
         /// <param name="id">Int Id of entity</param>
         /// <returns>Entity</returns>
-        T GetById(int id);
+        T GetById(Guid id);
 
         /// <summary>
         /// Gets an entity by it's Id, including a soft delete check.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        T GetAvailableById(int id);
+        T GetAvailableById(Guid id);
 
         /// <summary>
         /// Gets a list of all entities of a specific type, regardless of whether they have been
@@ -80,7 +80,7 @@ namespace Polygon.Core.Data.Interfaces.Repositories
         /// Deletes a specific entity based on it's Id
         /// </summary>
         /// <param name="id">Int Id of entity</param>
-        void Delete(int id);
+        void Delete(Guid id);
 
         /// <summary>
         /// Soft deletes a specific entity
@@ -92,6 +92,6 @@ namespace Polygon.Core.Data.Interfaces.Repositories
         /// Soft deletes an entity by it's Id
         /// </summary>
         /// <param name="id">Guid of entity</param>
-        void SoftDelete(int id);
+        void SoftDelete(Guid id);
     }
 }

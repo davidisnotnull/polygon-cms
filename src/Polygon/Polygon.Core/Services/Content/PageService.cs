@@ -41,13 +41,13 @@ namespace Polygon.Core.Services.Content
             return UnitOfWork.Commit();
         }
 
-        public int DeletePage(int pageId)
+        public int DeletePage(Guid pageId)
         {
             _pageRepository.SoftDelete(pageId);
             return UnitOfWork.Commit();
         }
 
-        public T GetPageById(int id)
+        public T GetPageById(Guid id)
         {
             return _pageRepository.GetById(id);
         }
@@ -62,7 +62,7 @@ namespace Polygon.Core.Services.Content
             return _pageRepository.Get(x => x.IsPublished);
         }
 
-        public int PublishPage(int id)
+        public int PublishPage(Guid id)
         {
             var pageToPublish = _pageRepository.GetById(id);
             pageToPublish.IsPublished = true;
@@ -80,7 +80,7 @@ namespace Polygon.Core.Services.Content
             return UnitOfWork.Commit();
         }
 
-        public int UnpublishPage(int id)
+        public int UnpublishPage(Guid id)
         {
             var pageToUnpublish = _pageRepository.GetById(id);
             pageToUnpublish.IsPublished = false;

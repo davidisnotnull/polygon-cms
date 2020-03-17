@@ -28,12 +28,12 @@ namespace Polygon.Core.Services.Content
             return _referenceTypeRepository.GetAll();
         }
 
-        public ReferenceType GetReferenceType(int id)
+        public ReferenceType GetReferenceType(Guid id)
         {
             return _referenceTypeRepository.GetById(id);
         }
 
-        public IEnumerable<ReferenceObject> GetReferenceObjectsByType(int id)
+        public IEnumerable<ReferenceObject> GetReferenceObjectsByType(Guid id)
         {
             var referenceType = _referenceTypeRepository.GetById(id);
             return GetReferenceObjectsByType(referenceType);
@@ -44,7 +44,7 @@ namespace Polygon.Core.Services.Content
             return _referenceObjectRepository.Get(r => r.ReferenceType == referenceType);
         }
 
-        public ReferenceObject GetReferenceObject(int id)
+        public ReferenceObject GetReferenceObject(Guid id)
         {
             return _referenceObjectRepository.GetById(id);
         }
@@ -83,7 +83,7 @@ namespace Polygon.Core.Services.Content
             return UnitOfWork.Commit();
         }
 
-        public int DeleteReferenceObject(int id)
+        public int DeleteReferenceObject(Guid id)
         {
             _referenceObjectRepository.SoftDelete(id);
             return UnitOfWork.Commit();

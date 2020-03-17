@@ -18,12 +18,12 @@ namespace Polygon.Core.Data.Repositories
             _unitOfWork = unitOfWork;
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(Guid id)
         {
             return _unitOfWork.Context.Set<T>().Find(id);
         }
 
-        public virtual T GetAvailableById(int id)
+        public virtual T GetAvailableById(Guid id)
         {
             return _unitOfWork.Context.Set<T>().SingleOrDefault(x => x.IsDeleted == false && x.Id == id);
         }
@@ -84,7 +84,7 @@ namespace Polygon.Core.Data.Repositories
             _unitOfWork.Context.Set<T>().Remove(entity);
         }
 
-        public virtual void Delete(int id)
+        public virtual void Delete(Guid id)
         {
             Delete(GetById(id));
         }
@@ -99,7 +99,7 @@ namespace Polygon.Core.Data.Repositories
             _unitOfWork.Context.Set<T>().Attach(entity);
         }
 
-        public virtual void SoftDelete (int id)
+        public virtual void SoftDelete (Guid id)
         {
             SoftDelete(GetById(id));
         }

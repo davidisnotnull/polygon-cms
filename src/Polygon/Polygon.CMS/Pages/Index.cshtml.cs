@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using Polygon.Core.Models.Navigation;
+using Polygon.Core.Services.Interfaces.Content;
 
 namespace Polygon.CMS.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly INavigationService _navigationService;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public MenuBuilder MainMenu;
+
+        public Breadcrumb Breadcrumb;
+
+        public IndexModel(INavigationService navigationService)
         {
-            _logger = logger;
+            _navigationService = navigationService;
+            MainMenu = _navigationService.GetAdminMainNavigation();
+            Breadcrumb = new Breadcrumb(MainMenu.MenuItems);
         }
 
         public void OnGet()

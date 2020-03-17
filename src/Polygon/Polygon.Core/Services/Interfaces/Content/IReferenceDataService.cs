@@ -1,4 +1,5 @@
 ﻿using Polygon.Core.Data.Entities.ReferenceData;
+using System;
 using System.Collections.Generic;
 
 namespace Polygon.Core.Services.Interfaces.Content
@@ -16,14 +17,14 @@ namespace Polygon.Core.Services.Interfaces.Content
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        ReferenceType GetReferenceType(int id);
+        ReferenceType GetReferenceType(Guid id);
 
         /// <summary>
         /// Get a list of Reference Objects by a specified Reference Type
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        IEnumerable<ReferenceObject> GetReferenceObjectsByType(int id);
+        IEnumerable<ReferenceObject> GetReferenceObjectsByType(Guid id);
 
         /// <summary>
         /// Get a list of Reference Objects by a specified Reference Type
@@ -37,7 +38,7 @@ namespace Polygon.Core.Services.Interfaces.Content
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        ReferenceObject GetReferenceObject(int id);
+        ReferenceObject GetReferenceObject(Guid id);
 
         /// <summary>
         /// Create a new Reference Type
@@ -77,6 +78,6 @@ namespace Polygon.Core.Services.Interfaces.Content
         /// Delete a specified Reference Object
         /// </summary>
         /// <param name="id"></param>
-        int DeleteReferenceObject(int id);
+        int DeleteReferenceObject(Guid id);
     }
 }

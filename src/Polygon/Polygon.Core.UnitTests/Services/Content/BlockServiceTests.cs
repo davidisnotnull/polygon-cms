@@ -9,6 +9,7 @@ using Polygon.Core.UnitTests.Fixtures;
 using Polygon.Core.UnitTests.MockData;
 using System;
 using System.Linq;
+using Polygon.Core.UnitTests.Helpers;
 
 namespace Polygon.Core.UnitTests.Services.Content
 {
@@ -41,7 +42,8 @@ namespace Polygon.Core.UnitTests.Services.Content
             var mockTeaserBlocks = MockBlocks.SeedMultipleTeaserBlocks();
             _blockRepository.Add(mockTeaserBlocks);
             var random = new Random();
-            var blockId = random.Next(1, mockTeaserBlocks.Length);
+            var blockGuidSelector = random.Next(1, mockTeaserBlocks.Length);
+            var blockId = GuidSequenceHelper.GetGuid(blockGuidSelector);
 
             var block = _blockRepository.GetById(blockId);
             const string updatedBlockName = "Updated Block Name";
