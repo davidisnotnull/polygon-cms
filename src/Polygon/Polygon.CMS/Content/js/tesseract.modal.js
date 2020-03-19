@@ -30,7 +30,7 @@ export function showModalWindow(url, size, options) {
         };
 
     $.get(url, function (data) {
-        $("#tesseractModal .modal-body").html(data);
+        $("#tesseractModal .modal-content").html(data);
         setWindowSize(size);
         $("#tesseractModal").modal(options);
     }).fail(function (jqXhr, textStatus, errorThrown) {
