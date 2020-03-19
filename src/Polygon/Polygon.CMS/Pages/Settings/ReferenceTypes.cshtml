@@ -16,21 +16,44 @@
 <div class="row">
     <div class="col-md-12">
         <button id="CreateReferenceType" data-toggle="modal" data-target="#tesseractModal" type="button" class="btn btn-primary">Create</button>
-    </div>    
+    </div>
 </div>
 <div class="row">
     <div class="col-md-12">
-
+        @if (Model.ReferenceTypes.Any())
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var type in Model.ReferenceTypes)
+                {
+                    <tr>
+                        <td>@type.Name</td>
+                        <td>@type.Description</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>There are no Reference Types. You'll need to create one.</p>
+        }
     </div>
 </div>
 
-@section Scripts 
+@section Scripts
 {
     <script>
         $(function () {
             $("#CreateReferenceType").click(function () {
-               showModalWindow("/Settings/ReferenceTypes/CreateReferenceType", "medium");
+                showModalWindow("/Settings/ReferenceTypes/CreateReferenceType", "medium");
             });
         });
-    </script>    
+    </script>
 }

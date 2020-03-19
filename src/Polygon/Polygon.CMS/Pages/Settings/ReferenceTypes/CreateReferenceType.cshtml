@@ -8,13 +8,22 @@
 @section Header {
     Create Reference Type
 }
-<div class="form-group">
-    <label asp-for="ReferenceTypeName">Name of Reference Type</label>
-    <input asp-for="ReferenceTypeName" type="text" class="form-control" id="referenceTypeName" aria-describedby="referenceTypeNameHelp" placeholder="Enter name of Reference Type">
-    <small id="referenceTypeNameHelp" class="form-text text-muted">This will be the name of your new Reference Type</small>
-    <span asp-validation-for="ReferenceTypeName" class="text-danger"></span>
-</div>
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label asp-for="ReferenceTypeName">Name</label>
+        <input asp-for="ReferenceTypeName" type="text" class="form-control" id="referenceTypeName" aria-describedby="referenceTypeNameHelp" placeholder="Enter name of Reference Type">
+        <small id="referenceTypeNameHelp" class="form-text text-muted">This will be the name of your new Reference Type</small>
+        <span asp-validation-for="ReferenceTypeName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReferenceTypeDescription">Description</label>
+        <textarea asp-for="ReferenceTypeDescription" class="form-control" rows="3" aria-describedby="referenceTypeDescriptionHelp"></textarea>
+        <small id="referenceTypeDescriptionHelp" class="form-text text-muted">You must provide a description of your Reference Type</small>
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+}
 
 @section Footer
 {
@@ -25,28 +34,28 @@
 @section Scripts
 {
     <script>
-            $(function () {
-                $("button[type=submit]").click(function (e) {
-                    e.preventDefault();
-                    $("#tesseractModal [type=submit]").attr("disabled", "");
-                    $.ajax({
-                        url: "/Settings/ReferenceTypes/CreateReferenceType",
-                        data: {
-                            __RequestVerificationToken: document.getElementsByName("__RequestVerificationToken")[0].value,
-                            referenceTypeName: $("#referenceTypeName").val()
+        $(function () {
+            $("button[type=submit]").click(function (e) {
+                e.preventDefault();
+                var form = $("#tesseract-modal-content form");
+                form.removeData("validator");
+                form.removeData("unobtrusiveValidation");
+                $.validator.unobtrusive.parse(form);
+                $("#tesseractModal [type=submit]").attr("disabled", "");
+                $.ajax({
+                    url: "/Settings/ReferenceTypes/CreateReferenceType",
+                    data: form.serialize(),
+                    type: 'POST',
+                    statusCode: {
+                        200: function () {
+                            closeModalWindow();
                         },
-                        type: 'POST',
-                        statusCode: {
-                            200: function () {
-                                closeModalWindow();
-                            },
-                            400: function () {
-                                console.log("Whoops");
-                            }
+                        400: function (data) {
+                            $("#tesseractModal .modal-content").html(data);
                         }
-                    });
-
+                    }
                 });
             });
+        });
     </script>
 }

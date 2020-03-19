@@ -28,8 +28,11 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
 
         }
 
-        public IActionResult OnPost(string referenceTypeName)
+        public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+                return Page();
+
             var referenceType = new ReferenceType
             {
                 Name = ReferenceTypeName,

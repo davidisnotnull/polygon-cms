@@ -41,7 +41,9 @@ namespace Polygon.CMS
 
             services.AddDbContext<PolygonContext>(options =>
             {
-                options.UseInMemoryDatabase(Guid.NewGuid().ToString());
+                options.UseSqlServer(Configuration.GetConnectionString("PolygonDb"));
+                //Uncomment this for testing with an in memory database
+                //options.UseInMemoryDatabase(Guid.NewGuid().ToString());
                 options.EnableSensitiveDataLogging();
             });
 
@@ -66,6 +68,12 @@ namespace Polygon.CMS
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<PolygonContext>();
+                context.Database.EnsureCreated();
             }
 
             app.UseHttpsRedirection();
