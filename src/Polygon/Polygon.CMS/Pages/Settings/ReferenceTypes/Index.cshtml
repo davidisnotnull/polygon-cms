@@ -1,5 +1,5 @@
 ﻿@page
-@model Polygon.CMS.Pages.Settings.ReferenceTypesModel
+@model Polygon.CMS.Pages.Settings.ReferenceTypes.ReferenceTypesModel
 @{
     ViewData["Title"] = "ReferenceTypes";
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -24,10 +24,12 @@
         {
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
                 </thead>
                 <tbody>
                 @foreach (var type in Model.ReferenceTypes)
@@ -35,6 +37,8 @@
                     <tr>
                         <td>@type.Name</td>
                         <td>@type.Description</td>
+                        <td>Details</td>
+                        <td>Edit</td>
                     </tr>
                 }
                 </tbody>
