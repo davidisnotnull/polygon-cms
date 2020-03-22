@@ -3,15 +3,19 @@
 @{
     ViewData["Title"] = "ManageReferenceObject";
     Layout = "~/Pages/Shared/_ModalLayout.cshtml";
+
+    var header = Model.Edit ?  $"Update {Model.ReferenceObjectName}" : "Create new Reference Object";
 }
 
 @section Header {
-    Create Reference Object
+    @header
 }
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(m => m.Edit, new { Value = Model.Edit })
     @Html.HiddenFor(m => m.ReferenceTypeId, new { Value = Model.ReferenceTypeId })
+    @Html.HiddenFor(m => m.ReferenceObjectId, new { Value = Model.ReferenceObjectId })
     <div class="form-group">
         <label asp-for="ReferenceObjectName">Name</label>
         <input asp-for="ReferenceObjectName" type="text" class="form-control" id="referenceObjectName" aria-describedby="referenceObjectNameHelp" placeholder="Enter name of Reference Type">

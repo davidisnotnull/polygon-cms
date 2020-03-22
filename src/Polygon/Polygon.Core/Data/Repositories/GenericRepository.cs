@@ -72,7 +72,6 @@ namespace Polygon.Core.Data.Repositories
         public virtual T Update(T entity)
         {
             _unitOfWork.Context.Entry(entity).State = EntityState.Modified;
-            _unitOfWork.Context.Set<T>().Attach(entity);
             return entity;
         }
 

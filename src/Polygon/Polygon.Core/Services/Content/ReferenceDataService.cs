@@ -72,6 +72,7 @@ namespace Polygon.Core.Services.Content
 
         public ReferenceObject UpdateReferenceObject(ReferenceObject referenceObject)
         {
+            referenceObject.Modified = DateTime.Now;
             _referenceObjectRepository.Update(referenceObject);
             UnitOfWork.Commit();
             return referenceObject;

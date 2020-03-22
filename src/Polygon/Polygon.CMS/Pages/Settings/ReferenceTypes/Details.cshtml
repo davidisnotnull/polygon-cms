@@ -38,7 +38,7 @@
                 {
                     <tr>
                         <td>@refObject.Name</td>
-                        <td>Edit</td>
+                        <td><a class="edit-object" data-toggle="modal" data-id="@refObject.Id" data-target="#tesseractModal">Edit</a></td>
                         <td>Delete</td>
                     </tr>
                 }
@@ -54,11 +54,16 @@
 
 @section Scripts
 {
-<script>
+    <script>
     $(function () {
         $("#CreateReferenceObject").click(function () {
             showModalWindow("/Settings/ReferenceTypes/ManageReferenceObject/?id=@Model.ReferenceType.Id", "medium");
         });
+
+        $(".edit-object").click(function() {
+            showModalWindow(`/Settings/ReferenceTypes/ManageReferenceObject/?id=${$(this).data("id")}&edit=true`,
+                "medium");
+        });
     });
-</script>
+    </script>
 }
