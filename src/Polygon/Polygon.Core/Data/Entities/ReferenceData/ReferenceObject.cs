@@ -1,13 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Polygon.Core.Data.Entities.ReferenceData
 {
     public class ReferenceObject : BaseEntity
     {
-        [Required]
+        [Required] 
         public string Name { get; set; }
 
-        [Required]
+        public Guid ReferenceTypeId { get; set; }
+
         public ReferenceType ReferenceType {get;set;}
     }
 }

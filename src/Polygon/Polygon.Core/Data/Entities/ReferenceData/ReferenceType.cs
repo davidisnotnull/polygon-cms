@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Polygon.Core.Data.Entities.ReferenceData
 {
@@ -9,6 +11,8 @@ namespace Polygon.Core.Data.Entities.ReferenceData
 
         [Required]
         public string Description { get; set; }
+
+        public ICollection<ReferenceObject> ReferenceObjects { get; set; }
 
     }
 }

@@ -27,6 +27,14 @@ namespace Polygon.Core.Data.Context
             }
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ReferenceObject>()
+                .HasOne(r => r.ReferenceType)
+                .WithMany(t => t.ReferenceObjects)
+                .HasForeignKey(r => r.ReferenceTypeId);
+        }
+
         public DbSet<ReferenceType> ReferenceTypes { get; set; }
         public DbSet<ReferenceObject> ReferenceObjects { get; set; }
         public DbSet<Category> Categories { get; set; }

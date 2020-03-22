@@ -1,0 +1,64 @@
+﻿@page
+@model Polygon.CMS.Pages.Settings.ReferenceTypes.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@section Navigation
+{
+    <partial name="Shared/_MainNavigation" model="Model.MainMenu" />
+    <partial name="Shared/_Breadcrumbs" model="Model.Breadcrumb" />
+}
+
+<h1>Details for @Model.ReferenceType.Name</h1>
+
+<p><strong>Description:</strong> @Model.ReferenceType.Description</p>
+
+<div class="row">
+    <div class="col-md-12">
+        <button id="CreateReferenceObject" data-toggle="modal" data-target="#tesseractModal" type="button" class="btn btn-primary">Create</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (Model.ReferenceObjects.Any())
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var refObject in Model.ReferenceObjects)
+                {
+                    <tr>
+                        <td>@refObject.Name</td>
+                        <td>Edit</td>
+                        <td>Delete</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>There are no Reference Objects. You'll need to create one.</p>
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+<script>
+    $(function () {
+        $("#CreateReferenceObject").click(function () {
+            showModalWindow("/Settings/ReferenceTypes/ManageReferenceObject/?id=@Model.ReferenceType.Id", "medium");
+        });
+    });
+</script>
+}
