@@ -17,7 +17,8 @@ $(document).ready(function () {
     console.log("Polygon CMS Version 1.0");
     new TesseractModal();
 
-    if (document.querySelector('#referenceTypePage'))
+    /* Load Reference Type scripts */
+    if (document.querySelector('.page__reference-type'))
     {
         new ReferenceTypePage();
     }

@@ -1,19 +1,19 @@
 import * as $ from "jquery";
 
-export class TesseractModal {
-
+export class TesseractModal 
+{
     public modalElement: HTMLElement;
     public modalTitle: any;
     public modalBody: any;
     public modalFooter: any;
     public modalButtons: any;
+    public saveButton: any;
 
     constructor() {
         this.modalElement = document.querySelector('#TesseractModal');
         this.modalTitle = this.modalElement.querySelector('#modal-title');
         this.modalBody =- this.modalElement.querySelector('#modal-content');
         this.modalButtons = document.querySelectorAll(".tesseract__modal");
-
         this.Initialise();
     }
 
@@ -34,7 +34,7 @@ export class TesseractModal {
         let options = {
             backdrop: "static"
         };
-
+        
         this.SetWindowSize(size);
 
         $.get(url, function (data) {
@@ -42,7 +42,9 @@ export class TesseractModal {
             $("#TesseractModal").modal(options);
         }).fail(function (jqXhr) {
             console.log(jqXhr.statusText);
-        });
+        }).then(function() {
+               
+        });        
     }
 
     public ShowCustomModalWindow(title: string, content: string, size: string)
@@ -50,7 +52,7 @@ export class TesseractModal {
         let options = {
             backdrop: "static"
         };
-
+        
         this.SetWindowSize(size);
 
         $("#TesseractModal .modal-title").html(title);
@@ -92,5 +94,14 @@ export class TesseractModal {
         } else {
             modal.addClass("modal-md");
         }
+    }
+
+    public CreateSubmitListener()
+    {
+        this.saveButton = document.querySelector(".form__save");
+        this.saveButton.addEventListener("click", (event:Event) => {
+            event.preventDefault();
+            console.log("Create new event listener");
+        });
     }
 }

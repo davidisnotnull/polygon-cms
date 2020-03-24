@@ -1,5 +1,9 @@
 ﻿<!DOCTYPE html>
 
+@{
+    var bodyClass = ViewData["PageClass"];
+}
+
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,7 +12,8 @@
     <link rel="stylesheet" href="~/dist/css/bundle.css" />
 
 </head>
-<body>
+
+<body class="@bodyClass">
     <header>
         @RenderSection("Navigation", required: true)
     </header>
@@ -25,6 +30,5 @@
 
     <script src="~/dist/js/bundle.js"></script>
 
-@RenderSection("Scripts", required: false)
 </body>
 </html>
