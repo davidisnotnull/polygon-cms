@@ -34,28 +34,28 @@
 @section Scripts
 {
     <script>
-        $(function () {
-            $("button[type=submit]").click(function (e) {
-                e.preventDefault();
-                var form = $("#tesseract-modal-content form");
-                form.removeData("validator");
-                form.removeData("unobtrusiveValidation");
-                $.validator.unobtrusive.parse(form);
-                $("#tesseractModal [type=submit]").attr("disabled", "");
-                $.ajax({
-                    url: "/Settings/ReferenceTypes/CreateReferenceType",
-                    data: form.serialize(),
-                    type: 'POST',
-                    statusCode: {
-                        200: function () {
-                            closeModalWindow();
-                        },
-                        400: function (data) {
-                            $("#tesseractModal .modal-content").html(data);
-                        }
-                    }
-                });
-            });
-        });
+        //$(function () {
+        //    $("button[type=submit]").click(function (e) {
+        //        e.preventDefault();
+        //        var form = $("#tesseract-modal-content form");
+        //        form.removeData("validator");
+        //        form.removeData("unobtrusiveValidation");
+        //        $.validator.unobtrusive.parse(form);
+        //        $("#tesseractModal [type=submit]").attr("disabled", "");
+        //        $.ajax({
+        //            url: "/Settings/ReferenceTypes/CreateReferenceType",
+        //            data: form.serialize(),
+        //            type: 'POST',
+        //            statusCode: {
+        //                200: function () {
+        //                    closeModalWindow();
+        //                },
+        //                400: function (data) {
+        //                    $("#tesseractModal .modal-content").html(data);
+        //                }
+        //            }
+        //        });
+        //    });
+        //});
     </script>
 }

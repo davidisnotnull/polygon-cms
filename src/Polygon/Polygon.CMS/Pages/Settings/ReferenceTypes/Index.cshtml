@@ -15,7 +15,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <button id="CreateReferenceType" data-toggle="modal" data-target="#tesseractModal" type="button" class="btn btn-primary">Create</button>
+        <button id="CreateReferenceType" data-url="/Settings/ReferenceTypes/CreateReferenceType" data-size="medium" data-toggle="modal" data-target="#tesseractModal" type="button" class="btn btn-primary tesseract__modal">Create</button>
     </div>
 </div>
 <div class="row">
@@ -50,14 +50,3 @@
         }
     </div>
 </div>
-
-@section Scripts
-{
-    <script>
-        $(function () {
-            $("#CreateReferenceType").click(function () {
-                showModalWindow("/Settings/ReferenceTypes/CreateReferenceType", "medium");
-            });
-        });
-    </script>
-}

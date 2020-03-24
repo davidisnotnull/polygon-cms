@@ -5,12 +5,12 @@
 @RenderSection("Styles", required: false)
 
 <header class="modal-header">
-    <h4 class="modal-title" id="modalTitle">@RenderSection("Header", required: true)</h4>
+    <h4 class="modal-title" id="modal-title">@RenderSection("Header", required: true)</h4>
     <button type="button" class="close" accesskey="c" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </header>
-<div id="tesseract-modal-content" class="modal-body">
+<div id="modal-content" class="modal-body">
     @RenderBody()
 </div>
 

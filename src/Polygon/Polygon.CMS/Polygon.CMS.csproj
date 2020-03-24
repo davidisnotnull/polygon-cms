@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Content\ts\main.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Content\fonts\ProximaNova-Light.eot" />
     <Content Include="Content\fonts\ProximaNova-Light.svg" />
     <Content Include="Content\fonts\ProximaNova-Light.ttf" />
@@ -41,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="Content\js\tesseract.modal.js" />
+    <TypeScriptCompile Include="Content\webJS\tesseract\tesseract.modal.js" />
   </ItemGroup>
 
   <PropertyGroup>
