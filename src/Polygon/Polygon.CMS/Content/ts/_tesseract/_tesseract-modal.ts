@@ -10,9 +10,9 @@ export class TesseractModal
     public saveButton: any;
 
     constructor() {
-        this.modalElement = document.querySelector('#TesseractModal');
-        this.modalTitle = this.modalElement.querySelector('#modal-title');
-        this.modalBody =- this.modalElement.querySelector('#modal-content');
+        this.modalElement = document.querySelector("#TesseractModal");
+        this.modalTitle = this.modalElement.querySelector("#modal-title");
+        this.modalBody =- this.modalElement.querySelector("#modal-content");
         this.modalButtons = document.querySelectorAll(".tesseract__modal");
         this.Initialise();
     }
@@ -22,7 +22,7 @@ export class TesseractModal
         Array.from(this.modalButtons).forEach((button: any) => {
             button.addEventListener("click", (event: Event) => {
                 event.preventDefault();
-                let url = button.getAttribute("href") ? button.getAttribute("href") : button.getAttribute("data-url")
+                let url = button.getAttribute("href") ? button.getAttribute("href") : button.getAttribute("data-url");
                 let size = button.getAttribute("data-size");
                 this.ShowModalWindow(url, size)
             });

@@ -11,8 +11,9 @@ using Polygon.Core.Data.Interfaces;
 using Polygon.Core.Services.Content;
 using Polygon.Core.Services.Interfaces.Content;
 using Polygon.Core.Services.Interfaces.MetaData;
+using Polygon.Core.Services.Interfaces.Tesseract;
 using Polygon.Core.Services.MetaData;
-using System;
+using Polygon.Core.Services.Tesseract;
 
 namespace Polygon.CMS
 {
@@ -29,6 +30,7 @@ namespace Polygon.CMS
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
 
             services.Configure<RouteOptions>(options =>
             {
@@ -53,7 +55,10 @@ namespace Polygon.CMS
             services.AddScoped<IReferenceDataService, ReferenceDataService>();
             services.AddScoped<ITaxonomyService, TaxonomyService>();
             services.AddScoped<IOpenGraphService, OpenGraphService>();
-
+            services.AddScoped(typeof(IContentService<>), typeof(ContentService<>));
+            
+            // Tesseract Services
+            services.AddScoped<ITableService, TableService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +90,7 @@ namespace Polygon.CMS
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
 
         }

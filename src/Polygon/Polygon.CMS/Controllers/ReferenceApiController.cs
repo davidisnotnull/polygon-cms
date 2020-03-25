@@ -5,8 +5,7 @@ using Polygon.Core.Services.Interfaces.Content;
 namespace Polygon.CMS.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class ReferenceApiController : ControllerBase
+    public class ReferenceApiController : Controller
     {
         private readonly IReferenceDataService _referenceDataService;
 
@@ -15,10 +14,10 @@ namespace Polygon.CMS.Controllers
             _referenceDataService = referenceDataService;
         }
 
+        [HttpPost]
         public IActionResult GetReferenceObjects(string id)
         {
-            var guid = Guid.Parse(id);
-            var referenceObjects = _referenceDataService.GetReferenceItemsByCollection(guid);
+            var referenceObjects = _referenceDataService.GetReferenceItemsByCollection(Guid.Parse(id));
             return new JsonResult(referenceObjects);
         }
     }

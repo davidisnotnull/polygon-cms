@@ -23,27 +23,7 @@
     <div class="col-md-12">
         @if (Model.ReferenceCollections.Any())
         {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach (var type in Model.ReferenceCollections)
-                {
-                    <tr>
-                        <td>@type.Name</td>
-                        <td>@type.Description</td>
-                        <td><a href="/Settings/ReferenceTypes/Details/?guid=@type.Id">Details</a></td>
-                        <td>Edit</td>
-                    </tr>
-                }
-                </tbody>
-            </table>
+            <partial name="~/Pages/Shared/Tesseract/_TesseractModal.cshtml"/>
         }
         else
         {
