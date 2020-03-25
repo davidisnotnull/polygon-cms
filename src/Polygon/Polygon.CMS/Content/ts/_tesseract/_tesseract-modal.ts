@@ -37,14 +37,15 @@ export class TesseractModal
         
         this.SetWindowSize(size);
 
-        $.get(url, function (data) {
-            $("#TesseractModal .modal-content").html(data);
-            $("#TesseractModal").modal(options);
-        }).fail(function (jqXhr) {
-            console.log(jqXhr.statusText);
-        }).then(function() {
-               
-        });        
+        fetch(url)
+            .then(r => r.text())
+            .then(f => {
+                console.log(f);
+                $("#TesseractModal .dynamic").html(f);
+                $("#TesseractModal").modal(options);
+        }).catch(e => {
+            console.log("Error: ", e)
+        });
     }
 
     public ShowCustomModalWindow(title: string, content: string, size: string)
@@ -63,13 +64,13 @@ export class TesseractModal
     public ReplaceModalContent(url: string)
     {
         $.get(url, function (data) {
-            $("#TesseractModal .modal-body").html(data);
+            $("#TesseractModal .dynamic").html(data);
         });
     }
 
     public CloseModal()
     {
-        $("#TesseractModal .modal-body").html("");
+        $("#TesseractModal .dynamic").html("");
         $("#TesseractModal").modal("hide");
         $(".modal-backdrop").remove();
     }
@@ -94,14 +95,5 @@ export class TesseractModal
         } else {
             modal.addClass("modal-md");
         }
-    }
-
-    public CreateSubmitListener()
-    {
-        this.saveButton = document.querySelector(".form__save");
-        this.saveButton.addEventListener("click", (event:Event) => {
-            event.preventDefault();
-            console.log("Create new event listener");
-        });
     }
 }

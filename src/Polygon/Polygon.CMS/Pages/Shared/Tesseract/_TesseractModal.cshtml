@@ -1,8 +1,14 @@
-﻿<div class="modal fade" id="TesseractModal" tabindex="-1" role="dialog" aria-labelledby="tesseractModal"
+﻿<div class="modal fade" id="TesseractModal" tabindex="-1" role="dialog" aria-labelledby="TesseractModal"
      aria-hidden="true">
-    <form method="post">
+    <form class="modal__form">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content"></div>
+            <div class="modal-content">
+                <div class="dynamic"></div>
+                <footer class="modal-footer">
+                    <button type="button" class="btn btn-close modal__close" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary modal__save">Save</button>
+                </footer>    
+            </div>
         </div>
     </form>
 </div>

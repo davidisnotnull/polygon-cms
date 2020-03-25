@@ -8,7 +8,6 @@ import "bootstrap";
 import { TesseractModal } from "./_tesseract/_tesseract-modal";
 
 /* Utility classes */
-import { AjaxRequest } from "./_utils/_ajax-request";
 
 /* Pages */
 import { ReferenceTypePage } from "./_pages/_reference-type";
