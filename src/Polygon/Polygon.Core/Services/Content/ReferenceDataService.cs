@@ -10,8 +10,8 @@ namespace Polygon.Core.Services.Content
 {
     public class ReferenceDataService : BaseService, IReferenceDataService
     {
-        private readonly IRepository<ReferenceType> _referenceTypeRepository;
-        private readonly IRepository<ReferenceObject> _referenceObjectRepository;
+        private readonly IRepository<ReferenceCollection> _referenceCollectionRepository;
+        private readonly IRepository<ReferenceItem> _referenceItemRepository;
 
         public ReferenceDataService(IUnitOfWork unitOfWork) :
             base(unitOfWork)
@@ -19,74 +19,74 @@ namespace Polygon.Core.Services.Content
             if (UnitOfWork == null)
                 throw new NullReferenceException(ErrorMessages.UnitOfWorkNullReference);
 
-            _referenceTypeRepository = UnitOfWork.GetRepository<ReferenceType>();
-            _referenceObjectRepository = UnitOfWork.GetRepository<ReferenceObject>();
+            _referenceCollectionRepository = UnitOfWork.GetRepository<ReferenceCollection>();
+            _referenceItemRepository = UnitOfWork.GetRepository<ReferenceItem>();
         }
 
-        public IEnumerable<ReferenceType> GetAllReferenceTypes()
+        public IEnumerable<ReferenceCollection> GetAllReferenceCollections()
         {
-            return _referenceTypeRepository.GetAll();
+            return _referenceCollectionRepository.GetAll();
         }
 
-        public ReferenceType GetReferenceType(Guid id)
+        public ReferenceCollection GetReferenceCollection(Guid id)
         {
-            return _referenceTypeRepository.GetById(id);
+            return _referenceCollectionRepository.GetById(id);
         }
 
-        public IEnumerable<ReferenceObject> GetReferenceObjectsByType(Guid id)
+        public IEnumerable<ReferenceItem> GetReferenceItemsByCollection(Guid id)
         {
-            var referenceType = _referenceTypeRepository.GetById(id);
-            return GetReferenceObjectsByType(referenceType);
+            var referenceType = _referenceCollectionRepository.GetById(id);
+            return GetReferenceItemsByCollection(referenceType);
         }
 
-        public IEnumerable<ReferenceObject> GetReferenceObjectsByType(ReferenceType referenceType)
+        public IEnumerable<ReferenceItem> GetReferenceItemsByCollection(ReferenceCollection referenceType)
         {
-            return _referenceObjectRepository.Get(r => r.ReferenceType == referenceType);
+            return _referenceItemRepository.Get(r => r.ReferenceCollection == referenceType);
         }
 
-        public ReferenceObject GetReferenceObject(Guid id)
+        public ReferenceItem GetReferenceItem(Guid id)
         {
-            return _referenceObjectRepository.GetById(id);
+            return _referenceItemRepository.GetById(id);
         }
 
-        public ReferenceType CreateReferenceType(ReferenceType referenceType)
+        public ReferenceCollection CreateReferenceCollection(ReferenceCollection referenceCollection)
         {
-            _referenceTypeRepository.Add(referenceType);
+            _referenceCollectionRepository.Add(referenceCollection);
+            UnitOfWork.Commit();
+            return referenceCollection;
+        }
+
+        public ReferenceCollection UpdateReferenceCollection(ReferenceCollection referenceType)
+        {
+            _referenceCollectionRepository.Update(referenceType);
             UnitOfWork.Commit();
             return referenceType;
         }
 
-        public ReferenceType UpdateReferenceType(ReferenceType referenceType)
+        public ReferenceItem CreateReferenceItem(ReferenceItem referenceObject)
         {
-            _referenceTypeRepository.Update(referenceType);
-            UnitOfWork.Commit();
-            return referenceType;
-        }
-
-        public ReferenceObject CreateReferenceObject(ReferenceObject referenceObject)
-        {
-            _referenceObjectRepository.Add(referenceObject);
+            _referenceItemRepository.Add(referenceObject);
             UnitOfWork.Commit();
             return referenceObject;
         }
 
-        public ReferenceObject UpdateReferenceObject(ReferenceObject referenceObject)
+        public ReferenceItem UpdateReferenceItem(ReferenceItem referenceObject)
         {
             referenceObject.Modified = DateTime.Now;
-            _referenceObjectRepository.Update(referenceObject);
+            _referenceItemRepository.Update(referenceObject);
             UnitOfWork.Commit();
             return referenceObject;
         }
 
-        public int DeleteReferenceObject(ReferenceObject referenceObject)
+        public int DeleteReferenceItem(ReferenceItem referenceObject)
         {
-            _referenceObjectRepository.SoftDelete(referenceObject);
+            _referenceItemRepository.SoftDelete(referenceObject);
             return UnitOfWork.Commit();
         }
 
-        public int DeleteReferenceObject(Guid id)
+        public int DeleteReferenceItem(Guid id)
         {
-            _referenceObjectRepository.SoftDelete(id);
+            _referenceItemRepository.SoftDelete(id);
             return UnitOfWork.Commit();
         }
     }

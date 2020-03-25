@@ -11,9 +11,9 @@
     <partial name="Shared/_Breadcrumbs" model="Model.Breadcrumb" />
 }
 
-<h1>Details for @Model.ReferenceType.Name</h1>
+<h1>Details for @Model.ReferenceCollection.Name</h1>
 
-<p><strong>Description:</strong> @Model.ReferenceType.Description</p>
+<p><strong>Description:</strong> @Model.ReferenceCollection.Description</p>
 
 <div class="row">
     <div class="col-md-12">
@@ -23,7 +23,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        @if (Model.ReferenceObjects.Any())
+        @if (Model.ReferenceItems.Any())
         {
             <table class="table">
                 <thead>
@@ -34,7 +34,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var refObject in Model.ReferenceObjects)
+                @foreach (var refObject in Model.ReferenceItems)
                 {
                     <tr>
                         <td>@refObject.Name</td>

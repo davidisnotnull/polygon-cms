@@ -1,61 +1,22 @@
 ﻿@page
 @model Polygon.CMS.Pages.Settings.ReferenceTypes.ManageReferenceObjectModel
 @{
-    ViewData["Title"] = "ManageReferenceObject";
     Layout = "~/Pages/Shared/_ModalLayout.cshtml";
-
-    var header = Model.Edit ?  $"Update {Model.ReferenceObjectName}" : "Create new Reference Object";
-}
-
-@section Header {
-    @header
+    
+    ViewData["Title"] = "ManageReferenceObject";
+    ViewData["ModalTitle"] = Model.Edit ?  $"Update {Model.ReferenceItemName}" : "Create new Reference Object";
 }
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(m => m.Edit, new { Value = Model.Edit })
-    @Html.HiddenFor(m => m.ReferenceTypeId, new { Value = Model.ReferenceTypeId })
-    @Html.HiddenFor(m => m.ReferenceObjectId, new { Value = Model.ReferenceObjectId })
+    @Html.HiddenFor(m => m.ReferenceCollectionId, new { Value = Model.ReferenceCollectionId })
+    @Html.HiddenFor(m => m.ReferenceItemId, new { Value = Model.ReferenceItemId })
     <div class="form-group">
-        <label asp-for="ReferenceObjectName">Name</label>
-        <input asp-for="ReferenceObjectName" type="text" class="form-control" id="referenceObjectName" aria-describedby="referenceObjectNameHelp" placeholder="Enter name of Reference Type">
+        <label asp-for="ReferenceItemName">Name</label>
+        <input asp-for="ReferenceItemName" type="text" class="form-control" id="referenceObjectName" aria-describedby="referenceObjectNameHelp" placeholder="Enter name of Reference Type">
         <small id="referenceObjectNameHelp" class="form-text text-muted">This will be the name of your new Reference Object</small>
-        <span asp-validation-for="ReferenceObjectName" class="text-danger"></span>
+        <span asp-validation-for="ReferenceItemName" class="text-danger"></span>
     </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-}
-
-@section Footer
-{
-    <button type="button" class="btn btn-close" data-dismiss="modal">Cancel</button>
-    <button type="submit" id="Save" class="btn btn-primary">Save</button>
-}
-
-@section Scripts
-{
-    <script>
-        $(function () {
-            $("button[type=submit]").click(function (e) {
-                e.preventDefault();
-                var form = $("#tesseract-modal-content form");
-                form.removeData("validator");
-                form.removeData("unobtrusiveValidation");
-                $.validator.unobtrusive.parse(form);
-                $("#tesseractModal [type=submit]").attr("disabled", "");
-                $.ajax({
-                    url: "/Settings/ReferenceTypes/ManageReferenceObject",
-                    data: form.serialize(),
-                    type: 'POST',
-                    statusCode: {
-                        200: function () {
-                            closeModalWindow();
-                        },
-                        400: function (data) {
-                            $("#tesseractModal .modal-content").html(data);
-                        }
-                    }
-                });
-            });
-        });
-    </script>
 }

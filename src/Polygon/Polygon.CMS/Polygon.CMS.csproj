@@ -42,6 +42,10 @@
     <ProjectReference Include="..\Polygon.Core\Polygon.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\ts\_tesseract\_tesseract-table.ts" />
+  </ItemGroup>
+
   <PropertyGroup>
     <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>

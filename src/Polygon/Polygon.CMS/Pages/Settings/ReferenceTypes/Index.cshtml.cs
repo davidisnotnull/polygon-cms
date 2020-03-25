@@ -18,11 +18,11 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
         }
 
         [BindProperty]
-        public List<ReferenceType> ReferenceTypes { get; set; }
+        public List<ReferenceCollection> ReferenceCollections { get; set; }
 
         public void OnGet()
         {
-            ReferenceTypes = _referenceDataService.GetAllReferenceTypes().ToList();
+            ReferenceCollections = _referenceDataService.GetAllReferenceCollections().ToList();
         }
     }
 }

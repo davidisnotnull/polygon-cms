@@ -1,22 +1,23 @@
 ﻿@page
 @model Polygon.CMS.Pages.Settings.ReferenceTypes.CreateReferenceTypeModel
 @{
+    Layout = "~/Pages/Shared/_ModalLayout.cshtml";
+    
     ViewData["Title"] = "CreateReferenceType";
     ViewData["ModalTitle"] = "Create Reference Type";
-    Layout = "~/Pages/Shared/_ModalLayout.cshtml";
 }
 
 @using (Html.BeginForm())
 {
     <div class="form-group">
-        <label asp-for="ReferenceTypeName">Name</label>
-        <input asp-for="ReferenceTypeName" type="text" class="form-control" id="referenceTypeName" aria-describedby="referenceTypeNameHelp" placeholder="Enter name of Reference Type">
+        <label asp-for="ReferenceCollectionName">Name</label>
+        <input asp-for="ReferenceCollectionName" type="text" class="form-control" id="referenceTypeName" aria-describedby="referenceTypeNameHelp" placeholder="Enter name of Reference Type">
         <small id="referenceTypeNameHelp" class="form-text text-muted">This will be the name of your new Reference Type</small>
-        <span asp-validation-for="ReferenceTypeName" class="text-danger"></span>
+        <span asp-validation-for="ReferenceCollectionName" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="ReferenceTypeDescription">Description</label>
-        <textarea asp-for="ReferenceTypeDescription" class="form-control" rows="3" aria-describedby="referenceTypeDescriptionHelp"></textarea>
+        <label asp-for="ReferenceCollectionDescription">Description</label>
+        <textarea asp-for="ReferenceCollectionDescription" class="form-control" rows="3" aria-describedby="referenceTypeDescriptionHelp"></textarea>
         <small id="referenceTypeDescriptionHelp" class="form-text text-muted">You must provide a description of your Reference Type</small>
     </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

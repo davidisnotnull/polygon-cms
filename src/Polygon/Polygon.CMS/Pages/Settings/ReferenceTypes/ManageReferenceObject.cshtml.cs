@@ -21,18 +21,18 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
 
         [Required]
         [BindProperty]
-        public ReferenceType ReferenceType { get; set; }
+        public ReferenceCollection ReferenceCollection { get; set; }
 
         [BindProperty]
-        public string ReferenceTypeId { get; set; }
+        public string ReferenceCollectionId { get; set; }
 
         [BindProperty]
-        public string ReferenceObjectId { get; set; }
+        public string ReferenceItemId { get; set; }
 
         [Required]
         [StringLength(60, MinimumLength = 3)]
         [BindProperty]
-        public string ReferenceObjectName { get; set; }
+        public string ReferenceItemName { get; set; }
 
         public void OnGet(string id, bool edit)
         {
@@ -40,13 +40,13 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
             switch (Edit)
             {
                 case true: // If edit mode
-                    var referenceObject = _referenceDataService.GetReferenceObject(Guid.Parse(id));
-                    ReferenceObjectName = referenceObject.Name;
-                    ReferenceObjectId = referenceObject.Id.ToString();
+                    var referenceObject = _referenceDataService.GetReferenceItem(Guid.Parse(id));
+                    ReferenceItemName = referenceObject.Name;
+                    ReferenceItemId = referenceObject.Id.ToString();
                     break;
                 case false:
-                    ReferenceTypeId = id;
-                    ReferenceType = _referenceDataService.GetReferenceType(Guid.Parse(id));
+                    ReferenceCollectionId = id;
+                    ReferenceCollection = _referenceDataService.GetReferenceCollection(Guid.Parse(id));
                     break;
             }
         }
@@ -56,17 +56,17 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
             switch (Edit)
             {
                 case true: // If edit mode
-                    var referenceObjectToUpdate = _referenceDataService.GetReferenceObject(Guid.Parse(ReferenceObjectId));
-                    referenceObjectToUpdate.Name = ReferenceObjectName;
-                    _referenceDataService.UpdateReferenceObject(referenceObjectToUpdate);
+                    var referenceObjectToUpdate = _referenceDataService.GetReferenceItem(Guid.Parse(ReferenceItemId));
+                    referenceObjectToUpdate.Name = ReferenceItemName;
+                    _referenceDataService.UpdateReferenceItem(referenceObjectToUpdate);
                     return StatusCode(200);
                 case false:
-                    var referenceObjectToCreate = new ReferenceObject()
+                    var referenceObjectToCreate = new ReferenceItem()
                     {
-                        Name = ReferenceObjectName,
-                        ReferenceTypeId = Guid.Parse(ReferenceTypeId)
+                        Name = ReferenceItemName,
+                        ReferenceCollectionId = Guid.Parse(ReferenceCollectionId)
                     };
-                    _referenceDataService.CreateReferenceObject(referenceObjectToCreate);
+                    _referenceDataService.CreateReferenceItem(referenceObjectToCreate);
                     return StatusCode(200);
             }
         }

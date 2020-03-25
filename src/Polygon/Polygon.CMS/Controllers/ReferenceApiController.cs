@@ -18,7 +18,7 @@ namespace Polygon.CMS.Controllers
         public IActionResult GetReferenceObjects(string id)
         {
             var guid = Guid.Parse(id);
-            var referenceObjects = _referenceDataService.GetReferenceObjectsByType(guid);
+            var referenceObjects = _referenceDataService.GetReferenceItemsByCollection(guid);
             return new JsonResult(referenceObjects);
         }
     }

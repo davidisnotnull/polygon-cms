@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Polygon.Core.Data.Entities.ReferenceData
 {
-    public class ReferenceType : BaseEntity
+    public class ReferenceCollection : BaseEntity
     {
         [Required]
         public string Name { get; set; }
@@ -12,7 +12,7 @@ namespace Polygon.Core.Data.Entities.ReferenceData
         [Required]
         public string Description { get; set; }
 
-        public ICollection<ReferenceObject> ReferenceObjects { get; set; }
+        public ICollection<ReferenceItem> ReferenceItems { get; set; }
 
     }
 }

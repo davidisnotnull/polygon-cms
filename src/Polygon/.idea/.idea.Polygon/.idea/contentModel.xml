@@ -38756,6 +38756,7 @@
             </e>
             <e p="_tesseract" t="Include">
               <e p="_tesseract-modal.ts" t="Include" />
+              <e p="_tesseract-table.ts" t="Include" />
             </e>
             <e p="_utils" t="Include" />
             <e p="main.ts" t="Include" />
@@ -38814,6 +38815,7 @@
             <e p="_PartialLayout.cshtml" t="Include" />
             <e p="Tesseract" t="Include">
               <e p="_TesseractModal.cshtml" t="Include" />
+              <e p="_TesseractTable.cshtml" t="Include" />
             </e>
           </e>
         </e>
@@ -38863,8 +38865,8 @@
               <e p="StandardPage.cs" t="Include" />
             </e>
             <e p="ReferenceData" t="Include">
-              <e p="ReferenceObject.cs" t="Include" />
-              <e p="ReferenceType.cs" t="Include" />
+              <e p="ReferenceCollection.cs" t="Include" />
+              <e p="ReferenceItem.cs" t="Include" />
             </e>
             <e p="Settings" t="Include">
               <e p="SiteSettings.cs" t="Include" />

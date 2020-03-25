@@ -10,74 +10,74 @@ namespace Polygon.Core.Services.Interfaces.Content
         /// Returns all Reference Types
         /// </summary>
         /// <returns></returns>
-        IEnumerable<ReferenceType> GetAllReferenceTypes();
+        IEnumerable<ReferenceCollection> GetAllReferenceCollections();
 
         /// <summary>
         /// Get a specified Reference Type by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        ReferenceType GetReferenceType(Guid id);
+        ReferenceCollection GetReferenceCollection(Guid id);
 
         /// <summary>
         /// Get a list of Reference Objects by a specified Reference Type
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        IEnumerable<ReferenceObject> GetReferenceObjectsByType(Guid id);
+        IEnumerable<ReferenceItem> GetReferenceItemsByCollection(Guid id);
 
         /// <summary>
         /// Get a list of Reference Objects by a specified Reference Type
         /// </summary>
         /// <param name="referenceType"></param>
         /// <returns></returns>
-        IEnumerable<ReferenceObject> GetReferenceObjectsByType(ReferenceType referenceType);
+        IEnumerable<ReferenceItem> GetReferenceItemsByCollection(ReferenceCollection referenceType);
 
         /// <summary>
         /// Get a specified Reference Object
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        ReferenceObject GetReferenceObject(Guid id);
+        ReferenceItem GetReferenceItem(Guid id);
 
         /// <summary>
         /// Create a new Reference Type
         /// </summary>
         /// <param name="referenceType"></param>
         /// <returns></returns>
-        ReferenceType CreateReferenceType(ReferenceType referenceType);
+        ReferenceCollection CreateReferenceCollection(ReferenceCollection referenceType);
 
         /// <summary>
         /// Update a specified Reference Type
         /// </summary>
         /// <param name="referenceType"></param>
         /// <returns></returns>
-        ReferenceType UpdateReferenceType(ReferenceType referenceType);
+        ReferenceCollection UpdateReferenceCollection(ReferenceCollection referenceType);
 
         /// <summary>
         /// Create a new Reference Object
         /// </summary>
         /// <param name="referenceObject"></param>
         /// <returns></returns>
-        ReferenceObject CreateReferenceObject(ReferenceObject referenceObject);
+        ReferenceItem CreateReferenceItem(ReferenceItem referenceObject);
 
         /// <summary>
         /// Update a specified Reference Object
         /// </summary>
         /// <param name="referenceObject"></param>
         /// <returns></returns>
-        ReferenceObject UpdateReferenceObject(ReferenceObject referenceObject);
+        ReferenceItem UpdateReferenceItem(ReferenceItem referenceObject);
 
         /// <summary>
         /// Delete a specified Reference Object
         /// </summary>
         /// <param name="referenceObject"></param>
-        int DeleteReferenceObject(ReferenceObject referenceObject);
+        int DeleteReferenceItem(ReferenceItem referenceObject);
 
         /// <summary>
         /// Delete a specified Reference Object
         /// </summary>
         /// <param name="id"></param>
-        int DeleteReferenceObject(Guid id);
+        int DeleteReferenceItem(Guid id);
     }
 }

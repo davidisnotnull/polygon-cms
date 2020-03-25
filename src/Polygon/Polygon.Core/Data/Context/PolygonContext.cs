@@ -29,14 +29,14 @@ namespace Polygon.Core.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ReferenceObject>()
-                .HasOne(r => r.ReferenceType)
-                .WithMany(t => t.ReferenceObjects)
-                .HasForeignKey(r => r.ReferenceTypeId);
+            modelBuilder.Entity<ReferenceItem>()
+                .HasOne(r => r.ReferenceCollection)
+                .WithMany(t => t.ReferenceItems)
+                .HasForeignKey(r => r.ReferenceCollectionId);
         }
 
-        public DbSet<ReferenceType> ReferenceTypes { get; set; }
-        public DbSet<ReferenceObject> ReferenceObjects { get; set; }
+        public DbSet<ReferenceCollection> ReferenceTypes { get; set; }
+        public DbSet<ReferenceItem> ReferenceObjects { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<HomePage> HomePage { get; set; }

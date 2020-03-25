@@ -19,16 +19,15 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
         }
 
         [BindProperty]
-        public ReferenceType ReferenceType { get; set; }
+        public ReferenceCollection ReferenceCollection { get; set; }
 
         [BindProperty]
-        public List<ReferenceObject> ReferenceObjects { get; set; }
+        public List<ReferenceItem> ReferenceItems { get; set; }
 
         public void OnGet(string guid)
         {
-            var id = Guid.Parse(guid);
-            ReferenceType = _referenceDataService.GetReferenceType(id);
-            ReferenceObjects = _referenceDataService.GetReferenceObjectsByType(ReferenceType.Id).ToList();
+            ReferenceCollection = _referenceDataService.GetReferenceCollection(Guid.Parse(guid));
+            ReferenceItems = _referenceDataService.GetReferenceItemsByCollection(ReferenceCollection.Id).ToList();
         }
     }
 }

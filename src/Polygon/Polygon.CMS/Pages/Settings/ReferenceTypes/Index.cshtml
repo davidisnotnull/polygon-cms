@@ -21,7 +21,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        @if (Model.ReferenceTypes.Any())
+        @if (Model.ReferenceCollections.Any())
         {
             <table class="table">
                 <thead>
@@ -33,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach (var type in Model.ReferenceTypes)
+                @foreach (var type in Model.ReferenceCollections)
                 {
                     <tr>
                         <td>@type.Name</td>

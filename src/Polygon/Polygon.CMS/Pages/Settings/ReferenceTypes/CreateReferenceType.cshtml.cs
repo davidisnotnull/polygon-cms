@@ -18,10 +18,11 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
         [Required]
         [StringLength(60, MinimumLength = 3)]
         [BindProperty]
-        public string ReferenceTypeName { get; set; }
+        public string ReferenceCollectionName { get; set; }
 
+        [Required]
         [BindProperty]
-        public string ReferenceTypeDescription { get; set; }
+        public string ReferenceCollectionDescription { get; set; }
 
         public void OnGet()
         {
@@ -33,13 +34,13 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
             if (!ModelState.IsValid)
                 return Page();
 
-            var referenceType = new ReferenceType
+            var referenceCollection = new ReferenceCollection
             {
-                Name = ReferenceTypeName,
-                Description = ReferenceTypeDescription
+                Name = ReferenceCollectionName,
+                Description = ReferenceCollectionDescription
             };
 
-            _referenceDataService.CreateReferenceType(referenceType);
+            _referenceDataService.CreateReferenceCollection(referenceCollection);
             return StatusCode(200);
         }
     }
