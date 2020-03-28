@@ -1,16 +1,23 @@
 import * as $ from "jquery";
 import { TesseractModal } from "../_tesseract/_tesseract-modal";
+import { TesseractTable } from "../_tesseract/_tesseract-table";
 
-export class ReferenceTypePage 
+export class ReferenceCollectionPage
 {
     public tesseractModal: any;
+    public tesseractTable: any;
     public saveButton: any;
     public submitUrl: any;
+    public tableDataUrl: string;
 
     constructor() {
         this.tesseractModal = new TesseractModal();
         this.submitUrl = "/Settings/ReferenceTypes/CreateReferenceType";
         this.saveButton = document.querySelector(".modal__save");
+        
+        this.tableDataUrl = "/api/tesseract/TableApi/GetReferenceCollections/";
+        this.tesseractTable = new TesseractTable(this.tableDataUrl);
+                
         this.Initialise();
     }
 
@@ -19,6 +26,8 @@ export class ReferenceTypePage
             event.preventDefault();
             this.SaveReferenceType();
         });
+        
+        
     }
 
     public SaveReferenceType() {
@@ -35,6 +44,7 @@ export class ReferenceTypePage
         .then(r => r.status)
         .then(s => {
             this.tesseractModal.CloseModal();
+            this.tesseractTable.Refresh();
         })
             .catch(e => {
                 console.log("Error :", e)

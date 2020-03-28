@@ -2,7 +2,7 @@
 @model Polygon.CMS.Pages.Settings.ReferenceTypes.ReferenceTypesModel
 @{
     ViewData["Title"] = "ReferenceTypes";
-    ViewData["PageClass"] = "page__reference-type";
+    ViewData["PageClass"] = "page__reference-collection";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
@@ -23,11 +23,12 @@
     <div class="col-md-12">
         @if (Model.ReferenceCollections.Any())
         {
-            <partial name="~/Pages/Shared/Tesseract/_TesseractModal.cshtml"/>
+            <partial name="Shared/Tesseract/_TesseractTable"/>
         }
         else
         {
             <p>There are no Reference Types. You'll need to create one.</p>
         }
+
     </div>
 </div>

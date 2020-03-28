@@ -8,7 +8,7 @@ using Polygon.Core.Services.Interfaces.Tesseract;
 namespace Polygon.CMS.Controllers.Tesseract
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/tesseract/[controller]")]
     public class TableApiController : ControllerBase
     {
         private readonly ILogger<TableApiController> _logger;

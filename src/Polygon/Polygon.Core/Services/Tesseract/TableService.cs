@@ -6,15 +6,18 @@ using Polygon.Core.Services.Interfaces.Tesseract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace Polygon.Core.Services.Tesseract
 {
     public class TableService : BaseService, ITableService
     {
-        public TableService(IUnitOfWork unitOfWork)
+       private readonly ILogger<TableService> _logger;
+         
+        public TableService(ILogger<TableService> logger, IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
-            
+            _logger = logger;
         }
 
         public TableModel BuildReferenceCollectionTable(int pager)

@@ -1,27 +1,26 @@
 ﻿import * as $ from "jquery";
-(<any>window).jQuery = $
+(<any>window).jQuery = $;
 
 import "popper.js";
 import "bootstrap";
 
-/* Tesserat */
+/* Tesseract */
 import { TesseractModal } from "./_tesseract/_tesseract-modal";
 
 /* Utility classes */
 
 /* Pages */
-import { ReferenceTypePage } from "./_pages/_reference-type";
+import { ReferenceCollectionPage } from "./_pages/_reference-collection";
 
 $(document).ready(function () {
     console.log("Polygon CMS Version 1.0");
-    new TesseractModal();
+    new TesseractModal();    
 
     /* Load Reference Type scripts */
-    if (document.querySelector('.page__reference-type'))
+    if (document.querySelector('.page__reference-collection'))
     {
-        new ReferenceTypePage();
+        new ReferenceCollectionPage();
     }
-
 });
 
 import "../scss/main.scss";

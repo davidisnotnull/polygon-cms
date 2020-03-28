@@ -28595,19 +28595,20 @@ if (!self.fetch) {
 
 /***/ }),
 
-/***/ "./ts/_pages/_reference-type.ts":
-/*!**************************************!*\
-  !*** ./ts/_pages/_reference-type.ts ***!
-  \**************************************/
-/*! exports provided: ReferenceTypePage */
+/***/ "./ts/_pages/_reference-collection.ts":
+/*!********************************************!*\
+  !*** ./ts/_pages/_reference-collection.ts ***!
+  \********************************************/
+/*! exports provided: ReferenceCollectionPage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReferenceTypePage", function() { return ReferenceTypePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReferenceCollectionPage", function() { return ReferenceCollectionPage; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_tesseract/_tesseract-modal */ "./ts/_tesseract/_tesseract-modal.ts");
+/* harmony import */ var _tesseract_tesseract_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_tesseract/_tesseract-table */ "./ts/_tesseract/_tesseract-table.ts");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -28618,23 +28619,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var ReferenceTypePage = /*#__PURE__*/function () {
-  function ReferenceTypePage() {
-    _classCallCheck(this, ReferenceTypePage);
+
+var ReferenceCollectionPage = /*#__PURE__*/function () {
+  function ReferenceCollectionPage() {
+    _classCallCheck(this, ReferenceCollectionPage);
 
     _defineProperty(this, "tesseractModal", void 0);
+
+    _defineProperty(this, "tesseractTable", void 0);
 
     _defineProperty(this, "saveButton", void 0);
 
     _defineProperty(this, "submitUrl", void 0);
 
+    _defineProperty(this, "tableDataUrl", void 0);
+
     this.tesseractModal = new _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_1__["TesseractModal"]();
     this.submitUrl = "/Settings/ReferenceTypes/CreateReferenceType";
     this.saveButton = document.querySelector(".modal__save");
+    this.tableDataUrl = "/api/tesseract/TableApi/GetReferenceCollections/";
+    this.tesseractTable = new _tesseract_tesseract_table__WEBPACK_IMPORTED_MODULE_2__["TesseractTable"](this.tableDataUrl);
     this.Initialise();
   }
 
-  _createClass(ReferenceTypePage, [{
+  _createClass(ReferenceCollectionPage, [{
     key: "Initialise",
     value: function Initialise() {
       var _this = this;
@@ -28661,13 +28669,15 @@ var ReferenceTypePage = /*#__PURE__*/function () {
         return r.status;
       }).then(function (s) {
         _this2.tesseractModal.CloseModal();
+
+        _this2.tesseractTable.Refresh();
       }).catch(function (e) {
         console.log("Error :", e);
       });
     }
   }]);
 
-  return ReferenceTypePage;
+  return ReferenceCollectionPage;
 }();
 
 /***/ }),
@@ -28709,9 +28719,9 @@ var TesseractModal = /*#__PURE__*/function () {
 
     _defineProperty(this, "saveButton", void 0);
 
-    this.modalElement = document.querySelector('#TesseractModal');
-    this.modalTitle = this.modalElement.querySelector('#modal-title');
-    this.modalBody = -this.modalElement.querySelector('#modal-content');
+    this.modalElement = document.querySelector("#TesseractModal");
+    this.modalTitle = this.modalElement.querySelector("#modal-title");
+    this.modalBody = -this.modalElement.querySelector("#modal-content");
     this.modalButtons = document.querySelectorAll(".tesseract__modal");
     this.Initialise();
   }
@@ -28803,6 +28813,140 @@ var TesseractModal = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./ts/_tesseract/_tesseract-table.ts":
+/*!*******************************************!*\
+  !*** ./ts/_tesseract/_tesseract-table.ts ***!
+  \*******************************************/
+/*! exports provided: TesseractTable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TesseractTable", function() { return TesseractTable; });
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var TesseractTable = /*#__PURE__*/function () {
+  function TesseractTable(url) {
+    _classCallCheck(this, TesseractTable);
+
+    _defineProperty(this, "tableElement", void 0);
+
+    _defineProperty(this, "requestUrl", void 0);
+
+    this.tableElement = document.querySelector(".tesseract__table");
+    this.requestUrl = url;
+    this.Initialise(url);
+  }
+
+  _createClass(TesseractTable, [{
+    key: "Initialise",
+    value: function Initialise(url) {
+      var _this = this;
+
+      fetch(url, {
+        method: 'POST'
+      }).then(function (r) {
+        return r.json();
+      }).then(function (data) {
+        console.log(data);
+
+        _this.ConstructTable(data);
+      }).catch(function (e) {
+        console.log("Error: ", e);
+      });
+    }
+  }, {
+    key: "Refresh",
+    value: function Refresh() {
+      var _this2 = this;
+
+      var tableHead = document.querySelector(".table__head");
+      tableHead.innerHTML = "";
+      var tableBody = document.querySelector(".table__body");
+      tableBody.innerHTML = "";
+      fetch(this.requestUrl, {
+        method: 'POST'
+      }).then(function (r) {
+        return r.json();
+      }).then(function (data) {
+        _this2.ConstructTable(data);
+      }).catch(function (e) {
+        console.log("Error: ", e);
+      });
+    }
+  }, {
+    key: "ConstructTable",
+    value: function ConstructTable(data) {
+      var table = data;
+      var tableHeader = document.querySelector(".table__head");
+
+      for (var _i = 0; _i < table.columnCount; _i++) {
+        var theadCol = document.createElement("th");
+        theadCol.className += "col_" + _i;
+
+        if (table.header[_i] != undefined) {
+          theadCol.innerText = table.header[_i].toString();
+        }
+
+        tableHeader.appendChild(theadCol);
+      }
+
+      var tableBody = document.querySelector(".table__body");
+      var columnCount = 0;
+
+      var _iterator = _createForOfIteratorHelper(table.rows),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var row = _step.value;
+          if (columnCount == table.columnCount) return;
+          var tableRow = document.createElement("tr");
+
+          var _iterator2 = _createForOfIteratorHelper(row),
+              _step2;
+
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var cell = _step2.value;
+              var rowCell = document.createElement("td");
+              rowCell.innerHTML = cell;
+              tableRow.appendChild(rowCell);
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+
+          tableBody.appendChild(tableRow);
+          ++columnCount;
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+  }]);
+
+  return TesseractTable;
+}();
+
+/***/ }),
+
 /***/ "./ts/main.ts":
 /*!********************!*\
   !*** ./ts/main.ts ***!
@@ -28818,14 +28962,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_tesseract/_tesseract-modal */ "./ts/_tesseract/_tesseract-modal.ts");
-/* harmony import */ var _pages_reference_type__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_pages/_reference-type */ "./ts/_pages/_reference-type.ts");
+/* harmony import */ var _pages_reference_collection__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_pages/_reference-collection */ "./ts/_pages/_reference-collection.ts");
 /* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../scss/main.scss */ "./scss/main.scss");
 /* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_5__);
 
 window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0__;
 
 
-/* Tesserat */
+/* Tesseract */
 
 
 /* Utility classes */
@@ -28838,8 +28982,8 @@ jquery__WEBPACK_IMPORTED_MODULE_0__(document).ready(function () {
   new _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_3__["TesseractModal"]();
   /* Load Reference Type scripts */
 
-  if (document.querySelector('.page__reference-type')) {
-    new _pages_reference_type__WEBPACK_IMPORTED_MODULE_4__["ReferenceTypePage"]();
+  if (document.querySelector('.page__reference-collection')) {
+    new _pages_reference_collection__WEBPACK_IMPORTED_MODULE_4__["ReferenceCollectionPage"]();
   }
 });
 
