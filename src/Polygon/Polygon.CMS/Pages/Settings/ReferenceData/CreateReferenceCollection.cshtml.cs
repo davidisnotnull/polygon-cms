@@ -4,13 +4,13 @@ using Polygon.Core.Data.Entities.ReferenceData;
 using Polygon.Core.Services.Interfaces.Content;
 using System.ComponentModel.DataAnnotations;
 
-namespace Polygon.CMS.Pages.Settings.ReferenceTypes
+namespace Polygon.CMS.Pages.Settings.ReferenceData
 {
-    public class CreateReferenceTypeModel : PageModel
+    public class CreateReferenceCollectionModel : PageModel
     {
         private readonly IReferenceDataService _referenceDataService;
 
-        public CreateReferenceTypeModel(IReferenceDataService referenceDataService)
+        public CreateReferenceCollectionModel(IReferenceDataService referenceDataService)
         {
             _referenceDataService = referenceDataService;
         }

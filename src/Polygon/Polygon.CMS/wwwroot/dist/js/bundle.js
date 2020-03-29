@@ -28605,10 +28605,8 @@ if (!self.fetch) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReferenceCollectionPage", function() { return ReferenceCollectionPage; });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_tesseract/_tesseract-modal */ "./ts/_tesseract/_tesseract-modal.ts");
-/* harmony import */ var _tesseract_tesseract_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_tesseract/_tesseract-table */ "./ts/_tesseract/_tesseract-table.ts");
+/* harmony import */ var _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_tesseract/_tesseract-modal */ "./ts/_tesseract/_tesseract-modal.ts");
+/* harmony import */ var _tesseract_tesseract_table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_tesseract/_tesseract-table */ "./ts/_tesseract/_tesseract-table.ts");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -28616,7 +28614,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -28634,11 +28631,11 @@ var ReferenceCollectionPage = /*#__PURE__*/function () {
 
     _defineProperty(this, "tableDataUrl", void 0);
 
-    this.tesseractModal = new _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_1__["TesseractModal"]();
     this.submitUrl = "/Settings/ReferenceTypes/CreateReferenceType";
     this.saveButton = document.querySelector(".modal__save");
     this.tableDataUrl = "/api/tesseract/TableApi/GetReferenceCollections/";
-    this.tesseractTable = new _tesseract_tesseract_table__WEBPACK_IMPORTED_MODULE_2__["TesseractTable"](this.tableDataUrl);
+    this.tesseractTable = new _tesseract_tesseract_table__WEBPACK_IMPORTED_MODULE_1__["TesseractTable"](this.tableDataUrl);
+    this.tesseractModal = new _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_0__["TesseractModal"]();
     this.Initialise();
   }
 
@@ -28658,7 +28655,7 @@ var ReferenceCollectionPage = /*#__PURE__*/function () {
     value: function SaveReferenceType() {
       var _this2 = this;
 
-      jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal [type=submit]").attr("disabled", "");
+      this.saveButton.setAttribute("disabled", "");
       var form;
       form = document.querySelector(".modal__form");
       var formData = new FormData(form);
@@ -28670,7 +28667,11 @@ var ReferenceCollectionPage = /*#__PURE__*/function () {
       }).then(function (s) {
         _this2.tesseractModal.CloseModal();
 
+        _this2.tesseractModal.Initialise();
+
         _this2.tesseractTable.Refresh();
+
+        _this2.saveButton.removeAttribute("disabled");
       }).catch(function (e) {
         console.log("Error :", e);
       });
@@ -28678,6 +28679,99 @@ var ReferenceCollectionPage = /*#__PURE__*/function () {
   }]);
 
   return ReferenceCollectionPage;
+}();
+
+/***/ }),
+
+/***/ "./ts/_pages/_reference-item.ts":
+/*!**************************************!*\
+  !*** ./ts/_pages/_reference-item.ts ***!
+  \**************************************/
+/*! exports provided: ReferenceItemPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReferenceItemPage", function() { return ReferenceItemPage; });
+/* harmony import */ var _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_tesseract/_tesseract-modal */ "./ts/_tesseract/_tesseract-modal.ts");
+/* harmony import */ var _tesseract_tesseract_table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_tesseract/_tesseract-table */ "./ts/_tesseract/_tesseract-table.ts");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var ReferenceItemPage = /*#__PURE__*/function () {
+  function ReferenceItemPage() {
+    _classCallCheck(this, ReferenceItemPage);
+
+    _defineProperty(this, "tesseractModal", void 0);
+
+    _defineProperty(this, "tesseractTable", void 0);
+
+    _defineProperty(this, "referenceCollectionId", void 0);
+
+    _defineProperty(this, "saveButton", void 0);
+
+    _defineProperty(this, "submitUrl", void 0);
+
+    _defineProperty(this, "tableDataUrl", void 0);
+
+    this.referenceCollectionId = document.querySelector("#ReferenceCollectionId").getAttribute("value");
+    this.saveButton = document.querySelector(".modal__save");
+    this.tableDataUrl = "/api/tesseract/TableApi/GetReferenceItems/?guid=" + this.referenceCollectionId;
+    this.submitUrl = "/Settings/ReferenceData/CreateReferenceItem/";
+    this.tesseractTable = new _tesseract_tesseract_table__WEBPACK_IMPORTED_MODULE_1__["TesseractTable"](this.tableDataUrl);
+    this.tesseractModal = new _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_0__["TesseractModal"]();
+    this.Initialise();
+  }
+
+  _createClass(ReferenceItemPage, [{
+    key: "Initialise",
+    value: function Initialise() {
+      var _this = this;
+
+      this.saveButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        _this.SaveReferenceItem();
+      });
+    }
+  }, {
+    key: "SaveReferenceItem",
+    value: function SaveReferenceItem() {
+      var _this2 = this;
+
+      this.saveButton.setAttribute("disabled", "");
+      var form;
+      form = document.querySelector(".modal__form");
+      var formData = new FormData(form);
+      var token = document.querySelector('input[name="__RequestVerificationToken"]').getAttribute("value");
+      fetch(this.submitUrl, {
+        method: "POST",
+        headers: {
+          "RequestVerificationToken": token
+        },
+        body: formData
+      }).then(function (r) {
+        return r.status;
+      }).then(function (s) {
+        _this2.tesseractModal.CloseModal();
+
+        _this2.tesseractTable.Refresh();
+
+        _this2.saveButton.removeAttribute("disabled");
+      }).catch(function (e) {
+        console.log("Error :", e);
+      });
+    }
+  }]);
+
+  return ReferenceItemPage;
 }();
 
 /***/ }),
@@ -28751,7 +28845,6 @@ var TesseractModal = /*#__PURE__*/function () {
       fetch(url).then(function (r) {
         return r.text();
       }).then(function (f) {
-        console.log(f);
         jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal .dynamic").html(f);
         jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal").modal(options);
       }).catch(function (e) {
@@ -28963,8 +29056,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_tesseract/_tesseract-modal */ "./ts/_tesseract/_tesseract-modal.ts");
 /* harmony import */ var _pages_reference_collection__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_pages/_reference-collection */ "./ts/_pages/_reference-collection.ts");
-/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../scss/main.scss */ "./scss/main.scss");
-/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _pages_reference_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_pages/_reference-item */ "./ts/_pages/_reference-item.ts");
+/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../scss/main.scss */ "./scss/main.scss");
+/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_6__);
 
 window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0__;
 
@@ -28977,6 +29071,7 @@ window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0__;
 /* Pages */
 
 
+
 jquery__WEBPACK_IMPORTED_MODULE_0__(document).ready(function () {
   console.log("Polygon CMS Version 1.0");
   new _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_3__["TesseractModal"]();
@@ -28984,6 +29079,10 @@ jquery__WEBPACK_IMPORTED_MODULE_0__(document).ready(function () {
 
   if (document.querySelector('.page__reference-collection')) {
     new _pages_reference_collection__WEBPACK_IMPORTED_MODULE_4__["ReferenceCollectionPage"]();
+  }
+
+  if (document.querySelector(".page__reference-item")) {
+    new _pages_reference_item__WEBPACK_IMPORTED_MODULE_5__["ReferenceItemPage"]();
   }
 });
 

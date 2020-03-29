@@ -1,0 +1,33 @@
+﻿@page
+@model Polygon.CMS.Pages.Settings.ReferenceData.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    ViewData["PageClass"] = "page__reference-item";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@section Navigation
+{
+    <partial name="Shared/_MainNavigation" model="Model.MainMenu" />
+    <partial name="Shared/_Breadcrumbs" model="Model.Breadcrumb" />
+}
+
+@Html.HiddenFor(m => m.ReferenceCollectionId)
+
+<h1>Details for @Model.ReferenceCollection.Name</h1>
+<span>Guid: @Model.ReferenceCollection.Id</span>
+
+<p><strong>Description:</strong> @Model.ReferenceCollection.Description</p>
+
+<div class="row">
+    <div class="col-md-12">
+        <button data-toggle="modal" data-url="/Settings/ReferenceData/CreateReferenceItem/?id=@Model.ReferenceCollectionId" data-size="medium" data-target="#tesseractModal" type="button" class="btn btn-primary tesseract__modal">Create</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+       <partial name="Shared/Tesseract/_TesseractTable"/>
+    </div>
+</div>

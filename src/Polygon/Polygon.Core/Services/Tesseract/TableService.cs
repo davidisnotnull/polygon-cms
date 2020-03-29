@@ -12,8 +12,8 @@ namespace Polygon.Core.Services.Tesseract
 {
     public class TableService : BaseService, ITableService
     {
-       private readonly ILogger<TableService> _logger;
-         
+        private readonly ILogger<TableService> _logger;
+
         public TableService(ILogger<TableService> logger, IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
@@ -31,9 +31,11 @@ namespace Polygon.Core.Services.Tesseract
             {
                 var tableRow = new[]
                 {
-                    item.Id.ToString(),
                     item.Name,
-                    item.Description
+                    item.Description,
+                    $"<a href=\"ReferenceData/Details/?guid={item.Id.ToString()}\">Details</a>",
+                    $"<a href=\"ReferenceData/UpdateReferenceCollection/?guid={item.Id.ToString()}\" class=\"tesseract__modal\"" +
+                    "data-size=\"medium\" data-toggle=\"modal\">Edit</a>"
                 };
 
                 tableRows.Add(tableRow);
@@ -49,6 +51,40 @@ namespace Polygon.Core.Services.Tesseract
                 Rows = tableRows,
                 ColumnCount = 5,
                 TotalNumberOfRows = referenceCollections.Count()
+            };
+        }
+
+        public TableModel BuildReferenceItemTable(Guid guid)
+        {
+            var repository = UnitOfWork.GetRepository<ReferenceItem>();
+            var referenceItems = repository.GetAvailable()
+                .Where(x => x.ReferenceCollectionId == guid).ToList();
+
+            var tableRows = new List<string[]>();
+
+            foreach (var item in referenceItems)
+            {
+                var row = new[]
+                {
+                    item.Name,
+                    $"<a href=\"ReferenceTypes/ManageReferenceItem/?guid={item.Id.ToString()}\" class=\"tesseract__modal\"" +
+                    $"data-size=\"medium\" data-toggle\"modal\">Edit</a>",
+                    $"<a href=\"ReferenceTypes/DeleteReferenceItem/?guid={item.Id.ToString()}\" class=\"tesseract__modal\"" +
+                    "data-size=\"medium\" data-toggle=\"modal\">Delete</a>"
+                };
+
+                tableRows.Add(row);
+            }
+            
+            return new TableModel
+            {
+                Header = new List<string>
+                {
+                    "Name"
+                },
+                Rows = tableRows,
+                ColumnCount = 4,
+                TotalNumberOfRows = referenceItems.Count()
             };
         }
         

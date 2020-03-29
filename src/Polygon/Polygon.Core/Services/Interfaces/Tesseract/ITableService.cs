@@ -14,6 +14,13 @@ namespace Polygon.Core.Services.Interfaces.Tesseract
         TableModel BuildReferenceCollectionTable(int pager);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        TableModel BuildReferenceItemTable(Guid guid);
+
+        /// <summary>
         /// Builds out a TableModel to use to render a table in the front end
         /// </summary>
         /// <param name="id">Guid of the ContentType to load into the table</param>
@@ -21,6 +28,8 @@ namespace Polygon.Core.Services.Interfaces.Tesseract
         /// <returns>A populated TableModel</returns>
         /// <remarks>This is experimental. Do not use.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TableModel BuildTableModel(Guid id, int pager);
+        TableModel BuildTableModel(Guid id, int pager);
+        
+        
     }
 }

@@ -40,7 +40,6 @@ export class TesseractModal
         fetch(url)
             .then(r => r.text())
             .then(f => {
-                console.log(f);
                 $("#TesseractModal .dynamic").html(f);
                 $("#TesseractModal").modal(options);
         }).catch(e => {

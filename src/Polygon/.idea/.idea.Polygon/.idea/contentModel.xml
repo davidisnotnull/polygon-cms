@@ -34,41 +34,12 @@
           <e p="node_modules" t="Include">
             <e p=".cache" t="Include">
               <e p="babel-loader" t="Include">
-                <e p="0a911bd56ca6343310fe163108b39a75.json.gz" t="Include" />
-                <e p="1fafacbb69ffc12f4a6c16039d8de428.json.gz" t="Include" />
-                <e p="210a26516398a86f3d4d27673a3b446d.json.gz" t="Include" />
-                <e p="25d2af2bdcebdf03a03834a0903c9e8f.json.gz" t="Include" />
-                <e p="33eec52b871fc30816f29fec9fbeac3a.json.gz" t="Include" />
-                <e p="34a02e2a4f496121fadc6458646ebe7d.json.gz" t="Include" />
-                <e p="3c0a612be2d11b8bd2a9c066d8a4a14b.json.gz" t="Include" />
-                <e p="4d2d5ff4c93256a3246c094f92acc0b6.json.gz" t="Include" />
-                <e p="5121e1e1c9e84966e41bbc5061c49739.json.gz" t="Include" />
-                <e p="52f8babda9bbf8916ffb93e4b0e3e2ee.json.gz" t="Include" />
-                <e p="72b94025f3c7224a017b468a24ed5f35.json.gz" t="Include" />
-                <e p="7926cc38fcb11a7396448ccaa65f6bd5.json.gz" t="Include" />
-                <e p="7a6eacb9c903295e94dcc70629f86c1d.json.gz" t="Include" />
-                <e p="973e445dd629960e38434858c4ef0c16.json.gz" t="Include" />
-                <e p="a3918ac5080a0314c14f3d023fef5a73.json.gz" t="Include" />
-                <e p="a540dbf36274df829096a9e7354acd5c.json.gz" t="Include" />
-                <e p="a918a93103b109b5dfa17a7140af056c.json.gz" t="Include" />
-                <e p="adfa9b13fee18b3b75eda68b9230f721.json.gz" t="Include" />
-                <e p="b2e7bd4788fc49c0730d1a32a56c2e45.json.gz" t="Include" />
-                <e p="b41827a8a0dc8f8c3b97248b0777ecf0.json.gz" t="Include" />
-                <e p="b4be64289427712b3ac6f26831e74719.json.gz" t="Include" />
-                <e p="b59aa5438e28a91d10aab694a1ee5031.json.gz" t="Include" />
-                <e p="b642b83bec5d0b0a71ddadead12ee161.json.gz" t="Include" />
-                <e p="bc1a21e9757fb48766ec177efd190912.json.gz" t="Include" />
-                <e p="c78a7f765b69a62644da769ac41b92e2.json.gz" t="Include" />
-                <e p="cf6663dd636ca1ed0bc33a04e7420e9a.json.gz" t="Include" />
-                <e p="d58117a3f6e8e51f3f7dff5700545ab7.json.gz" t="Include" />
-                <e p="d646887ab296daac88e0d686dc76d952.json.gz" t="Include" />
-                <e p="d89de75a75d51917b7f6a193995d4e84.json.gz" t="Include" />
-                <e p="da066c9aa0352577e65406ff8ec6c045.json.gz" t="Include" />
-                <e p="ebf2f4f6818ae4ad752c0517a4b71c02.json.gz" t="Include" />
-                <e p="eccc6e725ea7a02130cb699b411b7399.json.gz" t="Include" />
-                <e p="f8013beb0b4668f322f6576528558d14.json.gz" t="Include" />
-                <e p="f86c133e607a90a976f3912a88b17c13.json.gz" t="Include" />
-                <e p="fd8fb5858208cabea64f338d336fa6c9.json.gz" t="Include" />
+                <e p="1f4ff43862c5af04739ad37d93cd1116.json.gz" t="Include" />
+                <e p="2bb9353af4bec606ded5b32d8cfbb4bb.json.gz" t="Include" />
+                <e p="34380ba14127347a55bd034f71d08fa3.json.gz" t="Include" />
+                <e p="3f21ff48aa268da55907efe9a526feab.json.gz" t="Include" />
+                <e p="417e8ac58c78363812ae54a11c3c54dc.json.gz" t="Include" />
+                <e p="a3d77ef9b982bdc6dc057f09790cc277.json.gz" t="Include" />
               </e>
             </e>
             <e p="@babel\core" t="IncludeRecursive" />
@@ -284,13 +255,17 @@
           <e p="ts" t="Include">
             <e p="_pages" t="Include">
               <e p="_reference-collection.ts" t="Include" />
-              <e p="_reference-object.ts" t="Include" />
+              <e p="_reference-item.js" t="Include" />
+              <e p="_reference-item.js.map" t="Include" />
+              <e p="_reference-item.ts" t="Include" />
             </e>
             <e p="_tesseract" t="Include">
               <e p="_tesseract-modal.ts" t="Include" />
               <e p="_tesseract-table.ts" t="Include" />
             </e>
             <e p="_utils" t="Include" />
+            <e p="main.js" t="Include" />
+            <e p="main.js.map" t="Include" />
             <e p="main.ts" t="Include" />
           </e>
           <e p="webpack" t="Include">
@@ -328,17 +303,19 @@
           <e p="Settings" t="Include">
             <e p="Index.cshtml" t="Include" />
             <e p="Index.cshtml.cs" t="Include" />
-            <e p="ReferenceTypes" t="Include">
-              <e p="CreateReferenceType.cshtml" t="Include" />
-              <e p="CreateReferenceType.cshtml.cs" t="Include" />
+            <e p="ReferenceData" t="Include">
+              <e p="CreateReferenceCollection.cshtml" t="Include" />
+              <e p="CreateReferenceCollection.cshtml.cs" t="Include" />
+              <e p="CreateReferenceItem.cshtml" t="Include" />
+              <e p="CreateReferenceItem.cshtml.cs" t="Include" />
               <e p="Details.cshtml" t="Include" />
               <e p="Details.cshtml.cs" t="Include" />
               <e p="Index.cshtml" t="Include" />
               <e p="Index.cshtml.cs" t="Include" />
-              <e p="ManageReferenceObject.cshtml" t="Include" />
-              <e p="ManageReferenceObject.cshtml.cs" t="Include" />
-              <e p="UpdateReferenceType.cshtml" t="Include" />
-              <e p="UpdateReferenceType.cshtml.cs" t="Include" />
+              <e p="ManageReferenceItem.cshtml" t="Include" />
+              <e p="ManageReferenceItem.cshtml.cs" t="Include" />
+              <e p="UpdateReferenceCollection.cshtml" t="Include" />
+              <e p="UpdateReferenceCollection.cshtml.cs" t="Include" />
             </e>
           </e>
           <e p="Shared" t="Include">

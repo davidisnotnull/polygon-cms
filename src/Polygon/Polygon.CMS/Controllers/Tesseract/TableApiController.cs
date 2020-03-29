@@ -34,5 +34,21 @@ namespace Polygon.CMS.Controllers.Tesseract
                 throw new WebException($"API request failed with the message - {exception.InnerException}");
             }
         }
+
+        [HttpPost]
+        [Route("GetReferenceItems")]
+        public JsonResult GetReferenceItems(string guid)
+        {
+            var id = Guid.Parse(guid);
+            try
+            {
+                var tableModel = _tableService.BuildReferenceItemTable(id);
+                return new JsonResult(tableModel);
+            }
+            catch (WebException exception)
+            {
+                throw new WebException($"API request failed with the message - {exception.InnerException}");
+            }
+        }
     }
 }

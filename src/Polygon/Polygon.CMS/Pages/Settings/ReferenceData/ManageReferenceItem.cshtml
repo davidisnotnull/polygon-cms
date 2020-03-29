@@ -1,0 +1,19 @@
+﻿@page
+@model Polygon.CMS.Pages.Settings.ReferenceTypes.ManageReferenceItemModel
+@{
+    Layout = "~/Pages/Shared/_ModalLayout.cshtml";
+    ViewData["ModalTitle"] = Model.Edit ?  $"Update {Model.ReferenceItemName}" : "Create new Reference Object";
+}
+
+@Html.HiddenFor(m => m.Edit, new { Value = Model.Edit })
+
+@Html.HiddenFor(m => m.ReferenceItemId, new { Value = Model.ReferenceItemId })
+
+<div class="form-group">
+    <label asp-for="ReferenceItemName">Name</label>
+    <input asp-for="ReferenceItemName" type="text" class="form-control" id="referenceObjectName" aria-describedby="referenceObjectNameHelp" placeholder="Enter name of Reference Type">
+    <small id="referenceObjectNameHelp" class="form-text text-muted">This will be the name of your new Reference Object</small>
+    <span asp-validation-for="ReferenceItemName" class="text-danger"></span>
+</div>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>

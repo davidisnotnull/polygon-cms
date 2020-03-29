@@ -1,0 +1,23 @@
+﻿@page
+@using Microsoft.AspNetCore.Antiforgery
+@model Polygon.CMS.Pages.Settings.ReferenceData.CreateReferenceItemModel
+@inject IAntiforgery antiforgery
+
+@{
+    Layout = "~/Pages/Shared/_ModalLayout.cshtml";
+    ViewData["ModalTitle"] = "Create new Reference Item";
+    var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
+}
+
+@Html.HiddenFor(m => m.ReferenceCollectionId, new { Value = Model.ReferenceCollectionId })
+
+<input type="hidden" name="__RequestVerificationToken" value="@token" />
+
+<div class="form-group">
+    <label asp-for="ReferenceItemName">Name</label>
+    <input asp-for="ReferenceItemName" type="text" class="form-control" id="referenceObjectName" aria-describedby="referenceObjectNameHelp" placeholder="Enter name of Reference Type">
+    <small id="referenceObjectNameHelp" class="form-text text-muted">This will be the name of your new Reference Object</small>
+    <span asp-validation-for="ReferenceItemName" class="text-danger"></span>
+</div>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>

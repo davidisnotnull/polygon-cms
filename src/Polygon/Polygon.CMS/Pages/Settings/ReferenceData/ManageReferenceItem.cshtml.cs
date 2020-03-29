@@ -7,11 +7,11 @@ using Polygon.Core.Services.Interfaces.Content;
 
 namespace Polygon.CMS.Pages.Settings.ReferenceTypes
 {
-    public class ManageReferenceObjectModel : PageModel
+    public class ManageReferenceItemModel : PageModel
     {
         private readonly IReferenceDataService _referenceDataService;
         
-        public ManageReferenceObjectModel(IReferenceDataService referenceDataService)
+        public ManageReferenceItemModel(IReferenceDataService referenceDataService)
         {
             _referenceDataService = referenceDataService;
         }
@@ -53,6 +53,9 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
 
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+                return Page();
+            
             switch (Edit)
             {
                 case true: // If edit mode
@@ -61,13 +64,8 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
                     _referenceDataService.UpdateReferenceItem(referenceObjectToUpdate);
                     return StatusCode(200);
                 case false:
-                    var referenceObjectToCreate = new ReferenceItem()
-                    {
-                        Name = ReferenceItemName,
-                        ReferenceCollectionId = Guid.Parse(ReferenceCollectionId)
-                    };
-                    _referenceDataService.CreateReferenceItem(referenceObjectToCreate);
                     return StatusCode(200);
+                    break;
             }
         }
     }

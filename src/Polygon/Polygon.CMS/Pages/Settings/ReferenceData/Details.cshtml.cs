@@ -6,7 +6,7 @@ using Polygon.CMS.Business.Models;
 using Polygon.Core.Data.Entities.ReferenceData;
 using Polygon.Core.Services.Interfaces.Content;
 
-namespace Polygon.CMS.Pages.Settings.ReferenceTypes
+namespace Polygon.CMS.Pages.Settings.ReferenceData
 {
     public class DetailsModel : SitePageModel
     {
@@ -17,6 +17,9 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
         {
             _referenceDataService = referenceDataService;
         }
+        
+        [BindProperty]
+        public string ReferenceCollectionId { get; set; }
 
         [BindProperty]
         public ReferenceCollection ReferenceCollection { get; set; }
@@ -26,6 +29,7 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
 
         public void OnGet(string guid)
         {
+            ReferenceCollectionId = guid;
             ReferenceCollection = _referenceDataService.GetReferenceCollection(Guid.Parse(guid));
             ReferenceItems = _referenceDataService.GetReferenceItemsByCollection(ReferenceCollection.Id).ToList();
         }
