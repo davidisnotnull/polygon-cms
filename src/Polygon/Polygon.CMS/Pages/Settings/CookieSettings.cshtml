@@ -1,0 +1,18 @@
+﻿@page
+@model Polygon.CMS.Pages.Settings.CookieSettings
+
+@{
+    ViewData["Title"] = "Cookie Settings";
+    ViewData["PageClass"] = "page__cookie-settings";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@section Navigation
+{
+    <partial name="Shared/_MainNavigation" model="Model.MainMenu" />
+    <partial name="Shared/_Breadcrumbs" model="Model.Breadcrumb" />
+}
+
+<h1>Cookie Settings</h1>
+
+<partial name="Shared/Tesseract/_TesseractWysiwyg"/>
