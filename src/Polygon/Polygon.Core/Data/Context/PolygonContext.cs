@@ -35,8 +35,8 @@ namespace Polygon.Core.Data.Context
                 .HasForeignKey(r => r.ReferenceCollectionId);
         }
 
-        public DbSet<ReferenceCollection> ReferenceTypes { get; set; }
-        public DbSet<ReferenceItem> ReferenceObjects { get; set; }
+        public DbSet<ReferenceCollection> ReferenceCollections { get; set; }
+        public DbSet<ReferenceItem> ReferenceItems { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<HomePage> HomePage { get; set; }

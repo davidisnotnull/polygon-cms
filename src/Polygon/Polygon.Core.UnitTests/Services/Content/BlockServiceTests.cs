@@ -41,6 +41,8 @@ namespace Polygon.Core.UnitTests.Services.Content
         {
             var mockTeaserBlocks = MockBlocks.SeedMultipleTeaserBlocks();
             _blockRepository.Add(mockTeaserBlocks);
+            _unitOfWork.Commit();
+            
             var random = new Random();
             var blockGuidSelector = random.Next(1, mockTeaserBlocks.Length);
             var blockId = GuidSequenceHelper.GetGuid(blockGuidSelector);

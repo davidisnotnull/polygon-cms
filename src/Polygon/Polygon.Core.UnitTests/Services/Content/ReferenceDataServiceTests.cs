@@ -6,10 +6,10 @@ using Polygon.Core.Data.Interfaces.Repositories;
 using Polygon.Core.Services.Content;
 using Polygon.Core.Services.Interfaces.Content;
 using Polygon.Core.UnitTests.Fixtures;
+using Polygon.Core.UnitTests.Helpers;
 using Polygon.Core.UnitTests.MockData;
 using System;
 using System.Linq;
-using Polygon.Core.UnitTests.Helpers;
 
 namespace Polygon.Core.UnitTests.Services.Content
 {
@@ -32,20 +32,21 @@ namespace Polygon.Core.UnitTests.Services.Content
         }
 
         [TestMethod]
-        public void Can_Get_All_ReferenceTypes()
+        public void Can_Get_All_ReferenceCollections()
+        {
+            var mockReferenceCollections = MockReferenceData.SeedMultipleReferenceCollections();
+            _referenceCollectionRepository.Add(mockReferenceCollections);
+            _unitOfWork.Commit();
+
+            Assert.AreEqual(mockReferenceCollections.Length, _referenceDataService.GetAllReferenceCollections().Count());
+        }
+
+        [TestMethod]
+        public void Can_Get_ReferenceCollection()
         {
             var mockReferenceTypes = MockReferenceData.SeedMultipleReferenceCollections();
             _referenceCollectionRepository.Add(mockReferenceTypes);
             _unitOfWork.Commit();
-
-            Assert.AreEqual(mockReferenceTypes.Length, _referenceDataService.GetAllReferenceCollections().Count());
-        }
-
-        [TestMethod]
-        public void Can_Get_ReferenceType()
-        {
-            var mockReferenceTypes = MockReferenceData.SeedMultipleReferenceCollections();
-            _referenceCollectionRepository.Add(mockReferenceTypes);
 
             var random = new Random();
             var referenceCollectionGuidSelector = random.Next(1, mockReferenceTypes.Length);
@@ -57,17 +58,18 @@ namespace Polygon.Core.UnitTests.Services.Content
         }
 
         [TestMethod]
-        public void Can_Create_ReferenceType()
+        public void Can_Create_ReferenceCollection()
         {
             var referenceCollection = _referenceDataService.CreateReferenceCollection(MockReferenceData.SeedSingleReferenceCollection());
             Assert.IsNotNull(referenceCollection.Id);
         }
 
         [TestMethod]
-        public void Can_Update_ReferenceType()
+        public void Can_Update_ReferenceCollection()
         {
             var mockReferenceTypes = MockReferenceData.SeedMultipleReferenceCollections();
             _referenceCollectionRepository.Add(mockReferenceTypes);
+            _unitOfWork.Commit();
 
             var random = new Random();
             var referenceCollectionGuidSelector = random.Next(1, mockReferenceTypes.Length);
@@ -83,7 +85,7 @@ namespace Polygon.Core.UnitTests.Services.Content
         }
 
         [TestMethod]
-        public void Can_Get_ReferenceObject()
+        public void Can_Get_ReferenceItem()
         {
             var referenceCollection = _referenceCollectionRepository.Add(MockReferenceData.SeedSingleReferenceCollection());
             var referenceItem = _referenceItemRepository.Add(new ReferenceItem() { Name = "Test Reference Object", ReferenceCollection = referenceCollection});
@@ -92,7 +94,7 @@ namespace Polygon.Core.UnitTests.Services.Content
         }
 
         [TestMethod]
-        public void Can_Create_ReferenceObject()
+        public void Can_Create_ReferenceItem()
         {
             var referenceCollection = _referenceCollectionRepository.Add(MockReferenceData.SeedSingleReferenceCollection());
 
@@ -106,17 +108,18 @@ namespace Polygon.Core.UnitTests.Services.Content
         }
 
         [TestMethod]
-        public void Can_Update_ReferenceObject()
+        public void Can_Update_ReferenceItem()
         {
             var referenceCollection = _referenceCollectionRepository.Add(MockReferenceData.SeedSingleReferenceCollection());
             var referenceItem = _referenceItemRepository.Add(new ReferenceItem() { Name = "Test Reference Item", ReferenceCollection = referenceCollection });
+            _unitOfWork.Commit();
 
-            const string referenceObjectName = "Update Name Test";
-            referenceItem.Name = referenceObjectName;
+            const string referenceItemName = "Update Name Test";
+            referenceItem.Name = referenceItemName;
 
             var updatedReferenceItem = _referenceDataService.UpdateReferenceItem(referenceItem);
 
-            Assert.AreEqual(referenceObjectName, updatedReferenceItem.Name);
+            Assert.AreEqual(referenceItemName, updatedReferenceItem.Name);
         }
 
         [TestMethod]
@@ -124,6 +127,7 @@ namespace Polygon.Core.UnitTests.Services.Content
         {
             var referenceCollection = _referenceCollectionRepository.Add(MockReferenceData.SeedSingleReferenceCollection());
             var referenceItem = _referenceItemRepository.Add(MockReferenceData.SeedSingleReferenceItem(referenceCollection));
+            _unitOfWork.Commit();
 
             Assert.AreEqual(1, _referenceDataService.DeleteReferenceItem(referenceItem));
         }

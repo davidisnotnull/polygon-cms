@@ -43,6 +43,7 @@ namespace Polygon.Core.UnitTests.Services.Content
             var category = MockTaxonomyData.SeedSingleCategory();
             category.Name = categoryName;
             _categoryRepository.Add(category);
+            _unitOfWork.Commit();
 
             var updatedCategory = _taxonomyService.UpdateCategory(category);
             

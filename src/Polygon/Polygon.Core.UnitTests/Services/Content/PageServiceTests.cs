@@ -41,6 +41,8 @@ namespace Polygon.Core.UnitTests.Services.Content
         {
             var mockStandardPages = MockPages.SeedMultipleStandardPages();
             _pageRepository.Add(mockStandardPages);
+            _unitOfWork.Commit();
+            
             var random = new Random();
             var pageGuidSelector = random.Next(1, mockStandardPages.Length);
             var pageId = GuidSequenceHelper.GetGuid(pageGuidSelector);

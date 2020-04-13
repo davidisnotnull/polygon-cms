@@ -1,6 +1,8 @@
 ﻿<div class="modal fade" id="TesseractModal" tabindex="-1" role="dialog" aria-labelledby="TesseractModal"
      aria-hidden="true">
-    <form class="modal__form">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class="modal__form"}))
+    {
+        @Html.AntiForgeryToken()   
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="dynamic"></div>
@@ -10,5 +12,5 @@
                 </footer>    
             </div>
         </div>
-    </form>
+    }
 </div>

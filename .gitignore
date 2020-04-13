@@ -349,8 +349,11 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-#Jetbrains Rider
-.idea/*
-
 #Visual Studio Code
 .vscode/*
+
+#Jetbrains Rider
+/src/Polygon/.idea/*
+
+# wwwroot folder
+/src/Polygon/Polygon.CMS/wwwroot/dist/*

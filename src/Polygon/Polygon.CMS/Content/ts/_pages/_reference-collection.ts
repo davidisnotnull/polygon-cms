@@ -10,7 +10,7 @@ export class ReferenceCollectionPage
     public tableDataUrl: string;
 
     constructor() {
-        this.submitUrl = "/Settings/ReferenceTypes/CreateReferenceType";
+        this.submitUrl = "/Settings/ReferenceData/CreateReferenceCollection";
         this.saveButton = document.querySelector(".modal__save");
         
         this.tableDataUrl = "/api/tesseract/TableApi/GetReferenceCollections/";

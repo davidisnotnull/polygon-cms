@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Polygon.Core.Helpers;
-using System;
-using System.Net;
 using Microsoft.Extensions.Logging;
 using Polygon.Core.Services.Interfaces.Tesseract;
+using System;
+using System.Net;
 
 namespace Polygon.CMS.Controllers.Tesseract
 {
