@@ -7,7 +7,7 @@ module.exports = {
   mode: "development",
   output: {
     filename: "js/[name].[hash].js",
-    path: path.resolve(__dirname, config.OUTPUT_DIR),
+    path: path.resolve(__dirname, config.output_dir),
     publicPath: "/wwwroot/dist/",
   },
   node: {
@@ -15,7 +15,7 @@ module.exports = {
     __dirname: false,
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".scss", ".css"],
   },
-  devtool: "source-map",
+  devtool: "source-map"
 };

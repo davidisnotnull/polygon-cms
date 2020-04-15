@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Business\Helpers\" />
-    <Folder Include="Content\ts\_utils" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,8 +42,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="Content\ts\_pages\_cookie-settings.ts" />
-    <TypeScriptCompile Include="Content\ts\_tesseract\_tesseract-wysiwyg.ts" />
+    <TypeScriptCompile Include="Content\ts\_tesseract\table\components\checkbox.tsx" />
+    <TypeScriptCompile Include="Content\ts\_tesseract\table\interfaces\TableProps.ts" />
+    <TypeScriptCompile Remove="Content\ts\_tesseract\table\components\checkbox.tsx" />
+    <TypeScriptCompile Remove="Content\ts\_tesseract\table\components\head.tsx" />
+    <TypeScriptCompile Remove="Content\ts\_tesseract\table\components\row.tsx" />
+    <TypeScriptCompile Remove="Content\ts\_tesseract\checkbox\index.tsx" />
+    <TypeScriptCompile Remove="Content\ts\_tesseract\sidesheet\index.tsx" />
   </ItemGroup>
 
   <PropertyGroup>

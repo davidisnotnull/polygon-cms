@@ -65,7 +65,6 @@ namespace Polygon.CMS.Pages.Settings.ReferenceTypes
                     return StatusCode(200);
                 case false:
                     return StatusCode(200);
-                    break;
             }
         }
     }

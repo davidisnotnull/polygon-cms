@@ -3,18 +3,20 @@
 
 import "popper.js";
 import "bootstrap";
+import "preact";
 
 /* Tesseract */
 import { TesseractModal } from "./_tesseract/_tesseract-modal";
-import { TesseractWysiwyg } from "./_tesseract/_tesseract-wysiwyg";
+import TesseractWysiwyg from "./_tesseract/wysiwyg";
 
 /* Utility classes */
 
 /* Pages */
-import { ReferenceCollectionPage } from "./_pages/_reference-collection";
-import { ReferenceItemPage} from "./_pages/_reference-item";
-import { CookieSettingsPage } from "./_pages/_cookie-settings";
+import ReferenceCollectionPage from "./pages/reference-collection";
+import ReferenceItemPage from "./pages/reference-item";
+import CookieSettingsPage from "./pages/cookie-settings";
 
+/* Script loader */
 $(document).ready(function () {
     new TesseractModal();    
 
@@ -39,4 +41,5 @@ $(document).ready(function () {
     
 });
 
+/* Styles */
 import "../scss/main.scss";

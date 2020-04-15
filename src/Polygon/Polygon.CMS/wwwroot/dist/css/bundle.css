@@ -1,3 +1,4 @@
+.tesseract__table{display:table;width:100%;color:#333;text-align:left;margin:1rem 0}.tesseract__table td,.tesseract__table th{font-size:1rem;position:relative;padding:0 1rem}.tesseract__table .table__head tr{height:48px;background:#653880;color:#fff}.tesseract__table .table__head th{font-weight:700}.tesseract__table .table__head th:first-letter{text-transform:capitalize}.tesseract__table .table__head th.col__select{width:1rem}.tesseract__table .table__body tr{height:48px;line-height:48px;border-bottom:1px solid #ddd8e6}.tesseract__table .table__body tr td button{background:#7e7199;color:#fff;font-size:.8rem;display:inline-block;font-weight:400;text-align:center;vertical-align:middle;border:1px solid transparent;line-height:1.5rem;border-radius:.25rem;padding:.375rem .75rem}.tesseract__table .table__body tr td button:hover{background:#653880;cursor:pointer}
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

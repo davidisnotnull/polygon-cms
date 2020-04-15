@@ -1,0 +1,16 @@
+/* Sizing */
+$unit: 1rem;
+
+/* Fonts */
+$font-size-normal: 1 * $unit !default;
+$font-size-small: 0.8 * $unit !default;
+$font-size-tiny: 0.6 * $unit !default;
+$font-size-large: 1.2 * $unit !default;
+$font-weight-bold: 700 !default;
+
+/* Indexes */
+$z-index-higher: 200;
+$z-index-high: 100;
+$z-index-normal: 1;
+$z-index-low: -100;
+$z-index-lower: -200;

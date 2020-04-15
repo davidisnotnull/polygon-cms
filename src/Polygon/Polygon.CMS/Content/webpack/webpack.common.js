@@ -18,11 +18,11 @@ const baseConfig = require("./webpack.base");
 const obfuscation = [];
 const brotli = [];
 
-if (config.OBFUSCATION) {
+if (config.obfuscation) {
   obfuscation.push(new TerserJSPlugin({}));
 }
 
-if (config.BROTLI) {
+if (config.brotli) {
   brotli.push(
     new CompressionPlugin({
       filename: "[path].br[query]",
@@ -37,10 +37,10 @@ if (config.BROTLI) {
 
 module.exports = merge.smart(baseConfig, {
   entry: {
-    [config.BUNDLE_NAME]: [
+    [config.bundle_name]: [
       "@babel/polyfill",
       "whatwg-fetch",
-      path.resolve(__dirname, config.ENTRYPOINTS.TS),
+      path.resolve(__dirname, config.entrypoints.ts),
     ],
   },
   plugins: [

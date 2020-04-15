@@ -10,10 +10,10 @@ const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = merge.smart(baseConfig, {
   devServer: {
-    contentBase: config.OUTPUT_DIR,
+    contentBase: config.output_dir,
   },
   output: {
     filename: "js/[name].js",
-    path: path.resolve(__dirname, config.OUTPUT_DIR),
+    path: path.resolve(__dirname, config.output_dir),
   },
 });

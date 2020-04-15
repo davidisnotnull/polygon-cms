@@ -32,10 +32,7 @@ namespace Polygon.Core.Services.Tesseract
                 var tableRow = new[]
                 {
                     item.Name,
-                    item.Description,
-                    $"<a href=\"ReferenceData/Details/?guid={item.Id.ToString()}\">Details</a>",
-                    $"<a href=\"ReferenceData/UpdateReferenceCollection/?guid={item.Id.ToString()}\" class=\"tesseract__modal\"" +
-                    "data-size=\"medium\" data-toggle=\"modal\">Edit</a>"
+                    item.Description
                 };
 
                 tableRows.Add(tableRow);
@@ -49,7 +46,7 @@ namespace Polygon.Core.Services.Tesseract
                     "Description"
                 },
                 Rows = tableRows,
-                ColumnCount = 5,
+                ColumnCount = 2,
                 TotalNumberOfRows = referenceCollections.Count()
             };
         }
