@@ -28,12 +28,15 @@ class ReferenceCollectionPage
     
     generateTable() {
         let tableProps = new class implements TableProps {
-            hasDelete: boolean = false;
+            hasDelete: boolean = true;
             hasEdit: boolean = true;
+            hasPagination: boolean = false;
             hasSort: boolean = false;
             hasView: boolean = true;
+            pageCount: number;
             requestUrl: string;
             selectable: boolean = true;
+            showRowCount: boolean = true;
         };
         tableProps.requestUrl = this.tableDataUrl;
         this.tesseractTable = new TesseractTable(tableProps);

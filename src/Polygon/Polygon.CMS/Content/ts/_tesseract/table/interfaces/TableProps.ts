@@ -4,7 +4,10 @@ interface TableProps {
     hasEdit: boolean;
     hasDelete: boolean;
     hasSort: boolean;
-    requestUrl: string;    
+    requestUrl: string;   
+    showRowCount: boolean;
+    hasPagination: boolean;
+    pageCount: number;
 }
 
 export default TableProps;

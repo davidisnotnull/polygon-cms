@@ -4,28 +4,19 @@ import './styles';
 
 class TesseractTable
 {
-    requestUrl: string;
-    selectable: boolean;
-    hasView: boolean;
-    hasEdit: boolean;
-    hasDelete: boolean;
+    props: TableProps;
     
-   constructor(props: TableProps) {
-       this.requestUrl = props.requestUrl;
-       this.selectable = props.selectable;
-       this.hasView = props.hasView;
-       this.hasEdit = props.hasEdit;
-       this.hasDelete = props.hasDelete;
-       
+    constructor(props: TableProps) {
+       this.props = props;
        this.init();
-   }
+    }
     
-    init(){
+    init() {
         this.getTableData();
     }
     
     getTableData() {
-        fetch(this.requestUrl, {
+        fetch(this.props.requestUrl, {
             method: 'POST'
         })
             .then(r => r.json())
@@ -49,7 +40,7 @@ class TesseractTable
         
         let columnCount = tableData.columnCount;
 
-        if (this.selectable)
+        if (this.props.selectable)
         {   
             let selectAllContainer = <HTMLTableCellElement>(document.createElement('th'));
             selectAllContainer.className = 'col__select';
@@ -61,9 +52,11 @@ class TesseractTable
 
             selectAllContainer.appendChild(selectAllCheckbox);
             theadRow.appendChild(selectAllContainer);
+            
+            ++columnCount;
         }
         
-        for (let _i = 0; _i < columnCount; _i++)
+        for (let _i = 0; _i < tableData.columnCount; _i++)
         {
             let theadCol = <HTMLTableCellElement>(document.createElement('th'));
             theadCol.className = ("col__" + _i);
@@ -74,25 +67,31 @@ class TesseractTable
             theadRow.appendChild(theadCol);
         }
         
-        if (this.hasView)
+        if (this.props.hasView)
         {
             let theadCol = <HTMLTableCellElement>(document.createElement('th'));
             theadCol.className = 'col__ctrl--view';
             theadRow.appendChild(theadCol);
+            
+            ++columnCount;
         }
         
-        if (this.hasEdit)
+        if (this.props.hasEdit)
         {
             let theadCol = <HTMLTableCellElement>(document.createElement('th'));
             theadCol.className = 'col__ctrl--edit';
             theadRow.appendChild(theadCol);
+            
+            ++columnCount;
         }
         
-        if (this.hasDelete)
+        if (this.props.hasDelete)
         {
             let theadCol = <HTMLTableCellElement>(document.createElement('th'));
             theadCol.className = 'col__ctrl--delete';
             theadRow.appendChild(theadCol);
+            
+            ++columnCount;
         }
         
         thead.appendChild(theadRow);
@@ -108,7 +107,7 @@ class TesseractTable
             let tableRow = <HTMLTableRowElement>(document.createElement('tr'));
             tableRow.setAttribute('data-row-id', String(rowCounter));
 
-            if (this.selectable) {
+            if (this.props.selectable) {
                 let rowCell = <HTMLTableCellElement>(document.createElement('td'));
                 let selectRowCheckbox = <HTMLInputElement>(document.createElement('input'));
                 selectRowCheckbox.type = 'checkbox';
@@ -125,30 +124,56 @@ class TesseractTable
                 tableRow.appendChild(rowCell);
             }
             
-            if (this.hasView) {
+            if (this.props.hasView) {
                 let rowCell = <HTMLTableCellElement>(document.createElement('td'));
                 let viewLink = <HTMLButtonElement >(document.createElement('button'));
                 viewLink.innerText = 'View';
                 viewLink.className = 'btn__view';
+                viewLink.addEventListener('click', this.handleViewClick.bind(this));
                 rowCell.appendChild(viewLink);
                 tableRow.appendChild(rowCell);
             }
             
-            if (this.hasEdit)
+            if (this.props.hasEdit)
             {
                 let rowCell = <HTMLTableCellElement>(document.createElement('td'));
-                let viewLink = <HTMLButtonElement >(document.createElement('button'));
-                viewLink.innerText = 'Edit';
-                viewLink.className = 'btn__edit';
-                rowCell.appendChild(viewLink);
+                let editLink = <HTMLButtonElement >(document.createElement('button'));
+                editLink.innerText = 'Edit';
+                editLink.className = 'btn__edit';
+                editLink.addEventListener('click', this.handleEditClick.bind(this));
+                rowCell.appendChild(editLink);
+                tableRow.appendChild(rowCell);
+            }
+            
+            if (this.props.hasDelete)
+            {
+                let rowCell = <HTMLTableCellElement>(document.createElement('td'));
+                let deleteLink = <HTMLButtonElement >(document.createElement('button'));
+                deleteLink.innerText = 'Delete';
+                deleteLink.className = 'btn__delete';
+                deleteLink.addEventListener('click', this.handleDeleteClick.bind(this));
+                rowCell.appendChild(deleteLink);
                 tableRow.appendChild(rowCell);
             }
             
             tbody.appendChild(tableRow);
         }
-
+               
         table.appendChild(thead);
         table.appendChild(tbody);
+
+        if (this.props.showRowCount)
+        {
+            let tfoot = table.createTFoot();
+            tfoot.className = 'table__foot';
+            let footerRow = <HTMLTableRowElement>(document.createElement('tr'));
+            let footerCell = <HTMLTableCellElement>(document.createElement('td'));
+            footerCell.setAttribute('colspan', String(columnCount));
+            footerCell.innerText = 'Total number of rows: ' + tableData.totalNumberOfRows;
+            footerRow.appendChild(footerCell);
+            tfoot.appendChild(footerRow);
+            table.appendChild(tfoot);
+        }
     }
 
     handleSelectAll() {
@@ -162,7 +187,18 @@ class TesseractTable
     handleSelectRow(e) {
        console.log('Toggle select row');
     }
-
+    
+    handleViewClick(e) {
+        console.log('Clicked on View');
+    }
+    
+    handleEditClick(e) {
+        console.log('Clicked on Edit');
+    }
+    
+    handleDeleteClick(e) {
+        console.log('Clicked on Delete');
+    }
 }
 
 export default TesseractTable;

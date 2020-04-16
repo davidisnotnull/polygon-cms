@@ -28799,21 +28799,9 @@ var TesseractTable = /*#__PURE__*/function () {
   function TesseractTable(props) {
     _classCallCheck(this, TesseractTable);
 
-    _defineProperty(this, "requestUrl", void 0);
+    _defineProperty(this, "props", void 0);
 
-    _defineProperty(this, "selectable", void 0);
-
-    _defineProperty(this, "hasView", void 0);
-
-    _defineProperty(this, "hasEdit", void 0);
-
-    _defineProperty(this, "hasDelete", void 0);
-
-    this.requestUrl = props.requestUrl;
-    this.selectable = props.selectable;
-    this.hasView = props.hasView;
-    this.hasEdit = props.hasEdit;
-    this.hasDelete = props.hasDelete;
+    this.props = props;
     this.init();
   }
 
@@ -28827,7 +28815,7 @@ var TesseractTable = /*#__PURE__*/function () {
     value: function getTableData() {
       var _this = this;
 
-      fetch(this.requestUrl, {
+      fetch(this.props.requestUrl, {
         method: 'POST'
       }).then(function (r) {
         return r.json();
@@ -28848,7 +28836,7 @@ var TesseractTable = /*#__PURE__*/function () {
       var theadRow = document.createElement('tr');
       var columnCount = tableData.columnCount;
 
-      if (this.selectable) {
+      if (this.props.selectable) {
         var selectAllContainer = document.createElement('th');
         selectAllContainer.className = 'col__select';
         var selectAllCheckbox = document.createElement('input');
@@ -28857,9 +28845,10 @@ var TesseractTable = /*#__PURE__*/function () {
         selectAllCheckbox.addEventListener('click', this.handleSelectAll.bind(this));
         selectAllContainer.appendChild(selectAllCheckbox);
         theadRow.appendChild(selectAllContainer);
+        ++columnCount;
       }
 
-      for (var _i = 0; _i < columnCount; _i++) {
+      for (var _i = 0; _i < tableData.columnCount; _i++) {
         var theadCol = document.createElement('th');
         theadCol.className = "col__" + _i;
 
@@ -28870,25 +28859,28 @@ var TesseractTable = /*#__PURE__*/function () {
         theadRow.appendChild(theadCol);
       }
 
-      if (this.hasView) {
+      if (this.props.hasView) {
         var _theadCol = document.createElement('th');
 
         _theadCol.className = 'col__ctrl--view';
         theadRow.appendChild(_theadCol);
+        ++columnCount;
       }
 
-      if (this.hasEdit) {
+      if (this.props.hasEdit) {
         var _theadCol2 = document.createElement('th');
 
         _theadCol2.className = 'col__ctrl--edit';
         theadRow.appendChild(_theadCol2);
+        ++columnCount;
       }
 
-      if (this.hasDelete) {
+      if (this.props.hasDelete) {
         var _theadCol3 = document.createElement('th');
 
         _theadCol3.className = 'col__ctrl--delete';
         theadRow.appendChild(_theadCol3);
+        ++columnCount;
       }
 
       thead.appendChild(theadRow);
@@ -28906,7 +28898,7 @@ var TesseractTable = /*#__PURE__*/function () {
           var tableRow = document.createElement('tr');
           tableRow.setAttribute('data-row-id', String(rowCounter));
 
-          if (this.selectable) {
+          if (this.props.selectable) {
             var rowCell = document.createElement('td');
             var selectRowCheckbox = document.createElement('input');
             selectRowCheckbox.type = 'checkbox';
@@ -28923,10 +28915,10 @@ var TesseractTable = /*#__PURE__*/function () {
             for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
               var cell = _step2.value;
 
-              var _rowCell3 = document.createElement('td');
+              var _rowCell4 = document.createElement('td');
 
-              _rowCell3.innerText = cell;
-              tableRow.appendChild(_rowCell3);
+              _rowCell4.innerText = cell;
+              tableRow.appendChild(_rowCell4);
             }
           } catch (err) {
             _iterator2.e(err);
@@ -28934,29 +28926,43 @@ var TesseractTable = /*#__PURE__*/function () {
             _iterator2.f();
           }
 
-          if (this.hasView) {
+          if (this.props.hasView) {
             var _rowCell = document.createElement('td');
 
             var viewLink = document.createElement('button');
             viewLink.innerText = 'View';
             viewLink.className = 'btn__view';
+            viewLink.addEventListener('click', this.handleViewClick.bind(this));
 
             _rowCell.appendChild(viewLink);
 
             tableRow.appendChild(_rowCell);
           }
 
-          if (this.hasEdit) {
+          if (this.props.hasEdit) {
             var _rowCell2 = document.createElement('td');
 
-            var _viewLink = document.createElement('button');
+            var editLink = document.createElement('button');
+            editLink.innerText = 'Edit';
+            editLink.className = 'btn__edit';
+            editLink.addEventListener('click', this.handleEditClick.bind(this));
 
-            _viewLink.innerText = 'Edit';
-            _viewLink.className = 'btn__edit';
-
-            _rowCell2.appendChild(_viewLink);
+            _rowCell2.appendChild(editLink);
 
             tableRow.appendChild(_rowCell2);
+          }
+
+          if (this.props.hasDelete) {
+            var _rowCell3 = document.createElement('td');
+
+            var deleteLink = document.createElement('button');
+            deleteLink.innerText = 'Delete';
+            deleteLink.className = 'btn__delete';
+            deleteLink.addEventListener('click', this.handleDeleteClick.bind(this));
+
+            _rowCell3.appendChild(deleteLink);
+
+            tableRow.appendChild(_rowCell3);
           }
 
           tbody.appendChild(tableRow);
@@ -28969,6 +28975,18 @@ var TesseractTable = /*#__PURE__*/function () {
 
       table.appendChild(thead);
       table.appendChild(tbody);
+
+      if (this.props.showRowCount) {
+        var tfoot = table.createTFoot();
+        tfoot.className = 'table__foot';
+        var footerRow = document.createElement('tr');
+        var footerCell = document.createElement('td');
+        footerCell.setAttribute('colspan', String(columnCount));
+        footerCell.innerText = 'Total number of rows: ' + tableData.totalNumberOfRows;
+        footerRow.appendChild(footerCell);
+        tfoot.appendChild(footerRow);
+        table.appendChild(tfoot);
+      }
     }
   }, {
     key: "handleSelectAll",
@@ -28981,6 +28999,21 @@ var TesseractTable = /*#__PURE__*/function () {
     key: "handleSelectRow",
     value: function handleSelectRow(e) {
       console.log('Toggle select row');
+    }
+  }, {
+    key: "handleViewClick",
+    value: function handleViewClick(e) {
+      console.log('Clicked on View');
+    }
+  }, {
+    key: "handleEditClick",
+    value: function handleEditClick(e) {
+      console.log('Clicked on Edit');
+    }
+  }, {
+    key: "handleDeleteClick",
+    value: function handleDeleteClick(e) {
+      console.log('Clicked on Delete');
     }
   }]);
 
@@ -29217,17 +29250,23 @@ var ReferenceCollectionPage = /*#__PURE__*/function () {
       var tableProps = new (_temp = function _temp() {
         _classCallCheck(this, _temp);
 
-        _defineProperty(this, "hasDelete", false);
+        _defineProperty(this, "hasDelete", true);
 
         _defineProperty(this, "hasEdit", true);
+
+        _defineProperty(this, "hasPagination", false);
 
         _defineProperty(this, "hasSort", false);
 
         _defineProperty(this, "hasView", true);
 
+        _defineProperty(this, "pageCount", void 0);
+
         _defineProperty(this, "requestUrl", void 0);
 
         _defineProperty(this, "selectable", true);
+
+        _defineProperty(this, "showRowCount", true);
       }, _temp)();
       tableProps.requestUrl = this.tableDataUrl;
       this.tesseractTable = new _tesseract_table__WEBPACK_IMPORTED_MODULE_1__["default"](tableProps);

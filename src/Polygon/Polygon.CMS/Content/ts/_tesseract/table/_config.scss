@@ -1,9 +1,10 @@
 $table-padding: $unit 0;
 $table-row-divider: solid 1px $purple-highlight;
 $table-row-offset: 1 * $unit;
-$table-row-highlight: #eee;
+$table-row-highlight: $light-purple;
+$table-row-lineheight: 1.5 * $unit;
 $table-text-color: $black;
-
 $thead-row-height: 48px;
-
 $tbody-row-height: 48px;
+$tfoot-row-height: 28px;
+$ctrl-col-width: 100px;
