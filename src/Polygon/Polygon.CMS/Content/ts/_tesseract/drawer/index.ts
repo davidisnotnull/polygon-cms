@@ -55,8 +55,16 @@ class TesseractDrawer {
             let cancelButton = <HTMLButtonElement>(document.createElement('button'));
             cancelButton.innerText = 'Cancel';
             cancelButton.className = 'btn-cancel';
-            cancelButton.addEventListener('click', this.closeDrawer.bind(this));
+            cancelButton.addEventListener('click', this.handleCancelClick.bind(this));
             drawerFooter.appendChild(cancelButton);
+        }
+        
+        if (this.props.hasSaveButton) {
+            let saveButton = <HTMLButtonElement>(document.createElement('button'));
+            saveButton.innerText = 'Save';
+            saveButton.type = 'button';
+            saveButton.addEventListener('click', this.saveFunction.bind(this));
+            drawerFooter.appendChild(saveButton);
         }
     }
     
@@ -107,8 +115,7 @@ class TesseractDrawer {
         };
     }
     
-    closeDrawer(e) {
-        utils.events.pauseEvent(e);
+    closeDrawer() {
         let drawer : HTMLDivElement = <HTMLDivElement> document.querySelector('.tesseract__drawer');
         this.destroyModalOverlay();
         let hideDrawer = drawer.animate([
@@ -116,6 +123,28 @@ class TesseractDrawer {
             { transform: 'translateX(30rem)', opacity: 0},
         ], { duration: 200, iterations: 1 });
         hideDrawer.onfinish = this.dispose;
+    }
+    
+    handleCancelClick(e) {
+        utils.events.pauseEvent(e);
+        this.closeDrawer();
+    }
+    
+    saveFunction(e) {
+        utils.events.pauseEvent(e);
+        let form = <HTMLFormElement> document.querySelector(".drawer__form");
+        const formData = new FormData(form);
+
+        fetch(this.props.contentUrl, {
+            method: "POST",
+            body: formData
+        })
+            .then(r => {
+                this.closeDrawer();
+            })
+            .catch(e => {
+                console.error("Error :", e)
+            });
     }
 }
 

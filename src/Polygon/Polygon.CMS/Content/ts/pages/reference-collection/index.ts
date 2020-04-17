@@ -49,27 +49,6 @@ class ReferenceCollectionPage
         drawerOptions.contentUrl = this.createUrl;
         this.tesseractDrawer = new TesseractDrawer(drawerOptions); 
     }
-    
-    public SaveReferenceType() {
-                
-        let form: any;
-        form = document.querySelector(".modal__form");
-        const formData = new FormData(form);
-        
-        fetch(this.createUrl, {
-            method: "POST",
-            body: formData
-        })
-        .then(r => r.status)
-        .then(s => {
-            this.tesseractTable.Refresh();
-        }).then(m => {
-
-        })
-            .catch(e => {
-                console.log("Error :", e)
-            });
-    }
 }
 
 export default ReferenceCollectionPage;

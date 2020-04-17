@@ -28916,8 +28916,16 @@ var TesseractDrawer = /*#__PURE__*/function () {
         var cancelButton = document.createElement('button');
         cancelButton.innerText = 'Cancel';
         cancelButton.className = 'btn-cancel';
-        cancelButton.addEventListener('click', this.closeDrawer.bind(this));
+        cancelButton.addEventListener('click', this.handleCancelClick.bind(this));
         drawerFooter.appendChild(cancelButton);
+      }
+
+      if (this.props.hasSaveButton) {
+        var saveButton = document.createElement('button');
+        saveButton.innerText = 'Save';
+        saveButton.type = 'button';
+        saveButton.addEventListener('click', this.saveFunction.bind(this));
+        drawerFooter.appendChild(saveButton);
       }
     }
   }, {
@@ -28976,8 +28984,7 @@ var TesseractDrawer = /*#__PURE__*/function () {
     }
   }, {
     key: "closeDrawer",
-    value: function closeDrawer(e) {
-      utils.events.pauseEvent(e);
+    value: function closeDrawer() {
       var drawer = document.querySelector('.tesseract__drawer');
       this.destroyModalOverlay();
       var hideDrawer = drawer.animate([{
@@ -28991,6 +28998,29 @@ var TesseractDrawer = /*#__PURE__*/function () {
         iterations: 1
       });
       hideDrawer.onfinish = this.dispose;
+    }
+  }, {
+    key: "handleCancelClick",
+    value: function handleCancelClick(e) {
+      utils.events.pauseEvent(e);
+      this.closeDrawer();
+    }
+  }, {
+    key: "saveFunction",
+    value: function saveFunction(e) {
+      var _this2 = this;
+
+      utils.events.pauseEvent(e);
+      var form = document.querySelector(".drawer__form");
+      var formData = new FormData(form);
+      fetch(this.props.contentUrl, {
+        method: "POST",
+        body: formData
+      }).then(function (r) {
+        _this2.closeDrawer();
+      }).catch(function (e) {
+        console.error("Error :", e);
+      });
     }
   }]);
 
@@ -29526,25 +29556,6 @@ var ReferenceCollectionPage = /*#__PURE__*/function () {
       }, _temp2)();
       drawerOptions.contentUrl = this.createUrl;
       this.tesseractDrawer = new _tesseract_drawer__WEBPACK_IMPORTED_MODULE_1__["default"](drawerOptions);
-    }
-  }, {
-    key: "SaveReferenceType",
-    value: function SaveReferenceType() {
-      var _this = this;
-
-      var form;
-      form = document.querySelector(".modal__form");
-      var formData = new FormData(form);
-      fetch(this.createUrl, {
-        method: "POST",
-        body: formData
-      }).then(function (r) {
-        return r.status;
-      }).then(function (s) {
-        _this.tesseractTable.Refresh();
-      }).then(function (m) {}).catch(function (e) {
-        console.log("Error :", e);
-      });
     }
   }]);
 
