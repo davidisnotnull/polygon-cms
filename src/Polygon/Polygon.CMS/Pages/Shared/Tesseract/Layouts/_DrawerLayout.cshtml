@@ -1,0 +1,15 @@
+@{
+    Layout = null;
+}
+
+<section>
+    <header>
+        <h4>@ViewData["DrawerTitle"]</h4>
+    </header>
+    <div class="drawer__dynamic">
+        @RenderBody()    
+    </div>
+    <footer>
+        @RenderSection("DrawerFooter", required: false)
+    </footer>
+</section>

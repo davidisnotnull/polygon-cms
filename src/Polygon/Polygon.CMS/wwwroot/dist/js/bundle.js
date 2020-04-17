@@ -28768,6 +28768,250 @@ var TesseractModal = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./ts/_tesseract/_utils/events.ts":
+/*!****************************************!*\
+  !*** ./ts/_tesseract/_utils/events.ts ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  getMousePosition: function getMousePosition(event) {
+    return {
+      x: event.pageX,
+      y: event.pageY
+    };
+  },
+  getTouchPosition: function getTouchPosition(event) {
+    return {
+      x: event.touches[0].pageX,
+      y: event.touches[0].pageY
+    };
+  },
+  pauseEvent: function pauseEvent(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    event.returnValue = false;
+    event.cancelBubble = true;
+  },
+  addEventsToDocument: function addEventsToDocument(eventMap) {
+    for (var key in eventMap) {
+      document.addEventListener(key, eventMap[key], false);
+    }
+  },
+  targetIsDescendant: function targetIsDescendant(event, parent) {
+    var node = event.target;
+
+    while (node != null) {
+      if (node === parent) return true;
+      node = node.parentNode;
+    }
+
+    return false;
+  }
+};
+
+/***/ }),
+
+/***/ "./ts/_tesseract/_utils/index.ts":
+/*!***************************************!*\
+  !*** ./ts/_tesseract/_utils/index.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = {
+  events: __webpack_require__(/*! ./events */ "./ts/_tesseract/_utils/events.ts")
+};
+
+/***/ }),
+
+/***/ "./ts/_tesseract/drawer/index.ts":
+/*!***************************************!*\
+  !*** ./ts/_tesseract/drawer/index.ts ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles */ "./ts/_tesseract/drawer/styles.scss");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_styles__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var utils = __webpack_require__(/*! ../_utils */ "./ts/_tesseract/_utils/index.ts");
+
+var TesseractDrawer = /*#__PURE__*/function () {
+  function TesseractDrawer(props) {
+    _classCallCheck(this, TesseractDrawer);
+
+    _defineProperty(this, "props", void 0);
+
+    _defineProperty(this, "dispose", function () {
+      var drawer = document.querySelector('.tesseract__drawer');
+      var drawerHeading = document.querySelector('.drawer__heading');
+      var drawerContent = document.querySelector('.drawer__content');
+      var drawerFooter = document.querySelector('.drawer__footer');
+      drawer.hidden = true;
+      drawerHeading.innerHTML = null;
+      drawerContent.innerHTML = null;
+      drawerFooter.innerHTML = null;
+      drawer.removeAttribute('style');
+    });
+
+    this.props = props;
+    this.init();
+  }
+
+  _createClass(TesseractDrawer, [{
+    key: "init",
+    value: function init() {
+      this.createModalOverlay();
+      this.openDrawer();
+      this.getDrawerContent();
+    }
+  }, {
+    key: "getDrawerContent",
+    value: function getDrawerContent() {
+      var _this = this;
+
+      fetch(this.props.contentUrl, {
+        method: 'GET'
+      }).then(function (r) {
+        return r.text();
+      }).then(function (data) {
+        _this.constructDrawer(data);
+      }).catch(function (error) {
+        console.error(error);
+        return '';
+      });
+    }
+  }, {
+    key: "constructDrawer",
+    value: function constructDrawer(data) {
+      var drawer = document.querySelector('.tesseract__drawer');
+      var drawerHeading = document.querySelector('.drawer__heading');
+      var drawerContent = document.querySelector('.drawer__content');
+      var drawerFooter = document.querySelector('.drawer__footer');
+
+      if (this.props.title != undefined) {
+        var title = document.createElement('h4');
+        title.innerText = this.props.title;
+        drawerHeading.appendChild(title);
+      }
+
+      if (data != undefined) {
+        drawerContent.innerHTML = data;
+      }
+
+      if (this.props.hasCancelButton) {
+        var cancelButton = document.createElement('button');
+        cancelButton.innerText = 'Cancel';
+        cancelButton.className = 'btn-cancel';
+        cancelButton.addEventListener('click', this.closeDrawer.bind(this));
+        drawerFooter.appendChild(cancelButton);
+      }
+    }
+  }, {
+    key: "createModalOverlay",
+    value: function createModalOverlay() {
+      var body = document.querySelector('body');
+      var overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      body.appendChild(overlay);
+      overlay.animate([{
+        opacity: 0
+      }, {
+        opacity: 0.5
+      }], {
+        duration: 200,
+        iterations: 1
+      });
+      overlay.addEventListener('click', this.closeDrawer.bind(this));
+    }
+  }, {
+    key: "destroyModalOverlay",
+    value: function destroyModalOverlay() {
+      var overlay = document.querySelector('.overlay');
+      var overlayAnimation = overlay.animate([{
+        opacity: 0.5
+      }, {
+        opacity: 0
+      }], {
+        duration: 200,
+        iterations: 1
+      });
+
+      overlayAnimation.onfinish = function () {
+        overlay.remove();
+      };
+    }
+  }, {
+    key: "openDrawer",
+    value: function openDrawer() {
+      var drawer = document.querySelector('.tesseract__drawer');
+      drawer.hidden = false;
+      var slideIn = drawer.animate([{
+        transform: 'translateX(0)',
+        opacity: 0
+      }, {
+        transform: 'translateX(-30rem)',
+        opacity: 1
+      }], {
+        duration: 200,
+        iterations: 1
+      });
+
+      slideIn.onfinish = function () {
+        drawer.setAttribute('style', 'right:0');
+      };
+    }
+  }, {
+    key: "closeDrawer",
+    value: function closeDrawer(e) {
+      utils.events.pauseEvent(e);
+      var drawer = document.querySelector('.tesseract__drawer');
+      this.destroyModalOverlay();
+      var hideDrawer = drawer.animate([{
+        transform: 'translateX(0px)',
+        opacity: 1
+      }, {
+        transform: 'translateX(30rem)',
+        opacity: 0
+      }], {
+        duration: 200,
+        iterations: 1
+      });
+      hideDrawer.onfinish = this.dispose;
+    }
+  }]);
+
+  return TesseractDrawer;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (TesseractDrawer);
+
+/***/ }),
+
+/***/ "./ts/_tesseract/drawer/styles.scss":
+/*!******************************************!*\
+  !*** ./ts/_tesseract/drawer/styles.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./ts/_tesseract/table/index.ts":
 /*!**************************************!*\
   !*** ./ts/_tesseract/table/index.ts ***!
@@ -29196,8 +29440,8 @@ var CookieSettingsPage = function CookieSettingsPage() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../_tesseract/_tesseract-modal */ "./ts/_tesseract/_tesseract-modal.ts");
-/* harmony import */ var _tesseract_table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../_tesseract/table */ "./ts/_tesseract/table/index.ts");
+/* harmony import */ var _tesseract_table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../_tesseract/table */ "./ts/_tesseract/table/index.ts");
+/* harmony import */ var _tesseract_drawer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../_tesseract/drawer */ "./ts/_tesseract/drawer/index.ts");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -29213,50 +29457,43 @@ var ReferenceCollectionPage = /*#__PURE__*/function () {
   function ReferenceCollectionPage() {
     _classCallCheck(this, ReferenceCollectionPage);
 
-    _defineProperty(this, "tesseractModal", void 0);
-
     _defineProperty(this, "tesseractTable", void 0);
 
-    _defineProperty(this, "saveButton", void 0);
+    _defineProperty(this, "tesseractDrawer", void 0);
 
-    _defineProperty(this, "submitUrl", void 0);
+    _defineProperty(this, "createCollectionBtn", void 0);
+
+    _defineProperty(this, "createUrl", void 0);
 
     _defineProperty(this, "tableDataUrl", void 0);
 
-    this.submitUrl = "/Settings/ReferenceData/CreateReferenceCollection";
-    this.saveButton = document.querySelector(".modal__save");
+    this.createUrl = "/Settings/ReferenceData/CreateReferenceCollection";
+    this.createCollectionBtn = document.querySelector("#CreateReferenceCollection");
     this.tableDataUrl = "/api/tesseract/TableApi/GetReferenceCollections/";
-    this.tesseractModal = new _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_0__["TesseractModal"]();
     this.init();
   }
 
   _createClass(ReferenceCollectionPage, [{
     key: "init",
     value: function init() {
-      var _this = this;
-
       this.generateTable();
-      this.saveButton.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        _this.SaveReferenceType();
-      });
+      this.createCollectionBtn.addEventListener('click', this.generateCreateCollectionDrawer.bind(this));
     }
   }, {
     key: "generateTable",
     value: function generateTable() {
       var _temp;
 
-      var tableProps = new (_temp = function _temp() {
+      var tableOptions = new (_temp = function _temp() {
         _classCallCheck(this, _temp);
 
-        _defineProperty(this, "hasDelete", true);
+        _defineProperty(this, "hasDelete", void 0);
 
         _defineProperty(this, "hasEdit", true);
 
-        _defineProperty(this, "hasPagination", false);
+        _defineProperty(this, "hasPagination", void 0);
 
-        _defineProperty(this, "hasSort", false);
+        _defineProperty(this, "hasSort", void 0);
 
         _defineProperty(this, "hasView", true);
 
@@ -29264,36 +29501,48 @@ var ReferenceCollectionPage = /*#__PURE__*/function () {
 
         _defineProperty(this, "requestUrl", void 0);
 
-        _defineProperty(this, "selectable", true);
+        _defineProperty(this, "selectable", void 0);
 
         _defineProperty(this, "showRowCount", true);
       }, _temp)();
-      tableProps.requestUrl = this.tableDataUrl;
-      this.tesseractTable = new _tesseract_table__WEBPACK_IMPORTED_MODULE_1__["default"](tableProps);
+      tableOptions.requestUrl = this.tableDataUrl;
+      this.tesseractTable = new _tesseract_table__WEBPACK_IMPORTED_MODULE_0__["default"](tableOptions);
+    }
+  }, {
+    key: "generateCreateCollectionDrawer",
+    value: function generateCreateCollectionDrawer() {
+      var _temp2;
+
+      var drawerOptions = new (_temp2 = function _temp2() {
+        _classCallCheck(this, _temp2);
+
+        _defineProperty(this, "contentUrl", void 0);
+
+        _defineProperty(this, "hasCancelButton", true);
+
+        _defineProperty(this, "hasSaveButton", true);
+
+        _defineProperty(this, "title", void 0);
+      }, _temp2)();
+      drawerOptions.contentUrl = this.createUrl;
+      this.tesseractDrawer = new _tesseract_drawer__WEBPACK_IMPORTED_MODULE_1__["default"](drawerOptions);
     }
   }, {
     key: "SaveReferenceType",
     value: function SaveReferenceType() {
-      var _this2 = this;
+      var _this = this;
 
-      this.saveButton.setAttribute("disabled", "");
       var form;
       form = document.querySelector(".modal__form");
       var formData = new FormData(form);
-      fetch(this.submitUrl, {
+      fetch(this.createUrl, {
         method: "POST",
         body: formData
       }).then(function (r) {
         return r.status;
       }).then(function (s) {
-        _this2.tesseractModal.CloseModal();
-
-        _this2.tesseractTable.Refresh();
-
-        _this2.saveButton.removeAttribute("disabled");
-      }).then(function (m) {
-        _this2.tesseractModal.Initialise();
-      }).catch(function (e) {
+        _this.tesseractTable.Refresh();
+      }).then(function (m) {}).catch(function (e) {
         console.log("Error :", e);
       });
     }

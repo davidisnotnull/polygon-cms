@@ -1,65 +1,70 @@
-import { TesseractModal } from "../../_tesseract/_tesseract-modal";
 import TesseractTable from "../../_tesseract/table";
-import TableProps from "../../_tesseract/table/interfaces/TableProps";
+import TableOptions from "../../_tesseract/table/interfaces/TableOptions";
+import DrawerOptions from "../../_tesseract/drawer/interfaces/DrawerOptions";
+import TesseractDrawer from "../../_tesseract/drawer";
 
 class ReferenceCollectionPage
 {
-    public tesseractModal: any;
-    public tesseractTable: any;
-    public saveButton: any;
-    public submitUrl: any;
+    tesseractTable: any;
+    tesseractDrawer: any;
+    createCollectionBtn: HTMLButtonElement;
+    createUrl: string;
     public tableDataUrl: string;
 
     constructor() {
-        this.submitUrl = "/Settings/ReferenceData/CreateReferenceCollection";
-        this.saveButton = document.querySelector(".modal__save");
+        this.createUrl = "/Settings/ReferenceData/CreateReferenceCollection";
+        this.createCollectionBtn = <HTMLButtonElement> document.querySelector("#CreateReferenceCollection");
         this.tableDataUrl = "/api/tesseract/TableApi/GetReferenceCollections/";
-        this.tesseractModal = new TesseractModal();
         this.init();
     }
     
     init() {
-        this.generateTable();       
-        this.saveButton.addEventListener("click", (event: Event) => {
-            event.preventDefault();
-            this.SaveReferenceType();
-        });
+        this.generateTable();   
+        this.createCollectionBtn.addEventListener('click', this.generateCreateCollectionDrawer.bind(this));
     }
     
     generateTable() {
-        let tableProps = new class implements TableProps {
-            hasDelete: boolean = true;
+        let tableOptions = new class implements TableOptions {
+            hasDelete: boolean;
             hasEdit: boolean = true;
-            hasPagination: boolean = false;
-            hasSort: boolean = false;
+            hasPagination: boolean;
+            hasSort: boolean;
             hasView: boolean = true;
             pageCount: number;
             requestUrl: string;
-            selectable: boolean = true;
+            selectable: boolean;
             showRowCount: boolean = true;
         };
-        tableProps.requestUrl = this.tableDataUrl;
-        this.tesseractTable = new TesseractTable(tableProps);
+        tableOptions.requestUrl = this.tableDataUrl;
+        this.tesseractTable = new TesseractTable(tableOptions);
     }
-
+    
+    generateCreateCollectionDrawer() {
+        let drawerOptions = new class implements DrawerOptions {
+            contentUrl: string;
+            hasCancelButton: boolean = true;
+            hasSaveButton: boolean = true;
+            title: string;
+        };
+        drawerOptions.contentUrl = this.createUrl;
+        this.tesseractDrawer = new TesseractDrawer(drawerOptions); 
+    }
+    
     public SaveReferenceType() {
-        this.saveButton.setAttribute("disabled", "");
-        
+                
         let form: any;
         form = document.querySelector(".modal__form");
         const formData = new FormData(form);
         
-        fetch(this.submitUrl, {
+        fetch(this.createUrl, {
             method: "POST",
             body: formData
         })
         .then(r => r.status)
         .then(s => {
-            this.tesseractModal.CloseModal();
             this.tesseractTable.Refresh();
-            this.saveButton.removeAttribute("disabled");
         }).then(m => {
-            this.tesseractModal.Initialise();
+
         })
             .catch(e => {
                 console.log("Error :", e)

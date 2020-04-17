@@ -1,12 +1,12 @@
 import Table from './interfaces/Table';
-import TableProps from './interfaces/TableProps';
+import TableOptions from './interfaces/TableOptions';
 import './styles';
 
 class TesseractTable
 {
-    props: TableProps;
+    props: TableOptions;
     
-    constructor(props: TableProps) {
+    constructor(props: TableOptions) {
        this.props = props;
        this.init();
     }

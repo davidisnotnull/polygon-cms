@@ -41,16 +41,6 @@
     <ProjectReference Include="..\Polygon.Core\Polygon.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <TypeScriptCompile Include="Content\ts\_tesseract\table\components\checkbox.tsx" />
-    <TypeScriptCompile Include="Content\ts\_tesseract\table\interfaces\TableProps.ts" />
-    <TypeScriptCompile Remove="Content\ts\_tesseract\table\components\checkbox.tsx" />
-    <TypeScriptCompile Remove="Content\ts\_tesseract\table\components\head.tsx" />
-    <TypeScriptCompile Remove="Content\ts\_tesseract\table\components\row.tsx" />
-    <TypeScriptCompile Remove="Content\ts\_tesseract\checkbox\index.tsx" />
-    <TypeScriptCompile Remove="Content\ts\_tesseract\sidesheet\index.tsx" />
-  </ItemGroup>
-
   <PropertyGroup>
     <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
