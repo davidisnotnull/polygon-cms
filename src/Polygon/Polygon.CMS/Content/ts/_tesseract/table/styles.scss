@@ -65,10 +65,10 @@
               }
               
               &.btn__delete {
-                background: $warning;
+                background: $red;
                 
                 &:hover {
-                  background: $warning-highlight;
+                  background: $darker-red;
                 }
               }
             }
@@ -77,7 +77,7 @@
       }
       
       &__foot {
-        background: $light-grey;
+        background: $lighter-grey;
         color: $table-text-color;
         tr {
           height: $tfoot-row-height;

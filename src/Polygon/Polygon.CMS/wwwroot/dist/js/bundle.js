@@ -28638,136 +28638,6 @@ if (!self.fetch) {
 
 /***/ }),
 
-/***/ "./ts/_tesseract/_tesseract-modal.ts":
-/*!*******************************************!*\
-  !*** ./ts/_tesseract/_tesseract-modal.ts ***!
-  \*******************************************/
-/*! exports provided: TesseractModal */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TesseractModal", function() { return TesseractModal; });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-var TesseractModal = /*#__PURE__*/function () {
-  function TesseractModal() {
-    _classCallCheck(this, TesseractModal);
-
-    _defineProperty(this, "modalElement", void 0);
-
-    _defineProperty(this, "modalTitle", void 0);
-
-    _defineProperty(this, "modalBody", void 0);
-
-    _defineProperty(this, "modalFooter", void 0);
-
-    _defineProperty(this, "modalButtons", void 0);
-
-    _defineProperty(this, "saveButton", void 0);
-
-    this.modalElement = document.querySelector("#TesseractModal");
-    this.modalTitle = this.modalElement.querySelector("#modal-title");
-    this.modalBody = -this.modalElement.querySelector("#modal-content");
-    this.modalButtons = document.querySelectorAll(".tesseract__modal");
-    this.Initialise();
-  }
-
-  _createClass(TesseractModal, [{
-    key: "Initialise",
-    value: function Initialise() {
-      var _this = this;
-
-      Array.from(this.modalButtons).forEach(function (button) {
-        button.addEventListener("click", function (event) {
-          event.preventDefault();
-          var url = button.getAttribute("href") ? button.getAttribute("href") : button.getAttribute("data-url");
-          var size = button.getAttribute("data-size");
-
-          _this.ShowModalWindow(url, size);
-        });
-      });
-    }
-  }, {
-    key: "ShowModalWindow",
-    value: function ShowModalWindow(url, size) {
-      var options = {
-        backdrop: "static"
-      };
-      this.SetWindowSize(size);
-      fetch(url).then(function (r) {
-        return r.text();
-      }).then(function (f) {
-        jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal .dynamic").html(f);
-        jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal").modal(options);
-      }).catch(function (e) {
-        console.log("Error: ", e);
-      });
-    }
-  }, {
-    key: "ShowCustomModalWindow",
-    value: function ShowCustomModalWindow(title, content, size) {
-      var options = {
-        backdrop: "static"
-      };
-      this.SetWindowSize(size);
-      jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal .modal-title").html(title);
-      jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal .modal-body").html(content);
-      jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal").modal(options);
-    }
-  }, {
-    key: "ReplaceModalContent",
-    value: function ReplaceModalContent(url) {
-      jquery__WEBPACK_IMPORTED_MODULE_0__["get"](url, function (data) {
-        jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal .dynamic").html(data);
-      });
-    }
-  }, {
-    key: "CloseModal",
-    value: function CloseModal() {
-      jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal .dynamic").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal").modal("hide");
-      jquery__WEBPACK_IMPORTED_MODULE_0__(".modal-backdrop").remove();
-    }
-  }, {
-    key: "SetWindowSize",
-    value: function SetWindowSize(size) {
-      var modal = jquery__WEBPACK_IMPORTED_MODULE_0__("#TesseractModal > .modal-dialog").removeClass("modal-lg modal-sm modal-md");
-
-      if (size) {
-        switch (size) {
-          case "small":
-            modal.addClass("modal-sm");
-            break;
-
-          case "large":
-            modal.addClass("modal-lg");
-            break;
-
-          default:
-            modal.addClass("modal-md");
-            break;
-        }
-      } else {
-        modal.addClass("modal-md");
-      }
-    }
-  }]);
-
-  return TesseractModal;
-}();
-
-/***/ }),
-
 /***/ "./ts/_tesseract/_utils/events.ts":
 /*!****************************************!*\
   !*** ./ts/_tesseract/_utils/events.ts ***!
@@ -29390,11 +29260,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_tesseract/_tesseract-modal */ "./ts/_tesseract/_tesseract-modal.ts");
-/* harmony import */ var _tesseract_wysiwyg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_tesseract/wysiwyg */ "./ts/_tesseract/wysiwyg/index.ts");
-/* harmony import */ var _pages_reference_collection__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/reference-collection */ "./ts/pages/reference-collection/index.ts");
-/* harmony import */ var _pages_reference_item__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/reference-item */ "./ts/pages/reference-item/index.ts");
-/* harmony import */ var _pages_cookie_settings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/cookie-settings */ "./ts/pages/cookie-settings/index.ts");
+/* harmony import */ var _tesseract_wysiwyg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_tesseract/wysiwyg */ "./ts/_tesseract/wysiwyg/index.ts");
+/* harmony import */ var _pages_reference_collection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/reference-collection */ "./ts/pages/reference-collection/index.ts");
+/* harmony import */ var _pages_reference_item__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/reference-item */ "./ts/pages/reference-item/index.ts");
+/* harmony import */ var _pages_cookie_settings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/cookie-settings */ "./ts/pages/cookie-settings/index.ts");
+/* harmony import */ var _pages_developer_tesseract__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/developer/tesseract */ "./ts/pages/developer/tesseract/index.ts");
 /* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../scss/main.scss */ "./scss/main.scss");
 /* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_9__);
 
@@ -29405,35 +29275,37 @@ window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0__;
 /* Tesseract */
 
 
-
-/* Utility classes */
-
 /* Pages */
+// Settings pages
 
 
+
+ // Developer pages
 
 
 /* Script loader */
 
-jquery__WEBPACK_IMPORTED_MODULE_0__(document).ready(function () {
-  new _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_4__["TesseractModal"]();
+jquery__WEBPACK_IMPORTED_MODULE_0__(function () {
   /* Load Reference Collection Page scripts */
-
   if (document.querySelector('.page__reference-collection')) {
-    new _pages_reference_collection__WEBPACK_IMPORTED_MODULE_6__["default"]();
+    new _pages_reference_collection__WEBPACK_IMPORTED_MODULE_5__["default"]();
   }
   /* Load Reference Item Page scripts */
 
 
   if (document.querySelector(".page__reference-item")) {
-    new _pages_reference_item__WEBPACK_IMPORTED_MODULE_7__["default"]();
+    new _pages_reference_item__WEBPACK_IMPORTED_MODULE_6__["default"]();
   }
   /* Load Cookie Settings Page scripts */
 
 
   if (document.querySelector(".page__cookie-settings")) {
-    new _tesseract_wysiwyg__WEBPACK_IMPORTED_MODULE_5__["default"]();
-    new _pages_cookie_settings__WEBPACK_IMPORTED_MODULE_8__["default"]();
+    new _tesseract_wysiwyg__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    new _pages_cookie_settings__WEBPACK_IMPORTED_MODULE_7__["default"]();
+  }
+
+  if (document.querySelector(".page__developer--tesseract")) {
+    new _pages_developer_tesseract__WEBPACK_IMPORTED_MODULE_8__["default"]();
   }
 });
 /* Styles */
@@ -29458,6 +29330,38 @@ var CookieSettingsPage = function CookieSettingsPage() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CookieSettingsPage);
+
+/***/ }),
+
+/***/ "./ts/pages/developer/tesseract/index.ts":
+/*!***********************************************!*\
+  !*** ./ts/pages/developer/tesseract/index.ts ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var TesseractDeveloperPage = /*#__PURE__*/function () {
+  function TesseractDeveloperPage() {
+    _classCallCheck(this, TesseractDeveloperPage);
+  }
+
+  _createClass(TesseractDeveloperPage, [{
+    key: "init",
+    value: function init() {}
+  }]);
+
+  return TesseractDeveloperPage;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (TesseractDeveloperPage);
 
 /***/ }),
 
@@ -29575,7 +29479,6 @@ var ReferenceCollectionPage = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../_tesseract/_tesseract-modal */ "./ts/_tesseract/_tesseract-modal.ts");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -29584,13 +29487,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
-
 var ReferenceItemPage = /*#__PURE__*/function () {
   function ReferenceItemPage() {
     _classCallCheck(this, ReferenceItemPage);
-
-    _defineProperty(this, "tesseractModal", void 0);
 
     _defineProperty(this, "tesseractTable", void 0);
 
@@ -29612,7 +29511,6 @@ var ReferenceItemPage = /*#__PURE__*/function () {
     this.saveUrl = "/Settings/ReferenceData/CreateReferenceItem/";
     this.updateUrl = "/Settings/ReferenceData/UpdateReferenceItem/";
     this.deleteUrl = "/Settings/ReferenceData/DeleteReferenceItem/";
-    this.tesseractModal = new _tesseract_tesseract_modal__WEBPACK_IMPORTED_MODULE_0__["TesseractModal"]();
     this.Initialise();
   }
 
@@ -29665,8 +29563,6 @@ var ReferenceItemPage = /*#__PURE__*/function () {
       }).then(function (r) {
         return r.status;
       }).then(function (s) {
-        _this2.tesseractModal.CloseModal();
-
         _this2.saveButton.removeAttribute("disabled");
       }).catch(function (e) {
         console.log("Error :", e);
@@ -29691,8 +29587,6 @@ var ReferenceItemPage = /*#__PURE__*/function () {
       }).then(function (r) {
         return r.status;
       }).then(function (s) {
-        _this3.tesseractModal.CloseModel();
-
         _this3.saveButton.removeAttribute("disabled");
       }).catch(function (e) {
         console.log("Error :", e);

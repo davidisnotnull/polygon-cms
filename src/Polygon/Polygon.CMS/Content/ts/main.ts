@@ -6,19 +6,19 @@ import "bootstrap";
 import "preact";
 
 /* Tesseract */
-import { TesseractModal } from "./_tesseract/_tesseract-modal";
 import TesseractWysiwyg from "./_tesseract/wysiwyg";
 
-/* Utility classes */
-
 /* Pages */
+// Settings pages
 import ReferenceCollectionPage from "./pages/reference-collection";
 import ReferenceItemPage from "./pages/reference-item";
 import CookieSettingsPage from "./pages/cookie-settings";
 
+// Developer pages
+import TesseractDeveloperPage from "./pages/developer/tesseract";
+
 /* Script loader */
-$(document).ready(function () {
-    new TesseractModal();    
+$(() => {
 
     /* Load Reference Collection Page scripts */
     if (document.querySelector('.page__reference-collection'))
@@ -37,6 +37,11 @@ $(document).ready(function () {
     {
         new TesseractWysiwyg();
         new CookieSettingsPage();
+    }
+    
+    if (document.querySelector(".page__developer--tesseract"))
+    {
+        new TesseractDeveloperPage();
     }
     
 });

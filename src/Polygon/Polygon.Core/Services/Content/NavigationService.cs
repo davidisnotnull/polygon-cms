@@ -18,7 +18,8 @@ namespace Polygon.Core.Services.Content
             MenuItems = new List<MenuItem> {
                 new MenuItem { Name = "Content", Link = "Content" },
                 new MenuItem { Name = "User", Link = "Users" },
-                new MenuItem { Name = "Settings", Link = "Settings" }
+                new MenuItem { Name = "Settings", Link = "Settings" },
+                new MenuItem { Name = "Developer", Link = "Developer"}
             }
         };
 

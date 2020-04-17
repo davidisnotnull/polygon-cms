@@ -4,7 +4,7 @@
 
 /* UI Elements */
 button {
-  background: $mid-purple;
+  background: $purple;
   color: $white;
   font-size: $font-size-small;
   display: inline-block;
@@ -22,10 +22,10 @@ button {
   }
   
   &.btn-cancel {
-    background: $light-grey;
+    background: $lighter-grey;
     color: $black;
     &:hover {
-      background: $mid-grey;
+      background: $grey;
       cursor: pointer;          
     }
   }

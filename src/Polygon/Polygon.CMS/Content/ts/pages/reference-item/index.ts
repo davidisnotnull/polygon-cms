@@ -1,9 +1,7 @@
-import { TesseractModal } from "../../_tesseract/_tesseract-modal";
 import TesseractTable from "../../_tesseract/table";
 
 class ReferenceItemPage {
 
-    public tesseractModal: any;
     public tesseractTable: any;
     public referenceCollectionId: string;
     public saveButton: any;
@@ -19,7 +17,6 @@ class ReferenceItemPage {
         this.saveUrl = "/Settings/ReferenceData/CreateReferenceItem/";
         this.updateUrl = "/Settings/ReferenceData/UpdateReferenceItem/";
         this.deleteUrl = "/Settings/ReferenceData/DeleteReferenceItem/";
-        this.tesseractModal = new TesseractModal();
         this.Initialise();
     }
 
@@ -65,7 +62,6 @@ class ReferenceItemPage {
         })
             .then(r => r.status)
             .then(s => {
-                this.tesseractModal.CloseModal();
                 this.saveButton.removeAttribute("disabled");
             })
             .catch(e => {
@@ -92,7 +88,6 @@ class ReferenceItemPage {
         })
             .then(r => r.status)
             .then(s => {
-                this.tesseractModal.CloseModel();
                 this.saveButton.removeAttribute("disabled");
             })
             .catch(e => {
@@ -102,8 +97,6 @@ class ReferenceItemPage {
     
     private DeleteReferenceItem()
     {
-        
-        
         
     }
 }
