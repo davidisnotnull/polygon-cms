@@ -3,6 +3,39 @@
 
 .tesseract {
   &__notify {
+    display: flex;
+    flex-direction: column;
+    min-height: 50px;
+    height: auto;
+    margin: 0;
+    right: 2 * $unit;
+    bottom: 2 * $unit;
+    left: auto;
+    z-index: $z-index-maximum;
+    position: fixed;
+    width: 20 * $unit;
+    padding: 1 * $unit;
+    border-radius: 0.5 * $unit;
+    cursor: pointer;
     
+    &.success {
+      background: $darker-green;
+      color: $white;
+    }
+    
+    &.info {
+      background: $darker-blue;
+      color: $white;
+    }
+    
+    &.error {
+      background: $darker-red;
+      color: $white;
+    }
+    
+    &.default {
+      background: $white;
+      color: $black; 
+    }
   }
 }

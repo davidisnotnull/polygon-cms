@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Business\Helpers\" />
     <Folder Include="Pages\Developer\" />
   </ItemGroup>
 
