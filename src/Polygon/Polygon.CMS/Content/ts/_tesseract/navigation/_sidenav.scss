@@ -1,0 +1,48 @@
+﻿nav {
+    &.sidenav {
+        display: block;
+        width: 100%;
+        background: $lightest-purple;
+        bottom: 0;
+        height: 100%;
+
+        .heading {
+            display: block;
+            font-size: $font-size_small;
+            font-weight: $font-weight-bold;
+            padding: 0.5 * $unit;
+            border-bottom: 1px solid $darker-purple;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0.5 * $unit;
+            list-style: none;
+
+            li {
+                font-size: $font-size-small;
+            }
+        }
+        
+        .collapsible__body {
+            ul {
+                margin: 0;
+                padding: 0;
+                
+                li {
+                    padding: 0.25 * $unit;    
+                    
+                    &:hover {
+                        background: $lighter-purple;
+                        color: $white;
+                    }
+                    
+                    a {
+                        text-decoration: none;
+                        color: $purple;
+                    }
+                }
+            }
+        }
+    }
+}

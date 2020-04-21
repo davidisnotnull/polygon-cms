@@ -15,11 +15,21 @@
 
 <body class="@bodyClass">
     <header>
-        @RenderSection("Navigation", required: true)
+        <partial name="Shared/_MainNavigation" model="Model.MainMenu" />
     </header>
 
-    <div class="container">
-        @RenderBody()
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col s2 no-padding">
+                <partial name="_SideNavigation" />
+            </div>
+            <div class="col s10">
+                <partial name="_Breadcrumbs" model="Model.Breadcrumb" />
+                @RenderBody()
+            </div>
+        </div>
+
+
     </div>
 
     <footer>

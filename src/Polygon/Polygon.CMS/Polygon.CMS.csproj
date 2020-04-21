@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <None Remove="Content\ts\main.ts" />
+    <None Remove="Content\ts\_tesseract\navigation\index.ts" />
     <None Remove="wwwroot\dist\**" />
   </ItemGroup>
 
@@ -24,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Content\ts\_tesseract\navigation\interfaces\" />
     <Folder Include="Pages\Developer\" />
     <Folder Include="wwwroot\img" />
   </ItemGroup>

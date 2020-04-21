@@ -7,12 +7,6 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-@section Navigation
-{
-    <partial name="Shared/_MainNavigation" model="Model.MainMenu" />
-    <partial name="Shared/_Breadcrumbs" model="Model.Breadcrumb" />
-}
-
 @Html.HiddenFor(m => m.ReferenceCollectionId)
 
 <h1>Details for @Model.ReferenceCollection.Name</h1>

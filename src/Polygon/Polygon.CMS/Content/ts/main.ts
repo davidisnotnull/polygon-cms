@@ -2,6 +2,7 @@
 import "./_tesseract/main.scss";
 
 /* Tesseract */
+import TesseractNavigation from "./_tesseract/navigation";
 import TesseractWysiwyg from "./_tesseract/wysiwyg";
 
 /* Pages */
@@ -15,6 +16,8 @@ import TesseractDeveloperPage from "./pages/developer/tesseract";
 
 /* Script loader */
 window.onload = e => {
+    
+    new TesseractNavigation();
     
     /* Load Reference Collection Page scripts */
     if (document.querySelector('.page__reference-collection'))

@@ -1,9 +1,11 @@
 ﻿@import "./base";
-@import "./grid/component"; 
-@import "./navigation/component";
+@import "./grid/component";
 
 .content {
-  &__caption {
-    font-size: $font-size-small;
-  }
+    &__caption {
+        font-size: $font-size-small;
+        border-radius: 0.5 * $unit;
+        padding: 0.5 * $unit;
+        background: $lightest-purple;
+    }
 }
