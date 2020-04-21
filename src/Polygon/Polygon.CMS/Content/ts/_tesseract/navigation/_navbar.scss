@@ -1,0 +1,182 @@
+﻿nav {
+  &.navbar {
+    height: auto;
+    color: $white;
+    background-color: $purple;
+    width: 100%;
+    line-height: $navbar-line-height-mobile;
+    position: sticky;
+    top: 0;
+    z-index: $z-index-high;
+
+    .nav-wrapper {
+      position: relative;
+      height: 100%;
+    }
+
+    // Logo
+    .brand-logo {
+      position: absolute;
+      color: $navbar-font-color;
+      display: inline-block;
+      font-size: $navbar-brand-font-size;
+      padding: 0;
+      width: 100px;
+
+      &.center {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      img {
+        height: 3 * $unit;
+        width: 3 * $unit;
+        display: block;
+        padding: (0.25 * $unit) 0 (0.5 * $unit) (0.5 * $unit);
+      }
+
+      @media #{$medium-and-down} {
+        left: 50%;
+        transform: translateX(-50%);
+
+        &.left, &.right {
+          padding: 0;
+          transform: none;
+        }
+
+        &.left {
+          left: 0.5rem;
+        }
+        &.right {
+          right: 0.5rem;
+          left: auto;
+        }
+
+
+      }
+
+      i,
+      [class^="mdi-"], [class*="mdi-"],
+      i.material-icons {
+        float: left;
+        margin-right: 15px;
+      }
+    }
+
+    // Navbar Links
+    ul {
+      margin: 0;
+      list-style: none;
+      
+      @media #{$medium-and-up} {
+        padding-left: 4 * $unit;
+      }
+
+      &.right {
+        right: 0.5rem;
+        padding: 0;
+      }
+
+      li {
+        display: inline-flex;
+        transition: background-color .3s;
+        padding: 0;
+
+        &.active {
+          background-color: rgba(0, 0, 0, .1);
+        }
+      }
+
+      a {
+        transition: background-color .5s;
+        font-size: $navbar-font-size;
+        color: $navbar-font-color;
+        display: block;
+        padding: 0 15px;
+        cursor: pointer;
+        text-decoration: none;
+
+        &.btn, &.btn-large, &.btn-flat, &.btn-floating {
+          margin-top: -2px;
+          margin-left: 15px;
+          margin-right: 15px;
+
+          & > .material-icons {
+            height: inherit;
+            line-height: inherit;
+          }
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, .1);
+        }
+      }
+
+      &.left {
+        float: left;
+      }
+    }
+
+    // Navbar Search Form
+    form {
+      height: 100%;
+    }
+
+    .input-field {
+      margin: 0;
+      height: 100%;
+
+      input {
+        height: 100%;
+        font-size: 1.2rem;
+        border: none;
+        padding-left: 2rem;
+
+        &:focus, &[type=text]:valid, &[type=password]:valid,
+        &[type=email]:valid, &[type=url]:valid, &[type=date]:valid {
+          border: none;
+          box-shadow: none;
+        }
+      }
+
+      label {
+        top: 0;
+        left: 0;
+
+        i {
+          color: rgba(255, 255, 255, .7);
+          transition: color .3s;
+        }
+
+        &.active i {
+          color: $navbar-font-color;
+        }
+      }
+    }
+
+    // Fixed Navbar
+    .navbar-fixed {
+      position: relative;
+      height: $navbar-height-mobile;
+      z-index: 997;
+
+      nav {
+        position: fixed;
+      }
+    }
+    @media #{$medium-and-up} {
+      nav.nav-extended .nav-wrapper {
+        min-height: $navbar-height;
+      }
+      nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
+        height: $navbar-height;
+        line-height: $navbar-line-height;
+      }
+      .navbar-fixed {
+        height: $navbar-height;
+      }
+    }
+    
+  }
+}
+    

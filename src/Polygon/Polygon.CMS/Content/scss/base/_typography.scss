@@ -16,7 +16,7 @@ h1 {
     font-weight: 700;
     margin-bottom: rem(30px);
 
-    @include media($sm) {
+    @include media($small-screen) {
         font-size: em(34px);
         line-height: rem(44px);
         letter-spacing: rem(0.59px);
@@ -30,7 +30,7 @@ a {
     @include base-transition;
 
     &:hover, &:focus {
-        color: $red-dark;
+        color: $darker-red;
         text-decoration: none;
     }
 }

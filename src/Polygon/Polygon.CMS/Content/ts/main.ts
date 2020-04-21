@@ -1,9 +1,5 @@
-﻿import * as $ from "jquery";
-(<any>window).jQuery = $;
-
-import "popper.js";
-import "bootstrap";
-import "preact";
+﻿/* Styles */
+import "./_tesseract/main.scss";
 
 /* Tesseract */
 import TesseractWysiwyg from "./_tesseract/wysiwyg";
@@ -18,8 +14,8 @@ import CookieSettingsPage from "./pages/cookie-settings";
 import TesseractDeveloperPage from "./pages/developer/tesseract";
 
 /* Script loader */
-$(() => {
-
+window.onload = e => {
+    
     /* Load Reference Collection Page scripts */
     if (document.querySelector('.page__reference-collection'))
     {
@@ -43,8 +39,4 @@ $(() => {
     {
         new TesseractDeveloperPage();
     }
-    
-});
-
-/* Styles */
-import "../scss/main.scss";
+};

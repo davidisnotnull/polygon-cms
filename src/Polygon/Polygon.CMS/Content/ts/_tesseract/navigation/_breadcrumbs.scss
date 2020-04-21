@@ -1,0 +1,23 @@
+﻿nav {
+  ol.breadcrumb {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: (0.75 * $unit) $unit;
+    margin-bottom: $unit;
+    list-style: none;
+    border-radius: 0.25 * $unit;
+    background-color: $lighter-purple;
+    
+    li {
+      &.breadcrumb-item {
+        color: $purple;
+        font-size: $font-size-small;
+        
+        a {
+          text-decoration: none;  
+        }         
+      }      
+    }
+  }
+}

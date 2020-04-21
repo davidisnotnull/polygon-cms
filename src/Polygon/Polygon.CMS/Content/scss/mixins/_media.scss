@@ -1,5 +1,0 @@
-﻿@mixin media($query) {
-    @media #{$query} {
-        @content;
-    }
-}

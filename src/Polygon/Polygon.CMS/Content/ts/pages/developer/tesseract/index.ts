@@ -19,7 +19,7 @@ class TesseractDeveloperPage {
             type: string;
         }
         notifyOptions.message = "Here's your test notification";
-        notifyOptions.type = "error";
+        notifyOptions.type = "info";
         new TesseractNotify(notifyOptions);
     }
     

@@ -7,11 +7,6 @@
   "keywords": [],
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^18.0.0",
-    "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.16.1",
-    "preact": "^10.4.0",
-    "preact-dom": "^1.0.1",
     "typescript": "^3.8.3"
   },
   "devDependencies": {

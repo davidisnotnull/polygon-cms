@@ -19,12 +19,12 @@
     cursor: pointer;
     
     &.success {
-      background: $darker-green;
+      background: $darkest-green;
       color: $white;
     }
     
     &.info {
-      background: $darker-blue;
+      background: $darkest-blue;
       color: $white;
     }
     

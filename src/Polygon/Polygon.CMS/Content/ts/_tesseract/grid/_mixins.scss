@@ -1,0 +1,18 @@
+﻿
+@mixin reset-offset {
+  margin-left: auto;
+  left: auto;
+  right: auto;
+}
+
+@mixin grid-classes($size, $i, $perc) {
+  &.offset-#{$size}#{$i} {
+    margin-left: $perc;
+  }
+  &.pull-#{$size}#{$i} {
+    right: $perc;
+  }
+  &.push-#{$size}#{$i} {
+    left: $perc;
+  }
+}

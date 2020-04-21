@@ -1,13 +1,12 @@
 ﻿@charset "UTF-8";
 
-@import "~bootstrap/scss/bootstrap.scss";
-
 @import "mixins/transitions";
 @import "mixins/media";
 @import "mixins/background-element";
 
+@import "base/reset";
+@import "base/boilerplate";
 @import "base/variables";
-/*@import "base/fonts";*/
 @import "base/typography";
 
-@import "components/global-modal";
+@import "components/grid/styles";

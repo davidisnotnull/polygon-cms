@@ -1,0 +1,9 @@
+﻿@mixin font($family, $size, $weight, $colour) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  color: $colour;
+  line-height: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

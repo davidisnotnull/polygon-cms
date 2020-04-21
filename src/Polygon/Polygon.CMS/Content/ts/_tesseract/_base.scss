@@ -1,8 +1,58 @@
+@import "./reset";
 @import "./globals";
 @import "./palette";
 @import "./mixins";
 
-/* UI Elements */
+/* -------------------- Fonts -------------------- */
+@font-face {
+  font-family: 'Proxima Nova Regular';
+  src: url($fontsPath + 'ProximaNova-Regular.eot');
+  src: url($fontsPath + 'ProximaNova-Regular?#iefix') format('embedded-opentype'),
+  url($fontsPath + 'ProximaNova-Regular.woff2') format('woff2'),
+  url($fontsPath + 'ProximaNova-Regular.woff') format('woff'),
+  url($fontsPath + 'ProximaNova-Regular.ttf') format('truetype'),
+  url($fontsPath + 'ProximaNova-Regular.svg#ProximaNova-Regular') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova Light';
+  src: url($fontsPath + 'ProximaNova-Light.eot');
+  src: url($fontsPath + 'ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
+  url($fontsPath + 'ProximaNova-Light.woff2') format('woff2'),
+  url($fontsPath + 'ProximaNova-Light.woff') format('woff'),
+  url($fontsPath + 'ProximaNova-Light.ttf') format('truetype'),
+  url($fontsPath + 'ProximaNova-Light.svg#ProximaNova-Light') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* -------------------- Typography -------------------- */
+$browser-font-context: 16;
+$proxima-nova-reg: "Proxima Nova Regular", sans-serif;
+$proxima-nova-light: "Proxima Nova Light", sans-serif;
+$primary-font: $proxima-nova-reg;
+
+body {
+  font-family: $primary-font;
+  font-size: $font-size-normal;
+  color: $black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2 * $unit;
+  line-height: 2.25 * $unit;
+  font-weight: 700;
+  margin-bottom: $unit;
+}
+
+
+/* -------------------- UI Elements -------------------- */
 button {
   background: $purple;
   color: $white;
@@ -29,6 +79,10 @@ button {
       cursor: pointer;          
     }
   }
+}
+
+.summary {
+  
 }
 
 .overlay {

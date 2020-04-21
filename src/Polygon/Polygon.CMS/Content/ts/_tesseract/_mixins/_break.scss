@@ -1,0 +1,5 @@
+﻿@mixin break($type, $size) {
+  @media (#{$type} : #{$size}) {
+    @content
+  }
+}

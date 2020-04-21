@@ -1,0 +1,9 @@
+﻿@import "./base";
+@import "./grid/component"; 
+@import "./navigation/component";
+
+.content {
+  &__caption {
+    font-size: $font-size-small;
+  }
+}
