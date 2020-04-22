@@ -31,6 +31,7 @@ namespace Polygon.CMS
         {
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
+
             services.AddControllers();
 
             services.Configure<RouteOptions>(options =>

@@ -1,0 +1,38 @@
+﻿.icon {
+    &:before {
+        width: 30px;
+        height: 30px;
+        opacity: 0.5;
+        top: 10px;
+        position: relative;
+        padding-right: 0.5 * $unit;
+    }
+
+    &.i__dashboard:before {
+        content: url("/assets/icons/dashboard.png");
+    }
+
+    &.i__content:before {
+        content: url("/assets/icons/folder.png");
+    }
+
+    &.i__media:before {
+        content: url("/assets/icons/media.png");
+    }
+
+    &.i__users:before {
+        content: url("/assets/icons/users.png");
+    }
+
+    &.i__settings:before {
+        content: url("/assets/icons/settings.png");
+    }
+
+    &.i__extension:before {
+        content: url("/assets/icons/extension.png");
+    }
+
+    &.i__developer:before {
+        content: url("/assets/icons/developer.png");
+    }
+}

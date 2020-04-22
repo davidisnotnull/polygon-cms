@@ -30,6 +30,9 @@
         }
       }
       &__content {
+          display:block;
+          width: 100%;
+
         section {
           header {
             h4 {
@@ -46,6 +49,10 @@
       }
       &__dynamic {
         padding: $unit;
+
+        .form-control {
+            width: 95% !important;
+        }
       }
       &__footer {
         padding: 0 $unit;

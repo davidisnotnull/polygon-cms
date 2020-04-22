@@ -1,2 +1,29 @@
-﻿body {
+﻿
+.form-group {
+    margin-bottom: $unit;
+
+    label {
+        display: inline-block;
+        margin-bottom: 0.5 * $unit;
+    }
+
+    .form-control {
+        display: inline-block;
+        width: 100%;
+        padding: (.375 * $unit) (.75 * $unit);
+        font-size: $unit;
+        line-height: 1.5;
+        color: $grey;
+        background-color: $white;
+        background-clip: padding-box;
+        border: 1px solid $lighter-grey;
+        border-radius: .25 * $unit;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    .form-text {
+        display: block;
+        margin-top: .25 * $unit;
+        color: $lighter-grey;
+    }
 }

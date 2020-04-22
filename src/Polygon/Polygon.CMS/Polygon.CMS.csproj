@@ -7,27 +7,18 @@
   <ItemGroup>
     <None Remove="Content\ts\main.ts" />
     <None Remove="Content\ts\_tesseract\navigation\index.ts" />
+    <None Remove="wwwroot\assets\**" />
     <None Remove="wwwroot\dist\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\assets\**" />
     <Content Remove="wwwroot\dist\**" />
-    <Content Include="Content\fonts\ProximaNova-Light.eot" />
-    <Content Include="Content\fonts\ProximaNova-Light.svg" />
-    <Content Include="Content\fonts\ProximaNova-Light.ttf" />
-    <Content Include="Content\fonts\ProximaNova-Light.woff" />
-    <Content Include="Content\fonts\ProximaNova-Light.woff2" />
-    <Content Include="Content\fonts\ProximaNova-Regular.eot" />
-    <Content Include="Content\fonts\ProximaNova-Regular.svg" />
-    <Content Include="Content\fonts\ProximaNova-Regular.ttf" />
-    <Content Include="Content\fonts\ProximaNova-Regular.woff" />
-    <Content Include="Content\fonts\ProximaNova-Regular.woff2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Content\ts\_tesseract\navigation\interfaces\" />
     <Folder Include="Pages\Developer\" />
-    <Folder Include="wwwroot\img" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,11 +39,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\assets\**" />
     <Compile Remove="wwwroot\dist\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="wwwroot\assets\**" />
     <EmbeddedResource Remove="wwwroot\dist\**" />
+    <TypeScriptCompile Remove="wwwroot\assets\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,6 +61,16 @@
     <TypeScriptCompile Include="Content\ts\_tesseract\base\index.ts" />
     <TypeScriptCompile Remove="Content\ts\_tesseract\base\foundation.ts" />
     <TypeScriptCompile Remove="Content\ts\_tesseract\base\index.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\assets\icons\dashboard.png" />
+    <Content Include="wwwroot\assets\icons\developer.png" />
+    <Content Include="wwwroot\assets\icons\extension.png" />
+    <Content Include="wwwroot\assets\icons\folder.png" />
+    <Content Include="wwwroot\assets\icons\media.png" />
+    <Content Include="wwwroot\assets\icons\settings.png" />
+    <Content Include="wwwroot\assets\icons\users.png" />
   </ItemGroup>
 
   <PropertyGroup>

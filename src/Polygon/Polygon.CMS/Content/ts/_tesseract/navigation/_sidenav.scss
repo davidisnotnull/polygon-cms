@@ -2,16 +2,33 @@
     &.sidenav {
         display: block;
         width: 100%;
-        background: $lightest-purple;
+        background: $white;
         bottom: 0;
         height: 100%;
 
         .heading {
             display: block;
-            font-size: $font-size_small;
-            font-weight: $font-weight-bold;
-            padding: 0.5 * $unit;
-            border-bottom: 1px solid $darker-purple;
+            font-size: $font-size_normal;
+            padding: 0 0 0 (0.2 * $unit);
+            border-bottom: 1px solid $lighter-grey;
+
+            &:hover {
+                background: $lightest-grey;
+                cursor: pointer;
+                transition: .3s ease-in;
+            }
+
+            a {
+                width: 100%;
+                text-decoration: none;
+                color: $black;
+                display: inline-block;
+                line-height: 3 * $unit;
+
+                &:hover {
+                    color: $purple;
+                }
+            }
         }
 
         ul {
@@ -23,20 +40,20 @@
                 font-size: $font-size-small;
             }
         }
-        
+
         .collapsible__body {
             ul {
                 margin: 0;
                 padding: 0;
-                
+
                 li {
-                    padding: 0.25 * $unit;    
-                    
+                    padding: 0.25 * $unit;
+
                     &:hover {
                         background: $lighter-purple;
                         color: $white;
                     }
-                    
+
                     a {
                         text-decoration: none;
                         color: $purple;
