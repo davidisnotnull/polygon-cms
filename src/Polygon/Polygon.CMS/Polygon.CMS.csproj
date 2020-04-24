@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Content\ts\_tesseract\navigation\interfaces\" />
-    <Folder Include="Pages\Developer\" />
   </ItemGroup>
 
   <ItemGroup>

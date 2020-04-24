@@ -7,16 +7,26 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Reference Collections</h1>
+<div class="row">
+    <div class="col s12">
+        <h1>Reference Collections</h1>
+        <span class="content__caption">
+            Here you can create Reference Collections. These are groups of reference data that you can use to populate selections on Page and Block Templates.
+        </span>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-12">
-        <button id="CreateReferenceCollection" data-url="/Settings/ReferenceData/CreateReferenceCollection" type="button">Create</button>
+        <div class="button-group">
+            <button class="" id="CreateReferenceCollection" data-url="/Settings/ReferenceData/CreateReferenceCollection" type="button">Create</button>
+        </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-12">
-        <partial name="Shared/Tesseract/_TesseractTable"/>
+        <partial name="Shared/Tesseract/_TesseractTable" />
     </div>
 </div>
 

@@ -3,10 +3,17 @@
 @import "./forms/component";
 
 .content {
+    
+    &__wrapper {
+        display: block;
+        margin-left: $unit;
+        margin-right: $unit;
+    }
+
     &__caption {
         font-size: $font-size-small;
         border-radius: 0.5 * $unit;
         padding: 0.5 * $unit;
-        background: $lightest-purple;
+        background: $lightest-grey;
     }
 }

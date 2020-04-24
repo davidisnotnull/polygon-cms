@@ -1,4 +1,5 @@
-﻿using Polygon.Core.Data.Entities.ReferenceData;
+﻿using Microsoft.Extensions.Logging;
+using Polygon.Core.Data.Entities.ReferenceData;
 using Polygon.Core.Data.Interfaces;
 using Polygon.Core.Helpers;
 using Polygon.Core.Models.Tesseract;
@@ -6,10 +7,16 @@ using Polygon.Core.Services.Interfaces.Tesseract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Logging;
 
 namespace Polygon.Core.Services.Tesseract
 {
+    /// <summary>
+    /// Creates tabular datasets to be consumed by the TesseractTable typescript library
+    /// </summary>
+    /// <remarks>
+    /// When creating the tableRow array, make sure that the guid of the item that you want to interact with in the row is always at
+    /// position 0 in the array. Otherwise it won't work with the TesseractTable typescript library.
+    /// </remarks>
     public class TableService : BaseService, ITableService
     {
         private readonly ILogger<TableService> _logger;
@@ -31,6 +38,7 @@ namespace Polygon.Core.Services.Tesseract
             {
                 var tableRow = new[]
                 {
+                    item.Id.ToString(),
                     item.Name,
                     item.Description
                 };
@@ -64,9 +72,9 @@ namespace Polygon.Core.Services.Tesseract
                 var row = new[]
                 {
                     item.Name,
-                    $"<a href=\"ReferenceTypes/ManageReferenceItem/?guid={item.Id.ToString()}\" class=\"tesseract__modal\"" +
+                    $"<a href=\"ReferenceTypes/ManageReferenceItem/?guid={item.Id}\" class=\"tesseract__modal\"" +
                     $"data-size=\"medium\" data-toggle\"modal\">Edit</a>",
-                    $"<a href=\"ReferenceTypes/DeleteReferenceItem/?guid={item.Id.ToString()}\" class=\"tesseract__modal\"" +
+                    $"<a href=\"ReferenceTypes/DeleteReferenceItem/?guid={item.Id}\" class=\"tesseract__modal\"" +
                     "data-size=\"medium\" data-toggle=\"modal\">Delete</a>"
                 };
 

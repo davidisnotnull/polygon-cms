@@ -38,6 +38,8 @@ class TesseractDrawer {
         let drawerHeading: HTMLDivElement = <HTMLDivElement> document.querySelector('.drawer__heading');
         let drawerContent: HTMLDivElement = <HTMLDivElement> document.querySelector('.drawer__content');
         let drawerFooter: HTMLDivElement = <HTMLDivElement> document.querySelector('.drawer__footer');
+
+        drawer.setAttribute("data-state", "open")
         
         if (this.props.title != undefined)
         {
@@ -101,6 +103,7 @@ class TesseractDrawer {
         drawerContent.innerHTML = null;
         drawerFooter.innerHTML = null;
         drawer.removeAttribute('style');
+        drawer.setAttribute("data-state", "closed")
     };
     
     openDrawer() {
