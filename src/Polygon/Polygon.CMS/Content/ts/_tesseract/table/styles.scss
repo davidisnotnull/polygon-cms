@@ -9,7 +9,9 @@
     color: $table-text-color;
     text-align: left;
     margin: $table-padding;
-
+    border-collapse: collapse;
+    border-spacing: 0;
+    
     th, td {
       font-size: $font-size-normal;
       position: relative;

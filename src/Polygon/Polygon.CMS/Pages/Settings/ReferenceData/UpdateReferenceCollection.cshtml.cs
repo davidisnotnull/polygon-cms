@@ -16,9 +16,6 @@ namespace Polygon.CMS.Pages.Settings.ReferenceData
         }
         
         [BindProperty]
-        public string ReferenceCollectionId { get; set; }
-        
-        [BindProperty]
         public ReferenceCollection ReferenceCollection { get; set; }
 
         public void OnGet(string id)
@@ -31,8 +28,6 @@ namespace Polygon.CMS.Pages.Settings.ReferenceData
         {
             if (!ModelState.IsValid)
                 return Page();
-
-            ReferenceCollection.Id = Guid.Parse(ReferenceCollectionId);
 
             _referenceDataService.UpdateReferenceCollection(ReferenceCollection);
             return StatusCode(200);

@@ -27,3 +27,13 @@
         color: $lighter-grey;
     }
 }
+
+.button-group {
+    display: block;
+    margin-left: $unit;
+    margin-right: $unit;
+
+    button {
+        margin-right: 0.5 * $unit;
+    }
+}

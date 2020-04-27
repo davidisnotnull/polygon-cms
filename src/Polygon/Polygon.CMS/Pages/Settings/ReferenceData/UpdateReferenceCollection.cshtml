@@ -1,20 +1,21 @@
 ﻿@page
 @model Polygon.CMS.Pages.Settings.ReferenceData.UpdateReferenceCollectionModel
 @{
-    Layout = "~/Pages/Shared/_ModalLayout.cshtml";
+    Layout = "Shared/Tesseract/Layouts/_DrawerLayout";
+    ViewData["DrawerTitle"] = $"Update {Model.ReferenceCollection.Name}";
 }
-@Html.HiddenFor(m => m.ReferenceCollectionId, new { Value = Model.ReferenceCollectionId })
+@Html.HiddenFor(m => m.ReferenceCollection.Id, new { Value = Model.ReferenceCollection.Id })
 
 <div class="form-group">
     <label asp-for="ReferenceCollection.Name">Name</label>
     <input asp-for="ReferenceCollection.Name" type="text" class="form-control" id="referenceCollectionName" aria-describedby="referenceCollectionNameHelp" placeholder="Enter name of Reference Type">
-    <small id="referenceCollectionNameHelp" class="form-text text-muted">This will be the name of your new Reference Type</small>
+    <small id="referenceCollectionNameHelp" class="form-text text-muted">This is the name of your Reference Collection</small>
     <span asp-validation-for="ReferenceCollection.Name" class="text-danger"></span>
 </div>
 <div class="form-group">
     <label asp-for="ReferenceCollection.Description">Description</label>
     <textarea asp-for="ReferenceCollection.Description" class="form-control" rows="3" aria-describedby="referenceCollectionDescriptionHelp"></textarea>
-    <small id="referenceCollectionDescriptionHelp" class="form-text text-muted">You must provide a description of your Reference Type</small>
+    <small id="referenceCollectionDescriptionHelp" class="form-text text-muted">You must provide a description of your Reference Collection</small>
     <span asp-validation-for="ReferenceCollection.Description" class="text-danger"></span>
 </div>
 
