@@ -1,19 +1,17 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Polygon.Core.Data.Entities.ReferenceData;
 using Polygon.Core.Services.Interfaces.Content;
 
 namespace Polygon.CMS.Pages.Settings.ReferenceData
 {
-    public class DeleteReferenceItemModel : PageModel
+    public class UpdateReferenceItem : PageModel
     {
         private IReferenceDataService _referenceDataService;
 
-        public DeleteReferenceItemModel(IReferenceDataService referenceDataService)
+        public UpdateReferenceItem(IReferenceDataService referenceDataService)
         {
             _referenceDataService = referenceDataService;
         }
@@ -29,8 +27,15 @@ namespace Polygon.CMS.Pages.Settings.ReferenceData
 
         public IActionResult OnPost()
         {
-            _referenceDataService.DeleteReferenceItem(ReferenceItem.Id);
-            return new StatusCodeResult(200);
+            if (!ModelState.IsValid)
+                return Page();
+
+            var referenceItemToUpdate = _referenceDataService.GetReferenceItem(ReferenceItem.Id);
+            referenceItemToUpdate.Modified = DateTime.Now;
+            referenceItemToUpdate.Name = ReferenceItem.Name;
+            _referenceDataService.UpdateReferenceItem(referenceItemToUpdate);
+            
+            return StatusCode(200);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Polygon.CMS.Pages.Settings.ReferenceData
         public string ReferenceCollectionId { get; set; }
         
         [Required]
-        [StringLength(60, MinimumLength = 3)]
+        [StringLength(60)]
         [BindProperty]
         public string ReferenceItemName { get; set; }
         
@@ -34,12 +34,12 @@ namespace Polygon.CMS.Pages.Settings.ReferenceData
             if (!ModelState.IsValid)
                 return Page();
             
-            var referenceObjectToCreate = new ReferenceItem()
+            var referenceItemToCreate = new ReferenceItem()
             {
                 Name = ReferenceItemName,
                 ReferenceCollectionId = Guid.Parse(ReferenceCollectionId)
             };
-            _referenceDataService.CreateReferenceItem(referenceObjectToCreate);
+            _referenceDataService.CreateReferenceItem(referenceItemToCreate);
             return StatusCode(200);
         }
     }

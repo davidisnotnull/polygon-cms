@@ -14,6 +14,10 @@
   <ItemGroup>
     <Content Remove="wwwroot\assets\**" />
     <Content Remove="wwwroot\dist\**" />
+    <Content Update="Pages\Settings\ReferenceData\UpdateReferenceItem.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

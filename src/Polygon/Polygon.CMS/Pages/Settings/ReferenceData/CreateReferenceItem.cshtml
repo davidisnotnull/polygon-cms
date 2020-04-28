@@ -1,16 +1,16 @@
 ﻿@page
 @model Polygon.CMS.Pages.Settings.ReferenceData.CreateReferenceItemModel
 @{
-    Layout = "~/Pages/Shared/_ModalLayout.cshtml";
-    ViewData["ModalTitle"] = "Create new Reference Item";
+    Layout = "Shared/Tesseract/Layouts/_DrawerLayout";
+    ViewData["DrawerTitle"] = "Create new Reference Item";
 }
 
 @Html.HiddenFor(m => m.ReferenceCollectionId, new { Value = Model.ReferenceCollectionId })
 
 <div class="form-group">
     <label asp-for="ReferenceItemName">Name</label>
-    <input asp-for="ReferenceItemName" type="text" class="form-control" id="referenceObjectName" aria-describedby="referenceObjectNameHelp" placeholder="Enter name of Reference Type">
-    <small id="referenceObjectNameHelp" class="form-text text-muted">This will be the name of your new Reference Object</small>
+    <input asp-for="ReferenceItemName" type="text" class="form-control" id="referenceItemName" aria-describedby="referenceItemNameHelp" placeholder="Enter name of Reference Item">
+    <small id="referenceItemNameHelp" class="form-text text-muted">This will be the name of your new Reference Item</small>
     <span asp-validation-for="ReferenceItemName" class="text-danger"></span>
 </div>
 

@@ -86,7 +86,7 @@ namespace Polygon.Core.Services.Content
 
         public int DeleteReferenceItem(Guid id)
         {
-            _referenceItemRepository.SoftDelete(id);
+            _referenceItemRepository.Delete(id);
             return UnitOfWork.Commit();
         }
     }

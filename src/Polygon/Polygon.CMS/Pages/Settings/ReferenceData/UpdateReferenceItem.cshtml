@@ -1,0 +1,18 @@
+@page
+@model Polygon.CMS.Pages.Settings.ReferenceData.UpdateReferenceItem
+
+@{
+    Layout = "Shared/Tesseract/Layouts/_DrawerLayout";
+    ViewData["DrawerTitle"] = $"Update {@Model.ReferenceItem.Name}";
+}
+
+@Html.HiddenFor(m => m.ReferenceItem.Id, new { Value = Model.ReferenceItem.Id })
+
+<div class="form-group">
+    <label asp-for="ReferenceItem.Name">Name</label>
+    <input asp-for="ReferenceItem.Name" type="text" class="form-control" id="referenceItemName" aria-describedby="referenceItemNameHelp" placeholder="Enter name of Reference Item">
+    <small id="referenceItemNameHelp" class="form-text text-muted">This is the name of your Reference Item</small>
+    <span asp-validation-for="ReferenceItem.Name" class="text-danger"></span>
+</div>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>

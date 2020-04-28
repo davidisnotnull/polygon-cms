@@ -71,11 +71,8 @@ namespace Polygon.Core.Services.Tesseract
             {
                 var row = new[]
                 {
-                    item.Name,
-                    $"<a href=\"ReferenceTypes/ManageReferenceItem/?guid={item.Id}\" class=\"tesseract__modal\"" +
-                    $"data-size=\"medium\" data-toggle\"modal\">Edit</a>",
-                    $"<a href=\"ReferenceTypes/DeleteReferenceItem/?guid={item.Id}\" class=\"tesseract__modal\"" +
-                    "data-size=\"medium\" data-toggle=\"modal\">Delete</a>"
+                    item.Id.ToString(),
+                    item.Name
                 };
 
                 tableRows.Add(row);
@@ -88,7 +85,7 @@ namespace Polygon.Core.Services.Tesseract
                     "Name"
                 },
                 Rows = tableRows,
-                ColumnCount = 4,
+                ColumnCount = 1,
                 TotalNumberOfRows = referenceItems.Count()
             };
         }

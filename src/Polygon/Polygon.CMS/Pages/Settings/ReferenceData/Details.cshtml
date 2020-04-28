@@ -9,21 +9,28 @@
 
 @Html.HiddenFor(m => m.ReferenceCollectionId)
 
-<h1>Details for @Model.ReferenceCollection.Name</h1>
-<span>Guid: @Model.ReferenceCollection.Id</span>
-
-<p><strong>Description:</strong> @Model.ReferenceCollection.Description</p>
 
 <div class="row">
-    <div class="col-md-12">
-        <button data-toggle="modal" data-url="/Settings/ReferenceData/CreateReferenceItem/?id=@Model.ReferenceCollectionId" 
-                data-size="medium" data-action="save" data-target="#tesseractModal" type="button" 
-                class="btn btn-primary tesseract__modal">Create</button>
+    <div class="col s12">
+        <h1>@Model.ReferenceCollection.Name</h1><span class="content__backlink"><a asp-page="Index">Back</a></span>
+        <span class="content__caption">
+            @Model.ReferenceCollection.Description
+        </span>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-       <partial name="Shared/Tesseract/_TesseractTable"/>
+        <div class="button-group">
+            <button id="CreateReferenceItem" type="button">Create</button>
+        </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <partial name="Shared/Tesseract/_TesseractTable"/>
+    </div>
+</div>
+
+<partial name="Shared/Tesseract/_TesseractDrawer" />

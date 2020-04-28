@@ -8,13 +8,13 @@
 <div class="form-group">
     <label asp-for="ReferenceCollectionName">Name</label>
     <input asp-for="ReferenceCollectionName" type="text" class="form-control" id="referenceTypeName" aria-describedby="referenceTypeNameHelp" placeholder="Enter name of Reference Type">
-    <small id="referenceTypeNameHelp" class="form-text text-muted">This will be the name of your new Reference Type</small>
+    <small id="referenceTypeNameHelp" class="form-text text-muted">This will be the name of your new Reference Collection</small>
     <span asp-validation-for="ReferenceCollectionName" class="text-danger"></span>
 </div>
 <div class="form-group">
     <label asp-for="ReferenceCollectionDescription">Description</label>
     <textarea asp-for="ReferenceCollectionDescription" class="form-control" rows="3" aria-describedby="referenceTypeDescriptionHelp"></textarea>
-    <small id="referenceTypeDescriptionHelp" class="form-text text-muted">You must provide a description of your Reference Type</small>
+    <small id="referenceTypeDescriptionHelp" class="form-text text-muted">You must provide a description of your Reference Collection</small>
 </div>
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>

@@ -1,104 +1,133 @@
 import TesseractTable from "../../_tesseract/table";
+import TableOptions from "../../_tesseract/table/interfaces/TableOptions";
+import DrawerOptions from "../../_tesseract/drawer/interfaces/DrawerOptions";
+import TesseractDrawer from "../../_tesseract/drawer";
 
 class ReferenceItemPage {
 
-    public tesseractTable: any;
-    public referenceCollectionId: string;
-    public saveButton: any;
-    public saveUrl: any;
-    public updateUrl: any;
-    public deleteUrl: any;
-    public tableDataUrl: string;
+    tesseractTable: any;
+    tesseractDrawer: any;
+    createItemBtn: HTMLButtonElement;
+    createUrl: string;
+    tableDataUrl: string;
+    referenceCollectionId: string;
 
     constructor() {
         this.referenceCollectionId = document.querySelector("#ReferenceCollectionId").getAttribute("value");
-        this.saveButton = document.querySelector(".modal__save");
         this.tableDataUrl = "/api/tesseract/TableApi/GetReferenceItems/?guid=" + this.referenceCollectionId;
-        this.saveUrl = "/Settings/ReferenceData/CreateReferenceItem/";
-        this.updateUrl = "/Settings/ReferenceData/UpdateReferenceItem/";
-        this.deleteUrl = "/Settings/ReferenceData/DeleteReferenceItem/";
-        this.Initialise();
+        this.createUrl = "/Settings/ReferenceData/CreateReferenceItem/?id=" + this.referenceCollectionId;
+        this.createItemBtn = document.querySelector("#CreateReferenceItem");
+        this.init();
     }
 
-    public Initialise(){
-        this.saveButton.addEventListener("click", (event: Event) => {
-            event.preventDefault();
-            this.SubmitForm(this.saveButton);
-        });
+    init() {
+        this.generateTable();
+        this.createItemBtn.addEventListener('click', this.generateCreateItemDrawer.bind(this));
+
+        const targetNode = document.querySelector(".tesseract__drawer");
+        const mutationConfig = { attributes: true, attributeOldValue: true, attributeFilter: ["data-state"] }
+        const onMutation = mutations => {
+            for(const mutation of mutations) {
+                console.log(mutation);
+                if (mutation.oldValue == "open")
+                {
+                    console.log("Mutating");
+                    this.refreshTable();
+                }
+            }
+        }
+        const observer = new MutationObserver(onMutation);
+        observer.observe(targetNode, mutationConfig);
     }
-    
-    public SubmitForm(button: any)
-    {
-        let action = button.getAttribute("data-action");
-        switch (action) {
-            case "save":
-                this.SaveReferenceItem();
-                break;
-            case "edit":
-                this.UpdateReferenceItem();
-                break;
-            case "delete":
-                this.DeleteReferenceItem();
-                break;
+
+    refreshTable() {
+        const table = document.querySelector(".tesseract__table");
+        table.innerHTML = "";
+        this.generateTable();
+    }
+
+    generateTable() {
+        const tableOptions = new class implements TableOptions {
+            hasDelete = true;
+            hasEdit = true;
+            hasPagination: boolean;
+            hasSort: boolean;
+            hasView: boolean;
+            pageCount: number;
+            requestUrl: string;
+            selectable: boolean;
+            showRowCount = true;
+        };
+        tableOptions.requestUrl = this.tableDataUrl;
+        new TesseractTable(tableOptions);
+
+        const targetNode = document.querySelector(".tesseract__table");
+        const mutationConfig = { attributes: true, attributeFilter: ["data-ready"] };
+        const onMutation = mutations => {
+            for(const mutation of mutations) {
+                observer.disconnect();
+                this.addEventHandlers();
+            }
+        }
+        const observer = new MutationObserver(onMutation);
+        observer.observe(targetNode, mutationConfig);
+    }
+
+    addEventHandlers() {
+        const editButtons = document.querySelectorAll(".btn__edit");
+        for (const editButton of editButtons)
+        {
+            const dataGuid = editButton.getAttribute("data-id");
+            const updateUrl = "/Settings/ReferenceData/UpdateReferenceItem/?id=" + dataGuid;
+            editButton.addEventListener("click", function() {
+                ReferenceItemPage.generateUpdateItemDrawer(updateUrl);
+            });
+        }
+        
+        const deleteButtons = document.querySelectorAll(".btn__delete");
+        for (const deleteButton of deleteButtons)
+        {
+            const dataGuid = deleteButton.getAttribute("data-id");
+            const deleteUrl = "/Settings/ReferenceData/DeleteReferenceItem/?id=" + dataGuid;
+            deleteButton.addEventListener("click", function() {
+               ReferenceItemPage.generateDeleteItemDrawer(deleteUrl); 
+            });
         }
     }
-    
-    private SaveReferenceItem()
-    {
-        this.saveButton.setAttribute("disabled", "");
 
-        let form: any;
-        form = document.querySelector(".modal__form");
-        const formData = new FormData(form);
+    generateCreateItemDrawer() {
+        let drawerOptions = new class implements DrawerOptions {
+            contentUrl: string;
+            hasCancelButton: boolean = true;
+            hasSaveButton: boolean = true;
+            title: string;
+        };
+        drawerOptions.contentUrl = this.createUrl;
+        new TesseractDrawer(drawerOptions);
+    }
 
-        let token = document.querySelector('input[name="__RequestVerificationToken"]').getAttribute("value");
-        
-        fetch(this.saveUrl, {
-            method: "POST",
-            headers: {
-                "RequestVerificationToken": token
-            },
-            body: formData
-        })
-            .then(r => r.status)
-            .then(s => {
-                this.saveButton.removeAttribute("disabled");
-            })
-            .catch(e => {
-                console.log("Error :", e)
-            });
+    private static generateUpdateItemDrawer(updateUrl: string) {
+        let drawerOptions = new class implements DrawerOptions {
+            contentUrl: string;
+            hasCancelButton: boolean = true;
+            hasSaveButton: boolean = true;
+            title: string;
+        };
+        drawerOptions.contentUrl = updateUrl;
+        new TesseractDrawer(drawerOptions);
     }
     
-    private UpdateReferenceItem()
-    {
-        this.saveButton.setAttribute("disabled", "");
-        
-        let form: any;
-        form = document.querySelector(".modal__form");
-        const formData = new FormData(form);
-        
-        let token = document.querySelector('input[name="__RequestVerificationToken"]').getAttribute("value");
-                
-        fetch(this.updateUrl, {
-            method: "POST",
-            headers: {
-                "RequestVerificationToken": token
-            },
-            body: formData
-        })
-            .then(r => r.status)
-            .then(s => {
-                this.saveButton.removeAttribute("disabled");
-            })
-            .catch(e => {
-                console.log("Error :", e)
-            });
+    private static generateDeleteItemDrawer(deleteUrl: string) {
+        let drawerOptions = new class implements DrawerOptions {
+          contentUrl: string;
+          hasCancelButton: boolean = true;
+          hasSaveButton: boolean = true;
+          title: string;
+        };
+        drawerOptions.contentUrl = deleteUrl;
+        new TesseractDrawer(drawerOptions);
     }
     
-    private DeleteReferenceItem()
-    {
-        
-    }
 }
 
 export default ReferenceItemPage;

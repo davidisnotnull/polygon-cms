@@ -1,15 +1,10 @@
 ﻿@page
-@using Microsoft.AspNetCore.Antiforgery
 @model Polygon.CMS.Pages.Settings.ReferenceData.DeleteReferenceItemModel
-@inject IAntiforgery antiforgery
-
 @{
-    Layout = "~/Pages/Shared/_ModalLayout.cshtml";
-    ViewData["ModalTitle"] = $"Delete {@Model.ReferenceItemName}";
-    var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
+    Layout = "Shared/Tesseract/Layouts/_DrawerLayout";
+    ViewData["DrawerTitle"] = $"Delete {@Model.ReferenceItem.Name}";
 }
 
-@Html.HiddenFor(m => m.ReferenceItemId, new { Value = Model.ReferenceItemId })
-<input type="hidden" name="__RequestVerificationToken" value="@token" />
+@Html.HiddenFor(m => m.ReferenceItem.Id, new { Value = Model.ReferenceItem.Id})
 
-<p>Are you sure that you want to delete "@Model.ReferenceItemName"?</p>
+<p>Are you sure that you want to delete "@Model.ReferenceItem.Name"?</p>
