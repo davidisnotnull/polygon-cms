@@ -43,6 +43,7 @@ namespace Polygon.CMS
 
             services.AddRouting();
 
+            // Uncomment this to use SQL Server
             services.AddDbContext<PolygonContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("PolygonDb"));
@@ -50,6 +51,10 @@ namespace Polygon.CMS
                 //options.UseInMemoryDatabase(Guid.NewGuid().ToString());
                 options.EnableSensitiveDataLogging();
             });
+
+            // Uncomment this to use Sqlite
+            //services.AddDbContext<PolygonContext>(options
+            //    => options.UseSqlite("Data Source = wwwroot/db/app.db"));
 
             services.AddScoped<IPolygonContext, PolygonContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -61,6 +66,7 @@ namespace Polygon.CMS
             
             // Tesseract Services
             services.AddScoped<ITableService, TableService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

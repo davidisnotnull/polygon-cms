@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,11 +8,13 @@
     <None Remove="Content\ts\main.ts" />
     <None Remove="Content\ts\_tesseract\navigation\index.ts" />
     <None Remove="wwwroot\assets\**" />
+    <None Remove="wwwroot\db\**" />
     <None Remove="wwwroot\dist\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="wwwroot\assets\**" />
+    <Content Remove="wwwroot\db\**" />
     <Content Remove="wwwroot\dist\**" />
     <Content Update="Pages\Settings\ReferenceData\UpdateReferenceItem.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -21,7 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Business\Interfaces\" />
+    <Folder Include="Business\Services\" />
     <Folder Include="Content\ts\_tesseract\navigation\interfaces\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,13 +48,20 @@
 
   <ItemGroup>
     <Compile Remove="wwwroot\assets\**" />
+    <Compile Remove="wwwroot\db\**" />
     <Compile Remove="wwwroot\dist\**" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="wwwroot\assets\**" />
+    <EmbeddedResource Remove="wwwroot\db\**" />
     <EmbeddedResource Remove="wwwroot\dist\**" />
     <TypeScriptCompile Remove="wwwroot\assets\**" />
+    <TypeScriptCompile Remove="wwwroot\db\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,16 +76,6 @@
     <TypeScriptCompile Include="Content\ts\_tesseract\base\index.ts" />
     <TypeScriptCompile Remove="Content\ts\_tesseract\base\foundation.ts" />
     <TypeScriptCompile Remove="Content\ts\_tesseract\base\index.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="wwwroot\assets\icons\dashboard.png" />
-    <Content Include="wwwroot\assets\icons\developer.png" />
-    <Content Include="wwwroot\assets\icons\extension.png" />
-    <Content Include="wwwroot\assets\icons\folder.png" />
-    <Content Include="wwwroot\assets\icons\media.png" />
-    <Content Include="wwwroot\assets\icons\settings.png" />
-    <Content Include="wwwroot\assets\icons\users.png" />
   </ItemGroup>
 
   <PropertyGroup>
