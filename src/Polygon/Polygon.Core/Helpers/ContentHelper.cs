@@ -1,8 +1,11 @@
 ﻿using Polygon.Core.Data.Annotations;
 using Polygon.Core.Data.Entities;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace Polygon.Core.Helpers
 {
@@ -32,6 +35,21 @@ namespace Polygon.Core.Helpers
             
             var instance = Activator.CreateInstance(contentType);
             return instance;
+        }
+
+        public static IEnumerable<T> GetEnumerableOfTypes<T>(params object[] constructorArgs)
+            where T : class, IComparable<T>
+        {
+            var objects = new List<T>();
+
+            foreach (Type type in Assembly.GetAssembly(typeof(T)).GetTypes()
+                .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(T))))
+            {
+                objects.Add((T)Activator.CreateInstance(type, constructorArgs));
+            }
+
+            objects.Sort();
+            return objects;
         }
     }
 }

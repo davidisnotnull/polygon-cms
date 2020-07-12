@@ -1,0 +1,10 @@
+﻿@page
+@model Polygon.CMS.Pages.Content.CreatePageModel
+@{
+}
+
+@foreach (var contentType in Model.ContentTypeAttribute)
+{
+    <p>@contentType.DisplayName</p>
+    <p>@contentType.Description</p>
+}
