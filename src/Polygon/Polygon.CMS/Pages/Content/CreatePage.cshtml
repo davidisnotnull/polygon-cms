@@ -1,10 +1,11 @@
 ﻿@page
 @model Polygon.CMS.Pages.Content.CreatePageModel
+
 @{
+    ViewData["Title"] = "Create Page";
+    ViewData["PageClass"] = "page__create-page";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-@foreach (var contentType in Model.ContentTypeAttribute)
-{
-    <p>@contentType.DisplayName</p>
-    <p>@contentType.Description</p>
-}
+<h1>Create new @Model.ContentTypeAttribute.DisplayName</h1>
+

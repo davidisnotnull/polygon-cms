@@ -1,0 +1,37 @@
+﻿@page
+@model Polygon.CMS.Pages.Content.SelectPageTypeModel
+
+@{
+    ViewData["Title"] = "Select Page Type to Create";
+    ViewData["PageClass"] = "page__select-page-type";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col s12">
+        <h1>Select Page Type to Create</h1>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var contentType in Model.ContentTypeAttributes)
+    {
+        <div class="col s12 m4">
+            <div class="col s4">
+                <picture>
+                    @{
+                        var contentTypeImage = string.IsNullOrWhiteSpace(contentType.Image) ? "/assets/icons/pages/default-page-icon.png" : contentType.Image;
+                    }
+                    <source srcset="@contentTypeImage" />
+                    <img width="75%" src="@contentTypeImage" alt="@contentType.DisplayName" />
+                </picture>
+            </div>
+            <div class="col s8">
+                <h3>@contentType.DisplayName</h3>
+                <p>@contentType.Description</p>
+                <button class="button__create-page" data-id="@contentType.Guid">Create</button>
+            </div>
+        </div>
+    }
+</div>
+

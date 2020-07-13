@@ -7,11 +7,13 @@
   <ItemGroup>
     <None Remove="Content\ts\main.ts" />
     <None Remove="Content\ts\_tesseract\navigation\index.ts" />
+    <None Remove="Content\images\**" />
     <None Remove="wwwroot\assets\**" />
     <None Remove="wwwroot\db\**" />
     <None Remove="wwwroot\dist\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="Content\images\**" />
     <Content Remove="wwwroot\assets\**" />
     <Content Remove="wwwroot\db\**" />
     <Content Remove="wwwroot\dist\**" />
@@ -36,20 +38,23 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Polygon.Core\Polygon.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Content\images\**" />
     <Compile Remove="wwwroot\assets\**" />
     <Compile Remove="wwwroot\db\**" />
     <Compile Remove="wwwroot\dist\**" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Remove="Content\images\**" />
     <EmbeddedResource Remove="wwwroot\assets\**" />
     <EmbeddedResource Remove="wwwroot\db\**" />
     <EmbeddedResource Remove="wwwroot\dist\**" />
+    <TypeScriptCompile Remove="Content\images\**" />
     <TypeScriptCompile Remove="wwwroot\assets\**" />
     <TypeScriptCompile Remove="wwwroot\db\**" />
   </ItemGroup>

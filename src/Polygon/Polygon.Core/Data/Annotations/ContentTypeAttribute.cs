@@ -69,5 +69,7 @@ namespace Polygon.Core.Data.Annotations
         public string Description { get; set; }
 
         public string GroupName { get; set; }
+
+        public string Image { get; set; }
     }
 }

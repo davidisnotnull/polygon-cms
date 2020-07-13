@@ -6,18 +6,27 @@ import TesseractNavigation from "./_tesseract/navigation";
 import TesseractWysiwyg from "./_tesseract/wysiwyg";
 
 /* Pages */
-// Settings pages
+/* Content Pages */
+import SelectPageType from "./pages/content/select-page-type";
+
+/* Settings pages */
 import ReferenceCollectionPage from "./pages/reference-collection";
 import ReferenceItemPage from "./pages/reference-item";
 import CookieSettingsPage from "./pages/cookie-settings";
 
-// Developer pages
+/* Developer pages */
 import TesseractDeveloperPage from "./pages/developer/tesseract";
 
 /* Script loader */
 window.onload = e => {
     
     new TesseractNavigation();
+
+    /* Load Select Page Type scripts */
+    if (document.querySelector('.page__select-page-type'))
+    {
+        new SelectPageType();
+    }
     
     /* Load Reference Collection Page scripts */
     if (document.querySelector('.page__reference-collection'))
