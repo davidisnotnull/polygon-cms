@@ -4,37 +4,23 @@ using System;
 namespace Polygon.Core.Data.Annotations
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class PropertyUiAttribute : Attribute
+    public sealed class PropertyUiAttribute : Attribute
     {
-        private string _displayName;
-        private string _description;
-        private string _groupName;
         private int? _order;
-        private bool? _availableInEditMode;
 
         public UIType UIType { get; set; }
 
         // Define the Display Name of the property. This is how the property
         // name appears in the Editor view.
-        public virtual string DisplayName
-        {
-            get => _displayName;
-            set => _displayName = value;
-        }
+        public string DisplayName { get; set; }
 
         // Define the Description of the property. This appears in the helper
         // text in the editor view.
-        public virtual string Description 
-        { 
-            get => _description; 
-            set => _description = value;
-        }
+        public string Description { get; set; }
 
-        public virtual string GroupName
-        {
-            get => _groupName; 
-            set => _groupName = value;
-        }
+        public string Placeholder { get; set; }
+
+        public string GroupName { get; set; }
 
         public int Order
         {
@@ -45,17 +31,6 @@ namespace Polygon.Core.Data.Annotations
         public int? GetOrder()
         {
             return _order;
-        }
-
-        public bool AvailableInEditMode
-        {
-            get => !_availableInEditMode.HasValue || _availableInEditMode.Value;
-            set => _availableInEditMode = value;
-        }
-
-        public bool? GetAvailableInEditMode()
-        {
-            return _availableInEditMode;
         }
     }
 }

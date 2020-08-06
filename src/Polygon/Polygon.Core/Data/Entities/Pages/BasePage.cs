@@ -15,14 +15,13 @@ namespace Polygon.Core.Data.Entities.Pages
         [Required]
         [PropertyUi(
             UIType = UIType.Textbox,
-            Description = "This is the name of your Page as it appears in the CMS."
+            Description = "This is the name of your Page as it appears in the CMS.",
+            Placeholder = "Enter the name of your page"
         )]
         public string Name { get; set; }
 
-        [PropertyUi(AvailableInEditMode = false)]
         public bool IsPublished { get; set; }
 
-        [PropertyUi(AvailableInEditMode = false)]
         public int ParentPageId { get; set; }
 
         public int CompareTo(BasePage other)

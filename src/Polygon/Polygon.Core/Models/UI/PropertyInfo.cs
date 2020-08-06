@@ -7,9 +7,13 @@ namespace Polygon.Core.Models.UI
     /// </summary>
     public class PropertyInfo
     {
+        public string Name;
+
         public string DisplayName;
 
         public string Description;
+
+        public string Placeholder;
 
         public string Group;
 

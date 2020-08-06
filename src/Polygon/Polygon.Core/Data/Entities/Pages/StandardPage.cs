@@ -20,12 +20,23 @@ namespace Polygon.Core.Data.Entities.Pages
         [Required]
         [PropertyUi(
             UIType = UIType.Textbox,
+            DisplayName = "Main Heading (H1)",
+            Placeholder = "Enter the main heading for your page",
             GroupName = GroupNames.Pages.Content
         )]
         public string Heading { get; set; }
 
         [PropertyUi(
+            UIType = UIType.Wysiwyg,
+            DisplayName = "Main Body",
+            Placeholder = "Enter your main body text",
+            GroupName = GroupNames.Pages.Content
+        )]
+        public string MainBody { get; set; }
+
+        [PropertyUi(
             UIType = UIType.Textbox,
+            DisplayName = "Meta Title",
             GroupName = GroupNames.Pages.Metadata
         )]
         public string MetaTitle { get; set; }

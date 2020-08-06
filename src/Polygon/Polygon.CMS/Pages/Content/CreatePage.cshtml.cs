@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Polygon.CMS.Business.Models;
 using Polygon.Core.Data.Annotations;
 using Polygon.Core.Helpers;
 using Polygon.Core.Models.UI;
 using Polygon.Core.Services.Interfaces.Content;
+using System.Collections.Generic;
 
 namespace Polygon.CMS.Pages.Content
 {
@@ -20,6 +19,7 @@ namespace Polygon.CMS.Pages.Content
         [BindProperty]
         public ContentTypeAttribute ContentTypeAttribute { get; set; }
 
+        [BindProperty]
         public List<PropertyInfo> PropertyInfo { get; set; }
 
         public void OnGet(string id)
@@ -34,6 +34,19 @@ namespace Polygon.CMS.Pages.Content
             foreach (var prop in propertyInfo)
             {
                 var propUiInfo = AttributeHelper.GetPropertyUiAttribute(prop);
+
+                if (propUiInfo == null)
+                    continue;
+
+                var propInfo = new PropertyInfo
+                {
+                    Name = prop.Name,
+                    DisplayName = string.IsNullOrEmpty(propUiInfo.DisplayName) ? prop.Name : propUiInfo.DisplayName,
+                    Description = string.IsNullOrEmpty(propUiInfo.Description) ? "" : propUiInfo.Description,
+                    Placeholder = string.IsNullOrEmpty(propUiInfo.Placeholder) ? $"Enter the {prop.Name}" : propUiInfo.Placeholder
+                };
+
+                PropertyInfo.Add(propInfo);
             }
         }
 

@@ -3,7 +3,7 @@
 namespace Polygon.Core.Data.Annotations
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-    public class ContentTypeAttribute : Attribute
+    public sealed class ContentTypeAttribute : Attribute
     {
         private Guid? _guid;
         private int? _order;
