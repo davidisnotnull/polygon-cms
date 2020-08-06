@@ -5,6 +5,7 @@
         public static class Pages
         {
             public const string Content = "Content";
+            public const string Metadata = "Metadata";
             public const string Utility = "Utility";
             public const string Settings = "Settings";
             public const string Admin = "Admin";

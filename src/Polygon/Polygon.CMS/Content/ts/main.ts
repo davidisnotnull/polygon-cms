@@ -8,6 +8,7 @@ import TesseractWysiwyg from "./_tesseract/wysiwyg";
 /* Pages */
 /* Content Pages */
 import SelectPageType from "./pages/content/select-page-type";
+import CreatePage from "./pages/content/create-page";
 
 /* Settings pages */
 import ReferenceCollectionPage from "./pages/reference-collection";
@@ -18,7 +19,7 @@ import CookieSettingsPage from "./pages/cookie-settings";
 import TesseractDeveloperPage from "./pages/developer/tesseract";
 
 /* Script loader */
-window.onload = e => {
+window.onload = () => {
     
     new TesseractNavigation();
 
@@ -26,6 +27,11 @@ window.onload = e => {
     if (document.querySelector('.page__select-page-type'))
     {
         new SelectPageType();
+    }
+
+    if (document.querySelector(".page__create-page"))
+    {
+        new CreatePage();
     }
     
     /* Load Reference Collection Page scripts */

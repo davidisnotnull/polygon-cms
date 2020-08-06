@@ -43,18 +43,20 @@ namespace Polygon.CMS
 
             services.AddRouting();
 
-            // Uncomment this to use SQL Server
             services.AddDbContext<PolygonContext>(options =>
             {
+                /* Uncomment this to use Sql Server */
                 options.UseSqlServer(Configuration.GetConnectionString("PolygonDb"));
-                //Uncomment this for testing with an in memory database
+                
+                /* Uncomment this for testing with an in memory database */
                 //options.UseInMemoryDatabase(Guid.NewGuid().ToString());
+
+                /* Uncomment this to use Sqlite */
+                //options.UseSqlite("Data Source = wwwroot/db/app.db"));
+
                 options.EnableSensitiveDataLogging();
             });
 
-            // Uncomment this to use Sqlite
-            //services.AddDbContext<PolygonContext>(options
-            //    => options.UseSqlite("Data Source = wwwroot/db/app.db"));
 
             services.AddScoped<IPolygonContext, PolygonContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -64,7 +66,7 @@ namespace Polygon.CMS
             services.AddScoped<IOpenGraphService, OpenGraphService>();
             services.AddScoped(typeof(IContentService<>), typeof(ContentService<>));
             
-            // Tesseract Services
+            /* Tesseract Services */
             services.AddScoped<ITableService, TableService>();
 
         }
@@ -100,7 +102,6 @@ namespace Polygon.CMS
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
-
         }
     }
 }
