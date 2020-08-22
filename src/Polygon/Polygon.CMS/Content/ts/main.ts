@@ -32,6 +32,7 @@ window.onload = () => {
     if (document.querySelector(".page__create-page"))
     {
         new CreatePage();
+        new TesseractWysiwyg();
     }
     
     /* Load Reference Collection Page scripts */

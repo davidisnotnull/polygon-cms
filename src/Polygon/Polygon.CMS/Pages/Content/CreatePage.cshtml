@@ -1,5 +1,6 @@
 ﻿@page
 @using Polygon.Core.Enums.Editor
+@using Polygon.CMS.Business.ViewModels
 @model Polygon.CMS.Pages.Content.CreatePageModel
 
 @{
@@ -26,6 +27,10 @@
                             case UIType.Checkbox:
                                 break;
                             case UIType.Wysiwyg:
+                                var model = new TesseractWysiwyg {
+                                    Id = prop.Name
+                                };
+                                @await Html.PartialAsync("Shared/Tesseract/_TesseractWysiwyg", model)
                                 break;
                             default:
                                 <input asp-for="@prop.Name" type="text" class="form-control" id="@prop.Name" aria-describedby="@($"{prop.Name}Help")" placeholder="@prop.Placeholder">

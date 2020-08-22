@@ -43,7 +43,8 @@ namespace Polygon.CMS.Pages.Content
                     Name = prop.Name,
                     DisplayName = string.IsNullOrEmpty(propUiInfo.DisplayName) ? prop.Name : propUiInfo.DisplayName,
                     Description = string.IsNullOrEmpty(propUiInfo.Description) ? "" : propUiInfo.Description,
-                    Placeholder = string.IsNullOrEmpty(propUiInfo.Placeholder) ? $"Enter the {prop.Name}" : propUiInfo.Placeholder
+                    Placeholder = string.IsNullOrEmpty(propUiInfo.Placeholder) ? $"Enter the {prop.Name}" : propUiInfo.Placeholder,
+                    UIType = propUiInfo.UIType
                 };
 
                 PropertyInfo.Add(propInfo);
