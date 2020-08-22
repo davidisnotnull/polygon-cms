@@ -1,0 +1,5 @@
+﻿@model Polygon.CMS.Business.ViewModels.Tesseract.Textbox
+
+<input asp-for="@Model.Id" type="text" class="form-control" id="@Model.Id" aria-describedby="@($"{Model.Id}Help")" placeholder="@Model.Placeholder" value="">
+<small id="@($"{Model.Id}Help")" class="form-text text-muted">@Model.Description</small>
+<span asp-validation-for="@Model.Id" class="text-danger"></span>

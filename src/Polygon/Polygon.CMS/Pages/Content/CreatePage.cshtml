@@ -1,6 +1,7 @@
 ﻿@page
 @using Polygon.Core.Enums.Editor
 @using Polygon.CMS.Business.ViewModels
+@using Polygon.CMS.Business.ViewModels.Tesseract
 @model Polygon.CMS.Pages.Content.CreatePageModel
 
 @{
@@ -22,23 +23,29 @@
                         switch (prop.UIType)
                         {
                             case UIType.Textbox:
-                                <input asp-for="@prop.Name" type="text" class="form-control" id="@prop.Name" aria-describedby="@($"{prop.Name}Help")" placeholder="@prop.Placeholder">
+                                var textbox = new Textbox
+                                {
+                                    Id = prop.Name,
+                                    Placeholder = prop.Placeholder,
+                                    Description = prop.Description
+                                };
+                                @await Html.PartialAsync("Shared/Tesseract/_TesseractTextbox", textbox)
                                 break;
                             case UIType.Checkbox:
                                 break;
                             case UIType.Wysiwyg:
-                                var model = new TesseractWysiwyg {
+                                var wysiwyg = new Wysiwyg
+                                {
                                     Id = prop.Name
                                 };
-                                @await Html.PartialAsync("Shared/Tesseract/_TesseractWysiwyg", model)
+                                @await Html.PartialAsync("Shared/Tesseract/_TesseractWysiwyg", wysiwyg)
                                 break;
                             default:
                                 <input asp-for="@prop.Name" type="text" class="form-control" id="@prop.Name" aria-describedby="@($"{prop.Name}Help")" placeholder="@prop.Placeholder">
                                 break;
                         }
                     }
-                    <small id="@($"{prop.Name}Help")" class="form-text text-muted">@prop.Description</small>
-                    <span asp-validation-for="@prop.Name" class="text-danger"></span>
+                    
                 </div>
             }
         }
